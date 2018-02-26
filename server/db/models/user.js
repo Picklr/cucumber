@@ -27,10 +27,26 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  shippingAddress: {
+  billingAddress: {
+    type: Sequelize.STRING
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  firstName: {
+    type: Sequelize.STRING,
+  },
+  lastName: {
     type: Sequelize.STRING
   }
 
+}, {
+  getterMethods: {
+    fullName(){
+      return this.firstName + ' ' + this.lastName;
+    }
+  },
 })
 
 module.exports = User
