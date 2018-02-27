@@ -8,3 +8,7 @@ router.use((req, res, next) => {
   error.status = 404
   next(error)
 })
+
+router.get('/', (req,res,next)=>{
+  res.send('Hi CUCUMBERS')
+})
