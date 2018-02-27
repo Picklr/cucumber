@@ -9,7 +9,7 @@ const DELETE_ITEM = 'DELETE_ITEM';
 /**
  * INITIAL STATE
  */
-const cartItems = [{id: 1, name: 'banana'}, {id: 2, name: 'apple'}, {id: 3, name: 'pear'} ];
+const cartItems = [];
 
 /**
  * ACTION CREATORS

@@ -2,14 +2,19 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { destroyItem } from '../store/shoppingList';
 
-export const ShoppingList = (props) => (
+export const ShoppingList = (props) => {
+    console.log(props);
+
+    return (
+
     <div>
+
         <ul>
         {props.cartItems.map( item =>{
             return (<div key={item.id}>
                 <li>
                 {item.name}
-                <span>{item.price}</span>
+                {/* <span>{item.price}</span> */}
                 </li>
                 <button
                 onClick = {props.handleDeleteClick}
@@ -22,10 +27,20 @@ export const ShoppingList = (props) => (
         <button>Checkout</button>
     </div>
 )
+}
 
-const mapState = (state) => ({
-    cartItems: state.cartItems
-})
+const mapState = function(state){
+    console.log('state in mapstate', state);
+   return {
+       cartItems: state.shoppingList
+   }
+}
+
+// const mapStateToProps = function (state) {
+//     return {
+//       name: state.name
+//     };
+//   };
 
 
 const mapDispatch = (dispatch) => ({
