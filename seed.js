@@ -15,7 +15,7 @@ const ourSeed = [
     {name: '3oz Sardines', brand: 'Bar Harbor' , price: 3.99 , photo: '/Users/philipgingerich/FullStack/GraceShopper/cucumber/public/cucumber.jpg' , totalSales: 30, category: 'Seafood' , stars: 4.8 , tags: [ 'Seafood','Sustainable' ,'Canned' , 'Fish']},
     {name: 'Scottish Salmon', brand: 'Greenpoint Fish Co' , price: 19.99 , photo: '/Users/philipgingerich/FullStack/GraceShopper/cucumber/public/cucumber.jpg', totalSales: 21, category: 'Seafood' , stars: 5.0, tags: ['Seafood' , 'Farmed' ,'Fresh' , 'Fish' ]},
     {name: 'RockFish' , brand: 'Greenpoint Fish Co' , price: 14.99 , photo: '/Users/philipgingerich/FullStack/GraceShopper/cucumber/public/cucumber.jpg', totalSales: 4 , category: 'Seafood' , stars: 5.0 , tags: ['Seafood' , 'Farmed' , 'Fish' , 'Sustainable' ]},
-    {name: '12oz Arugula' , brand: 'NY Greens', price: 4.99, photo: , totalSales: 40 , category: 'Greens' , stars: 5.0, tags: [ 'Green' ,'Kale' ,'Lettuce' ,'Healthy', 'Organic' ]},
+    {name: '12oz Arugula' , brand: 'NY Greens', price: 4.99, photo: '/Users/philipgingerich/FullStack/GraceShopper/cucumber/public/cucumber.jpg', totalSales: 40 , category: 'Greens' , stars: 5.0, tags: [ 'Green' ,'Kale' ,'Lettuce' ,'Healthy', 'Organic' ]},
 
 ]
 
