@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { destroyItem } from '../store/shoppingList';
 
 export const ShoppingList = (props) => (
     <div>
@@ -9,7 +10,11 @@ export const ShoppingList = (props) => (
                 <li>
                 {item.name}
                 <span>{item.price}</span>
-                </li><button>x</button>
+                </li>
+                <button
+                onClick = {props.handleDeleteClick}
+                id = {item.id}
+                >x</button>
                 </div>
             )
         })}
@@ -22,7 +27,23 @@ const mapState = (state) => ({
     cartItems: state.cartItems
 })
 
+
+const mapDispatch = (dispatch) => ({
+  handleDeleteClick: (event) => {
+    dispatch(destroyItem(event.target.id))
+    }
+})
+
+//     OTHER FORMAT OF MAPDISPATCH
+// const mapDispatchToProps = function (dispatch) {
+//     return {
+//       handleChange (evt) {
+//         dispatch(updateName(evt.target.value));
+//       }
+//     };
+//   };
+
 //TODO Remove from cart and checkout
 
-export default connect(mapState/*TODO add mapDispatch*/)(ShoppingList);
+export default connect(mapState, mapDispatch)(ShoppingList);
 
