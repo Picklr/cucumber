@@ -9,6 +9,7 @@ const Products = db.define('products', {
     photo: { type: Sequelize.STRING },
     totalSales: { type: Sequelize.DECIMAL },
     category: { type: Sequelize.STRING },
+    stars: { type: Sequelize.FLOAT, validate: { min: 0, max: 5 }},
     tags: { type: Sequelize.ARRAY(Sequelize.STRING) },
 
 })
