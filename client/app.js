@@ -6,7 +6,6 @@ import Routes from './routes'
 import {fetchProducts} from './store'
 
 
-
 class App extends Component {
 
   constructor(props){
@@ -37,5 +36,4 @@ const mapDispatch = (dispatch) => {
 }
 
 export default connect(null, mapDispatch)(App)
-
 

@@ -3,7 +3,7 @@ module.exports = router
 
 router.use('/users', require('./users'));
 router.use('/shoppingList', require('./shoppingList'))
-router.use('/products',require('./products'))
+router.use('/products', require('./products'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')
@@ -11,6 +11,6 @@ router.use((req, res, next) => {
   next(error)
 })
 
-router.get('/', (req,res,next)=>{
+router.get('/', (req, res, next) => {
   res.send('Hi CUCUMBERS')
 })
