@@ -45,6 +45,7 @@ const mapState = function(state){
 
 const mapDispatch = (dispatch) => ({
   handleDeleteClick: (event) => {
+      event.preventDefault();
     dispatch(destroyItem(event.target.id))
     }
 })

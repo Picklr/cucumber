@@ -2,9 +2,9 @@ const router = require('express').Router()
 const { Products } = require('../db/models')
 module.exports = router
 
-router.delete('/', (req, res, next) => {
-  const deleteId = req.body.id;
-  Products.destoy({ where: { id: deleteId} })
-    .then(() => res.send(deleteId))
+router.delete('/:id', (req, res, next) => {
+  const deleteId = req.params.id;
+  Products.destroy({ where: { id: deleteId} })
+    .then(() => res.sendStatus(204))
     .catch(next)
 })

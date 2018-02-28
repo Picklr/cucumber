@@ -23,9 +23,9 @@ const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
 
 export const destroyItem = (itemToDestroyId) =>
   dispatch => {
-    axios.delete('/api/shoppingList', {id: itemToDestroyId} )
-    .then(res =>
-      dispatch(deleteItem(res.data)))
+    axios.delete(`/api/shoppingList/${itemToDestroyId}`)
+    .then( () =>
+      dispatch(deleteItem(itemToDestroyId)))
     .catch(err => console.log(err))
   }
 
