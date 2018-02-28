@@ -21,7 +21,7 @@ class AllProducts extends Component {
 }
 
   const mapState = state => ({
-     products: state.products
+     products: state.products.allProducts
   })
 
   

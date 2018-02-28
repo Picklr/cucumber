@@ -6,7 +6,15 @@ const SET_SELECTED_PRODUCT_VIEW = 'SET_SELECTED_PRODUCT_VIEW'
 
 // ACTION CREATORS
 const getProducts = products => ({type: GET_PRODUCTS, products})
-const setSelectedProductView = singleProduct => ({type: SET_SELECTED_PRODUCT_VIEW, singleProduct})
+export const setSelectedProductView = singleProductId => ({type: SET_SELECTED_PRODUCT_VIEW, singleProductId})
+
+//STATE
+
+let initialState = {
+    allProducts: [],
+    selectedProduct: {}
+}
+
 
 //thunk
 export const fetchProducts = () =>
@@ -16,28 +24,24 @@ dispatch =>
       dispatch(getProducts(res.data)))
     .catch(err => console.log(err))
 
-export const spotLightonProduct = (ID) => dispatch => {
-    axios.get(`/api/products/${ID}`)
-    .then(res => res.data)
-    .then(oneProduct=>{
-        dispatch(setSelectedProductView(oneProduct))
-    })
-}
+// export const spotLightonProduct = (ID) => dispatch => {
+//     axios.get(`/api/products/${ID}`)
+//     .then(res => res.data)
+//     .then(oneProduct=>{
+//         dispatch(setSelectedProductView(oneProduct))
+//     })
+// }
 
 
-export const products = function (state = [], action) {
+export const products = function (state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS:
-            return action.products
-        default:
-            return state
-    }
-}
-
-export const selectedProduct = function (state = {}, action) {
-    switch (action.type) {
+            return {...state, allProducts: action.products}
         case SET_SELECTED_PRODUCT_VIEW:
-            return action.singleProduct
+            const singleProduct = state.allProducts.find(eachProduct=>eachProduct.id==action.singleProductId)
+            if(singleProduct) return {...state, selectedProduct: singleProduct}
+            else return {...state, selectedProduct: {} }
+
         default:
             return state
     }
