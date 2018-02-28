@@ -17,7 +17,6 @@ class SingleProduct extends Component{
 
 
     render(){
-        console.log('CHECKHERE ',this.props.selectedProduct)
         return (
         <div>
 
