@@ -38,3 +38,4 @@ const mapDispatch = (dispatch) => ({setSelectedProductView: (aProduct) => { disp
 
 
 export default connect(mapStateProps, mapDispatch)(SingleProduct)
+
