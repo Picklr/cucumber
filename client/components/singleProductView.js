@@ -1,11 +1,13 @@
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import React, {Component} from 'react'
+import { selectedProduct } from '../store';
 
-export default class SingleProduct extends Component{
+class SingleProduct extends Component{
     constructor(props){
         super(props)
     }
+
 
     render(){
         return (
@@ -14,3 +16,8 @@ export default class SingleProduct extends Component{
         </div>
     )}
 }
+
+const mapStateProps = (state) => ({selectedProduct: state.selectedProduct})
+
+
+export default connect(mapStateProps)(SingleProduct)
