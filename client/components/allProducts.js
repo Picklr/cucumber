@@ -24,5 +24,5 @@ class AllProducts extends Component {
      products: state.products
   })
 
-  
+
   export default connect(mapState, null)(AllProducts)
