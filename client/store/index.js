@@ -6,7 +6,7 @@ import user from './user'
 import {products, selectedProduct} from './products'
 import shoppingList from './shoppingList';
 
-const reducer = combineReducers({user, shoppingList, products, selectedProduct})
+const reducer = combineReducers({user, shoppingList, products})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,

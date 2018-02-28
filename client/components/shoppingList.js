@@ -10,7 +10,7 @@ export const ShoppingList = (props) => {
     <div>
 
         <ul>
-        {props.cartItems.map( item =>{
+        {props.cartItems.map( item => {
             return (<div key={item.id}>
                 <li>
                 {item.name}
