@@ -33,7 +33,7 @@ class AllProducts extends Component {
   })
 
   const mapDispatch = dispatch => ({
-      handleChange: event => {console.log('WE ARE SEARCHING'); dispatch(setSearchTerm(event.target.value))}
+      handleChange: event => {dispatch(setSearchTerm(event.target.value))}
   })
   
   export default connect(mapState, mapDispatch)(AllProducts)
