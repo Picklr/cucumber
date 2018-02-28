@@ -48,11 +48,19 @@ export const fetchObjAndAdd = (itemId) =>
  */
 export default function (state = cartItems, action) {
   switch (action.type) {
+
     case DELETE_ITEM:
       return state.filter((currentItem) => currentItem.id !== action.itemId)
 
     case ADD_PRODUCT_TO_LIST:
-      return [...state, action.productObj]
+      if (state.filter((product) => {
+        return product.id === action.productObj.id
+      }).length){
+        return state
+      } else {
+        return [...state, action.productObj]
+      }
+
     default:
       return state
   }

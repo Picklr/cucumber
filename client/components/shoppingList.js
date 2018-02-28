@@ -29,7 +29,6 @@ export const ShoppingList = (props) => {
 }
 
 const mapState = function(state){
-    console.log('state in mapstate', state);
    return {
        shoppingList: state.shoppingList
    }

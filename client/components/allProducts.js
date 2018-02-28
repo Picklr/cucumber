@@ -47,7 +47,6 @@ class AllProducts extends Component {
      handleAddToListClick: (event) => {
       event.preventDefault();
 
-
       dispatch(fetchObjAndAdd(+event.target.id))
 
    }
