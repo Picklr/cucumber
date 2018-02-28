@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { destroyItem } from '../store/shoppingList';
+import { deleteItem } from '../store/shoppingList';
 
 export const ShoppingList = (props) => {
     console.log(props);
@@ -46,7 +46,7 @@ const mapState = function(state){
 const mapDispatch = (dispatch) => ({
   handleDeleteClick: (event) => {
       event.preventDefault();
-    dispatch(destroyItem(event.target.id))
+    dispatch(deleteItem(event.target.id))
     }
 })
 
