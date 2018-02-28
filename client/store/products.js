@@ -3,16 +3,23 @@ import axios from 'axios'
 //Action Type
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const SET_SELECTED_PRODUCT_VIEW = 'SET_SELECTED_PRODUCT_VIEW'
+const SET_FILTER_TERM = 'SET_FILTER_TERM'
 
 // ACTION CREATORS
+
+//used in THUNK
 const getProducts = products => ({type: GET_PRODUCTS, products})
+
+//not used in thunk (standalone)
 export const setSelectedProductView = singleProductId => ({type: SET_SELECTED_PRODUCT_VIEW, singleProductId})
+export const setSearchTerm = term => ({type: SET_FILTER_TERM, term})
 
 //STATE
 
 let initialState = {
     allProducts: [],
-    selectedProduct: {}
+    selectedProduct: {},
+    filterTerm: ''
 }
 
 
@@ -41,7 +48,8 @@ export const products = function (state = initialState, action) {
             const singleProduct = state.allProducts.find(eachProduct=>eachProduct.id==action.singleProductId)
             if(singleProduct) return {...state, selectedProduct: singleProduct}
             else return {...state, selectedProduct: {} }
-
+        case SET_FILTER_TERM:
+            return {...state, filterTerm: action.term}
         default:
             return state
     }
