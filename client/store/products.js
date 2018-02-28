@@ -50,7 +50,4 @@ export const products = function (state = initialState, action) {
             return state
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> master

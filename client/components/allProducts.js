@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import React, { Component } from 'react'
-import { addProductToList } from '../store/shoppingList';
+import { fetchObjAndAdd } from '../store/shoppingList';
 
 class AllProducts extends Component {
 
@@ -41,14 +41,18 @@ class AllProducts extends Component {
     products: state.products.allProducts
   })
 
-  const mapDispatch = dispatch => ({
-    handleAddToListClick: (event) => {
-      event.preventDefault();
-      console.log(typeof +event.target.id)
-      dispatch(addProductToList(+event.target.id))
-    }
 
-  })
+
+  const mapDispatch = (dispatch) => ({
+     handleAddToListClick: (event) => {
+      event.preventDefault();
+
+
+      dispatch(fetchObjAndAdd(+event.target.id))
+
+   }
+  }
+  )
 
 
   export default connect(mapState, mapDispatch)(AllProducts)

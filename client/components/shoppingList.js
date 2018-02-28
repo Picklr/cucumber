@@ -3,14 +3,13 @@ import {connect} from 'react-redux'
 import { deleteItem } from '../store/shoppingList';
 
 export const ShoppingList = (props) => {
-    console.log(props);
 
     return (
 
     <div>
 
         <ul>
-        {props.cartItems.map( item => {
+        {props.shoppingList.map( item => {
             return (<div key={item.id}>
                 <li>
                 {item.name}
@@ -32,7 +31,7 @@ export const ShoppingList = (props) => {
 const mapState = function(state){
     console.log('state in mapstate', state);
    return {
-       cartItems: state.shoppingList
+       shoppingList: state.shoppingList
    }
 }
 
@@ -46,7 +45,7 @@ const mapState = function(state){
 const mapDispatch = (dispatch) => ({
   handleDeleteClick: (event) => {
       event.preventDefault();
-    dispatch(deleteItem(event.target.id))
+    dispatch(deleteItem(+event.target.id))
     }
 })
 

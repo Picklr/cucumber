@@ -1,5 +1,5 @@
-// import axios from 'axios'
-// import history from '../history'
+import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
@@ -7,6 +7,7 @@
 const DELETE_ITEM = 'DELETE_ITEM';
 
 const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
+
 
 /**
  * INITIAL STATE
@@ -18,11 +19,20 @@ const cartItems = [];
  */
 export const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
 
-export const addProductToList = productId => ({type: ADD_PRODUCT_TO_LIST, productId})
+export const addProductToList = productObj => ({type: ADD_PRODUCT_TO_LIST, productObj})
 
 /**
  * THUNK CREATORS
  */
+
+
+export const fetchObjAndAdd = (itemId) =>
+  dispatch => {
+    axios.get(`/api/products/${itemId}`)
+    .then(res =>
+      dispatch(addProductToList(res.data)))
+    .catch(err => console.log(err))
+  }
 
 //in the future will use this with admin
 // export const destroyItem = (itemToDestroyId) =>
@@ -39,9 +49,10 @@ export const addProductToList = productId => ({type: ADD_PRODUCT_TO_LIST, produc
 export default function (state = cartItems, action) {
   switch (action.type) {
     case DELETE_ITEM:
-      return state.cartItems.filter((currentItem) => currentItem.id !== action.itemId)
+      return state.filter((currentItem) => currentItem.id !== action.itemId)
+
     case ADD_PRODUCT_TO_LIST:
-      return [...state.cartItems, action.productId]
+      return [...state, action.productObj]
     default:
       return state
   }
