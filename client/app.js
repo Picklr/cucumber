@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Navbar} from './components'
 import Routes from './routes'
 import {fetchProducts} from './store'
-
+import {withRouter} from 'react-router-dom'
 
 
 class App extends Component {
@@ -17,6 +17,7 @@ class App extends Component {
   }
 
   render(){
+    console.log('Look here', this.props)
     return (
       <div>
         <Navbar />
@@ -26,6 +27,7 @@ class App extends Component {
   }
 }
 
+
 const mapDispatch = (dispatch) => {
   return {
     loadInventory () {
@@ -34,6 +36,6 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatch)(App)
+export default withRouter(connect(null, mapDispatch)(App))
 
 
