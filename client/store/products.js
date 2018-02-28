@@ -33,8 +33,6 @@ export const products = function (state = [], action) {
             return state
     }
 }
-<<<<<<< HEAD
-=======
 
 export const selectedProduct = function (state = {}, action) {
     switch (action.type) {
@@ -44,4 +42,3 @@ export const selectedProduct = function (state = {}, action) {
             return state
     }
 }
->>>>>>> master

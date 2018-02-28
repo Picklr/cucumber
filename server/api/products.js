@@ -7,11 +7,8 @@ router.get('/', (req, res, next) => {
     .then(products => res.json(products))
     .catch(next)
 })
-<<<<<<< HEAD
-=======
 
 router.get('/:id', (req,res,next)=>{
   Products.findById(req.params.id)
   .then(aProduct => res.json(aProduct))
 })
->>>>>>> master
