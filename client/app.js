@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   render(){
-    console.log('Look here', this.props)
     return (
       <div>
         <Navbar />
