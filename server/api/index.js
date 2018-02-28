@@ -11,6 +11,6 @@ router.use((req, res, next) => {
   next(error)
 })
 
-router.get('/', (req,res,next)=>{
+router.get('/', (req, res, next) => {
   res.send('Hi CUCUMBERS')
 })
