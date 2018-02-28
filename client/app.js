@@ -4,7 +4,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Routes from './routes'
 import {fetchProducts} from './store'
-
+import {withRouter} from 'react-router-dom'
 
 class App extends Component {
 
@@ -27,6 +27,7 @@ class App extends Component {
   }
 }
 
+
 const mapDispatch = (dispatch) => {
   return {
     loadInventory () {
@@ -35,5 +36,5 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatch)(App)
+export default withRouter(connect(null, mapDispatch)(App))
 

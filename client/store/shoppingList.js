@@ -14,20 +14,20 @@ const cartItems = [];
 /**
  * ACTION CREATORS
  */
-const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
+export const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
 
 /**
  * THUNK CREATORS
  */
 
 
-export const destroyItem = (itemToDestroyId) =>
-  dispatch => {
-    axios.delete('/api/shoppingList', {id: itemToDestroyId} )
-    .then(res =>
-      dispatch(deleteItem(res.data)))
-    .catch(err => console.log(err))
-  }
+// export const destroyItem = (itemToDestroyId) =>
+//   dispatch => {
+//     axios.delete(`/api/shoppingList/${itemToDestroyId}`)
+//     .then( () =>
+//       dispatch(deleteItem(itemToDestroyId)))
+//     .catch(err => console.log(err))
+//   }
 
 /**
  * REDUCER
