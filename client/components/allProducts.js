@@ -21,7 +21,7 @@ class AllProducts extends Component {
                   <h4>{product.name} </h4>
                 </NavLink>
                 <button
-                  onClick={props.handleAddToListClick}
+                  onClick={this.props.handleAddToListClick}
                   id={product.id}
                   >
                   Add to Shopping List</button >
@@ -44,9 +44,10 @@ class AllProducts extends Component {
   const mapDispatch = dispatch => ({
     handleAddToListClick: (event) => {
       event.preventDefault();
-      dispatch(addProductToList(event.target.id))
+      console.log(typeof +event.target.id)
+      dispatch(addProductToList(+event.target.id))
     }
   })
 
 
-  export default connect(mapState, null)(AllProducts)
+  export default connect(mapState, mapDispatch)(AllProducts)

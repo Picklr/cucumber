@@ -1,5 +1,5 @@
-import axios from 'axios'
-import history from '../history'
+// import axios from 'axios'
+// import history from '../history'
 
 /**
  * ACTION TYPES
@@ -16,7 +16,7 @@ const cartItems = [];
 /**
  * ACTION CREATORS
  */
-const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
+export const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
 
 export const addProductToList = productId => ({type: ADD_PRODUCT_TO_LIST, productId})
 
@@ -24,14 +24,14 @@ export const addProductToList = productId => ({type: ADD_PRODUCT_TO_LIST, produc
  * THUNK CREATORS
  */
 
-
-export const destroyItem = (itemToDestroyId) =>
-  dispatch => {
-    axios.delete('/api/shoppingList', {id: itemToDestroyId} )
-    .then(res =>
-      dispatch(deleteItem(res.data)))
-    .catch(err => console.log(err))
-  }
+//in the future will use this with admin
+// export const destroyItem = (itemToDestroyId) =>
+//   dispatch => {
+//     axios.delete('/api/shoppingList', {id: itemToDestroyId} )
+//     .then(res =>
+//       dispatch(deleteItem(res.data)))
+//     .catch(err => console.log(err))
+//   }
 
 /**
  * REDUCER
