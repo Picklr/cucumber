@@ -38,7 +38,7 @@ class AllProducts extends Component {
 }
 
   const mapState = state => ({
-    products: state.products
+    products: state.products.allProducts
   })
 
   const mapDispatch = dispatch => ({
@@ -47,6 +47,7 @@ class AllProducts extends Component {
       console.log(typeof +event.target.id)
       dispatch(addProductToList(+event.target.id))
     }
+
   })
 
 

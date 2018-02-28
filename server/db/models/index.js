@@ -5,8 +5,6 @@ const db = require('../db.js')
 const Products = require('./foodProducts')
 
 
-
-
 const Favorites = db.define('favorites')
 
 Products.belongsToMany(User, { through: Favorites })
