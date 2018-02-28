@@ -2,10 +2,12 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import React, {Component} from 'react'
 import {setSearchTerm} from '../store/products'
+import { fetchObjAndAdd } from '../store/shoppingList';
+
 
 class AllProducts extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     
   }
@@ -20,11 +22,28 @@ class AllProducts extends Component {
         <h2>These are our products</h2>
         <h2>{this.props.term}</h2>
         <ul>
+
         {allProducts.map(product =>{
-          return <li key={product.id} > <NavLink to={`/products/${product.id}`}><h4>{product.name} </h4></NavLink> <button onClick = {()=>{ /* DO SOMETHING */ }}>Add to Shopping List</button > </li>
-        })}
+            return (
+              <li key={product.id} >
+                <NavLink to={`/products/${product.id}`}>
+                  <h4>{product.name} </h4>
+                </NavLink>
+                <button
+                  onClick={this.props.handleAddToListClick}
+                  id={product.id}
+                  >
+                  Add to Shopping List</button >
+              </li>
+            )
+          }
+        )
+      }
+
         </ul>
-        </div>)}
+      </div>
+    )
+}
 }
 
   const mapState = state => ({
@@ -33,7 +52,15 @@ class AllProducts extends Component {
   })
 
   const mapDispatch = dispatch => ({
-      handleChange: event => {dispatch(setSearchTerm(event.target.value))}
-  })
-  
+     handleChange: event => {dispatch(setSearchTerm(event.target.value))},
+     handleAddToListClick: (event) => {
+      event.preventDefault();
+
+      dispatch(fetchObjAndAdd(+event.target.id))
+
+   }
+  }
+  )
+
+
   export default connect(mapState, mapDispatch)(AllProducts)

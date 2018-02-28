@@ -2,8 +2,10 @@ import axios from 'axios'
 
 //Action Type
 const GET_PRODUCTS = 'GET_PRODUCTS';
+
 const SET_SELECTED_PRODUCT_VIEW = 'SET_SELECTED_PRODUCT_VIEW'
 const SET_FILTER_TERM = 'SET_FILTER_TERM'
+
 
 // ACTION CREATORS
 
@@ -21,6 +23,8 @@ let initialState = {
     selectedProduct: {},
     filterTerm: ''
 }
+
+
 
 
 //thunk
@@ -54,3 +58,4 @@ export const products = function (state = initialState, action) {
             return state
     }
 }
+
