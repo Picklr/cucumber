@@ -65,7 +65,7 @@ export default function (state = cartItems, action) {
         } else {
           return state.map((product) => {
             if(product.id === action.productObj.id){
-             return {...product, quantity: product.quantity+1}
+             return {...product, quantity: ++product.quantity}
             } else {
               return product
             }
@@ -79,15 +79,13 @@ export default function (state = cartItems, action) {
       })
 
         if(match2.quantity === 1){
-          console.log('HERE');
           return state.filter((currentItem) => currentItem.id !== action.productObjId)
         }else {
-         state.map((product) => {
+         return state.map((product) => {
 
-            if (product.id === action.productObjId){
-                // return state.filter((currentItem) => currentItem.id !== action.productObjId)
+            if (product.id == action.productObjId){
 
-                return {...product, quantity: product.quantity--}
+                return {...product, quantity: --product.quantity}
               }
              else {
               return product
