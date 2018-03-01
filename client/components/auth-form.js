@@ -7,11 +7,32 @@ import {auth} from '../store'
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSignUpSubmit, handleLogInSubmit, error} = props
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={displayName === 'Sign Up' ? handleSignUpSubmit : handleLogInSubmit} name={name}>
+      <div>
+        {displayName === "Sign Up" ?  
+        <div>
+          <label htmlFor="First Name">
+            <small>First Name</small>
+          </label>
+          <input name="firstName" type="text" />
+
+           <label htmlFor="Last Name">
+            <small>Last Name</small>
+          </label>
+          <input name="lastName" type="text" /> 
+
+           <label htmlFor="billingAddress">
+            <small>Billing Address</small>
+          </label>
+          <input name="billingAddress" type="text" />
+          
+          </div>
+          : <p />}
+      </div>
         <div>
           <label htmlFor="email"><small>Email</small></label>
           <input name="email" type="text" />
@@ -55,12 +76,22 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit (evt) {
+    handleSignUpSubmit: (evt) => {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
+      const billingAddress = evt.target.billingAddress.value
+      dispatch(auth(formName, email, password, firstName, lastName, billingAddress))
+    },
+    handleLogInSubmit: (evt)=> {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      dispatch(auth(formName, email, password))
     }
   }
 }

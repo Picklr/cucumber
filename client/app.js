@@ -23,7 +23,6 @@ class App extends Component {
       <div>
         <RaisedButton label="Default" />
         <Navbar />
-        <ShoppingList />
         <Routes />
       </div>
     )

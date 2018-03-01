@@ -4,6 +4,7 @@ module.exports = router
 router.use('/users', require('./users'));
 router.use('/admin', require('./adminRoutes'))
 router.use('/products',require('./products'))
+router.use('/order', require('./order'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')
@@ -11,6 +12,3 @@ router.use((req, res, next) => {
   next(error)
 })
 
-router.get('/', (req, res, next) => {
-  res.send('Hi CUCUMBERS')
-})
