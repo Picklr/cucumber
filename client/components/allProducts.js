@@ -9,16 +9,16 @@ class AllProducts extends Component {
 
   constructor(props) {
     super(props)
-    
+
   }
 
   render(){
-    
-    const allProducts = (this.props.term && this.props.products.length>0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase())>(-1)) : this.props.products 
-    
+
+    const allProducts = (this.props.term && this.props.products.length>0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase())>(-1)) : this.props.products
+
     return (
         <div>
-        <input name='search' type='text' onChange={this.props.handleChange}/>  
+        <input name='search' type='text' onChange={this.props.handleChange}/>
         <h2>These are our products</h2>
         <h2>{this.props.term}</h2>
         <ul>
