@@ -3,13 +3,16 @@ import {connect} from 'react-redux'
 import { deleteItem, fetchObjAndAdd, decrementQuantity} from '../store';
 
 export const ShoppingList = (props) => {
-
+    let sum = 0;
+    let displaySum 
     return (
-
+    
     <div>
 
         <ul>
         {props.shoppingList.map( item => {
+            sum += item.price * item.quantity
+            displaySum =('' + Math.floor(sum*100))
             return (<div key={item.id}>
                 <li>
                 {item.name}
@@ -35,6 +38,7 @@ export const ShoppingList = (props) => {
             )
         })}
         </ul>
+        {sum>0 && <li>{ '$'+(displaySum.slice(0,displaySum.length-2) + '.' +  displaySum.slice(displaySum.length-2)) }</li>  }
         <button>Checkout</button>
     </div>
 )
