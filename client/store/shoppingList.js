@@ -46,6 +46,17 @@ export const fetchObjAndAdd = (itemId) =>
 //     .catch(err => console.log(err))
 //   }
 
+//experimental phase
+export const checkoutOrder = (userId, shoppingList) => {
+  console.log('User number ', userId, 'is trying to buy ')
+  console.log(shoppingList)
+
+  axios.post('api/order', {userId: userId, shoppingList: shoppingList})
+
+
+}
+
+
 /**
  * REDUCER
  */
