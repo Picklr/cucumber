@@ -4,7 +4,11 @@ import { deleteItem, fetchObjAndAdd, decrementQuantity} from '../store';
 
 export const ShoppingList = (props) => {
     let sum = 0;
-    let displaySum 
+    let displaySum;
+    console.log('Hello',typeof JSON.parse(localStorage.getItem('orderArray')))
+    if(!localStorage.getItem('orderArray')){
+        localStorage.setItem('orderArray', '[]')
+    } 
     return (
 
     <div id='Shopping-List'>

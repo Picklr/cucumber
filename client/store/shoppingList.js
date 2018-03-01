@@ -27,16 +27,41 @@ export const decrementQuantity = productObjId => ({type: DECREMENT_QUANTITY, pro
 /**
  * THUNK CREATORS
  */
-
+const string = JSON.stringify;
+const parse = JSON.parse;
 
 export const fetchObjAndAdd = (itemId) =>
   dispatch => {
     axios.get(`/api/products/${itemId}`)
-    .then(res =>
-      dispatch(addProductToList(res.data)))
+    .then(res => {
+      var itemToSet;
+      var orderArray = parse(localStorage.getItem('orderArray'))
+      console.log('orderArray', orderArray)
+      // localStorage.setItem('orderArray',string(parse(localStorage.getItem('orderArray')).push({...action.productObj, quantity: 1})))
+      const match = orderArray.find((product) => {
+        return product.id === res.data.id
+      })
+        if (!match) {
+          itemToSet = [...orderArray,
+            {...res.data, quantity: 1}]
+        } else {
+          itemToSet = orderArray.map((product) => {
+            if (product.id === res.data.id){
+             return {...product, quantity: ++product.quantity}
+            } else {
+              return product
+            }
+          })
+        }
+      localStorage.setItem('orderArray',string(itemToSet));
+      dispatch(addProductToList(res.data))
+    })
     .catch(err => console.log(err))
   }
 
+  export const addProductToListThunk = () => dispatch => {
+    dispatch(addProductToList())
+  }
 //in the future will use this with admin
 // export const destroyItem = (itemToDestroyId) =>
 //   dispatch => {
