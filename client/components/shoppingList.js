@@ -6,8 +6,8 @@ export const ShoppingList = (props) => {
     let sum = 0;
     let displaySum 
     return (
-    
-    <div>
+
+    <div id='Shopping-List'>
 
         <ul>
         {props.shoppingList.map( item => {
