@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { deleteItem } from '../store/shoppingList';
+import { deleteItem, fetchObjAndAdd, decrementQuantity} from '../store';
 
 export const ShoppingList = (props) => {
 
@@ -13,12 +13,24 @@ export const ShoppingList = (props) => {
             return (<div key={item.id}>
                 <li>
                 {item.name}
-                {/* <span>{item.price}</span> */}
+                <span> {item.quantity} </span>
                 </li>
                 <button
                 onClick = {props.handleDeleteClick}
                 id = {item.id}
                 >x</button>
+
+                <button
+                type = "decrement"
+                onClick = {props.handleDecrementClick}
+                id = {item.id}
+                >-</button>
+
+                <button
+                type = "increment"
+                onClick = {props.handleQuantityClick}
+                id = {item.id}
+                >+</button>
                 </div>
             )
         })}
@@ -45,7 +57,15 @@ const mapDispatch = (dispatch) => ({
   handleDeleteClick: (event) => {
       event.preventDefault();
     dispatch(deleteItem(+event.target.id))
-    }
+    },
+  handleQuantityClick: (event) => {
+        event.preventDefault();
+    dispatch(fetchObjAndAdd(+event.target.id))
+    },
+  handleDecrementClick: (event) => {
+    event.preventDefault();
+dispatch(decrementQuantity(+event.target.id))
+}
 })
 
 //     OTHER FORMAT OF MAPDISPATCH
