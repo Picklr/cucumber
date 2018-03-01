@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import Routes from './routes'
 import {fetchProducts} from './store'
 import {withRouter} from 'react-router-dom'
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class App extends Component {
 
@@ -19,6 +21,7 @@ class App extends Component {
   render(){
     return (
       <div>
+        <RaisedButton label="Default" />
         <Navbar />
         <ShoppingList />
         <Routes />
