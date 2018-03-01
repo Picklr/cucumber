@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProductView'
+import ShoppingList from './components/shoppingList'
 
 /**
  * COMPONENT
@@ -23,8 +24,13 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <div id="Grocery-Box">
+        <ShoppingList />
+        <div id='Product-Aisle'>
         <Route exact path="/" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
+        </div>
+        </div>
         {
           isLoggedIn &&
             <Switch>
