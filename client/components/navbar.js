@@ -8,8 +8,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <Link to ='/'>
     <div id = 'logo-pair'>
-    <h1 className='logo-sibling'>BOILERMAKER</h1>
     <img src='/thecucu.jpg' className='logo-sibling'/>
+    <h1 className='logo-sibling'>cucumber</h1>
     </div>
     </Link>
     <nav>

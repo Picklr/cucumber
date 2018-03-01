@@ -4,12 +4,18 @@ module.exports = router
 
 router.post('/',(req,res,next)=>{
 
-    const orderInstance = Order.create({status:'TEST', userId: req.body.userId}).then(freshOrder=>{
-        //freshOrder.setUser(req.user)})
-        console.log('Congrats on your order!')
+    Order.create({userId: req.body.userId}).then(order=>{
+        
+        const withId = req.body.shoppingList.map(eachProduct=>Object.assign({},eachProduct, {orderId: order.id}))
+        console.log('Does it have Id?', withId)
+        HistoricalItems.bulkCreate(withId).then(arrayOfProducts=>{
+        console.log('These were in the cart ', arrayOfProducts)
+        arrayOfProducts.forEach(eachProduct=>{
+                eachProduct.setOrder(order)
+        })
     })
+   })
 
-    const historicalPurchases = HistoricalItems.bulkCreate(req.body.shoppingList)
 })
 
 
