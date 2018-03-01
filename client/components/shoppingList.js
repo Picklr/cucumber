@@ -6,7 +6,7 @@ export const ShoppingList = (props) => {
 
     return (
 
-    <div>
+    <div id='Shopping-List'>
 
         <ul>
         {props.shoppingList.map( item => {

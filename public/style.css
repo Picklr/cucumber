@@ -15,7 +15,45 @@ nav a {
   margin: 1em;
 }
 
+ul {
+  list-style: none;
+}
+
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+#Grocery-Box {
+  border: 1em solid rgb(145, 209, 116);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+#Product-Aisle {
+  flex: 5 3 40%;
+  border: 3px solid rgb(235, 146, 45);
+  border-radius: 25px;
+  padding: 50px
+}
+
+#Shopping-List {
+  flex: 2 3 20%;
+  padding: 25px;
+  border: 2px solid rgb(235, 146, 45);
+  border-radius: 40px;
+  background: linear-gradient(to bottom, #e0c591 0%, #ff99cc 100%);
+}
+
+#logo-pair {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  align-content: center
+}
+
+.logo-sibling {
+  align-self: center;
+  flex: 1 1 50%
 }
