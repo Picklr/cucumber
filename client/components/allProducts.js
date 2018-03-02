@@ -6,6 +6,24 @@ import { fetchObjAndAdd } from '../store/shoppingList';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import Subheader from 'material-ui/Subheader';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+    overflowY: 'auto',
+  },
+};
+
 class AllProducts extends Component {
 
   constructor(props) {
@@ -18,49 +36,38 @@ class AllProducts extends Component {
     const allProducts = (this.props.term && this.props.products.length>0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase())>(-1)) : this.props.products
 
     return (
-        <div>
-          <h2>Products</h2>
-<TextField
-      hintText="Dan Smells"
-      floatingLabelText="Product Search"
-      type='text'
-      onChange={this.props.handleChange}
-    /><br />
+      <div style={styles.root}>
 
-        {/* <h2>{this.props.term}</h2> */}
-        <ul>
+      <GridList
+        cellHeight={180}
+        style={styles.gridList}
+      ><Subheader>Products</Subheader>
 
         {allProducts.map(product =>{
             return (
-              <li key={product.id} >
-                <NavLink to={`/products/${product.id}`}>
-                  <h4>{product.name} </h4>
-                </NavLink>
-
-                {/* <RaisedButton
-                id={product.id}
-          onClick={this.props.handleAddToListClick}
-
-                backgroundColor = "#f7ffe6"
-        hoverColor = "#ccffcc"
-        label="Add to Shopping List"
-        /> */}
-                <button
-                  onClick={this.props.handleAddToListClick}
-                  id={product.id}
-                  >
-                  Add to Shopping List</button >
-              </li>
+              <GridTile
+              key={product.id}
+              title={product.name}
+              actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+            >
+              <img src={'./thecucu.jpg'} />
+              </GridTile>
             )
           }
         )
       }
-
-        </ul>
+        </GridList>
       </div>
     )
 }
 }
+
+{/* <TextField
+      hintText="Dan Smells"
+      floatingLabelText="Product Search"
+      type='text'
+      onChange={this.props.handleChange}
+    /><br /> */}
 
   const mapState = state => ({
      products: state.products.allProducts,
