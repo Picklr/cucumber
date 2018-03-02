@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { deleteItem, fetchObjAndAdd, decrementQuantity, fetchLocalStorageAndSetToState} from '../store';
+import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder, fetchLocalStorageAndSetToState} from '../store';
+import axios from 'axios'
 
 const string = JSON.stringify;
 const parse = JSON.parse;
@@ -30,6 +31,7 @@ export const ShoppingList = (props) => {
             // console.log('things happened!!!!!')
         })}
     
+
     return (
 
     <div id='Shopping-List'>
@@ -46,6 +48,7 @@ export const ShoppingList = (props) => {
                 <button
                 onClick = {props.handleDeleteClick}
                 id = {item.id}
+                
                 >x</button>
 
                 <button
@@ -58,19 +61,24 @@ export const ShoppingList = (props) => {
                 type = "increment"
                 onClick = {props.handleQuantityClick}
                 id = {item.id}
+                // value = {item.fullName}  
                 >+</button>
                 </div>
             )
         })}
         </ul>
         {sum>0 && <li>{ '$'+(displaySum.slice(0,displaySum.length-2) + '.' +  displaySum.slice(displaySum.length-2)) }</li>  }
-        <button>Checkout</button>
+        <button onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}>Checkout</button>
     </div>
 )
 }
 
+
+
+
 const mapState = function(state){
    return {
+       user: state.user,
        shoppingList: state.shoppingList
    }
 }
@@ -94,6 +102,7 @@ const mapDispatch = (dispatch) => ({
     dispatch(deleteItem(+event.target.id))
     },
   handleQuantityClick: (event) => {
+      console.log('HERE!!!', event.target.objHolder)
         event.preventDefault();
     dispatch(fetchObjAndAdd(+event.target.id))
     },

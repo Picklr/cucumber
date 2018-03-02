@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import {products, selectedProduct} from './products'
-import shoppingList from './shoppingList';
+import shoppingList, {checkoutOrder, fetchObjAndAdd} from './shoppingList';
 
 const reducer = combineReducers({user, shoppingList, products})
 

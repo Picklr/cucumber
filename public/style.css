@@ -12,7 +12,7 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 2em;
 }
 
 ul {
@@ -26,7 +26,7 @@ form div {
 
 #Grocery-Box {
   border: 1em solid rgb(145, 209, 116);
-  border-radius: 15px;
+  border-radius: 46px;
   display: flex;
   flex-direction: row;
 }
@@ -42,18 +42,20 @@ form div {
   flex: 2 3 20%;
   padding: 25px;
   border: 2px solid rgb(235, 146, 45);
-  border-radius: 40px;
+  border-radius: 25px;
   background: linear-gradient(to bottom, #e0c591 0%, #ff99cc 100%);
 }
 
 #logo-pair {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   max-width: 300px;
   align-content: center
 }
 
 .logo-sibling {
+  max-height: 100px;
+  max-width: auto;
   align-self: center;
-  flex: 1 1 50%
+  flex: 1 1 5em
 }
