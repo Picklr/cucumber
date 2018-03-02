@@ -2,6 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import Divider from 'material-ui/Divider';
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = {
+  marginLeft: 20,
+};
 
 /**
  * COMPONENT
@@ -9,43 +17,71 @@ import {auth} from '../store'
 const AuthForm = (props) => {
   const {name, displayName, handleSignUpSubmit, handleLogInSubmit, error} = props
 
-  return (
-    <div>
-      <form onSubmit={displayName === 'Sign Up' ? handleSignUpSubmit : handleLogInSubmit} name={name}>
+return (
+  <div>
+    <form onSubmit={displayName === 'Sign Up' ?           handleSignUpSubmit : handleLogInSubmit} name=       {name}>
       <div>
-        {displayName === "Sign Up" ?  
-        <div>
-          <label htmlFor="First Name">
-            <small>First Name</small>
-          </label>
-          <input name="firstName" type="text" />
 
-           <label htmlFor="Last Name">
-            <small>Last Name</small>
-          </label>
-          <input name="lastName" type="text" /> 
+          {displayName === "Sign Up" ?
 
-           <label htmlFor="billingAddress">
-            <small>Billing Address</small>
-          </label>
-          <input name="billingAddress" type="text" />
-          
-          </div>
-          : <p />}
-      </div>
-        <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
+          <Paper zDepth={2}>
+          <TextField
+            hintText="First Name"
+            style={style}
+            name = "firstName"
+            underlineShow={false} />
+            <Divider />
+
+          <TextField
+            hintText="Last Name"
+            style={style}
+            name = "lastName"
+            underlineShow={false} />
+            <Divider />
+
+
+          <TextField
+            hintText="Billing Address"
+            style={style}
+            name = "billingAddress"
+            underlineShow={false} />
+            <Divider />
+
+        </Paper>
+
+          :
+          <p />}
+
+
+            <Paper zDepth={2}>
+              <TextField
+                hintText="Email"
+                style={style}
+                name = "email"
+                underlineShow={false} />
+                <Divider />
+
+              <TextField
+                hintText="Password"
+                style={style}
+                name = "password"
+                underlineShow={false} />
+                <Divider />
+            </Paper>
         </div>
-        <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
+
+    <div>
+
+        <RaisedButton
+          label = {displayName}
+          type="submit"
+          />
         </div>
         {error && error.response && <div> {error.response.data} </div>}
+
       </form>
+
+
       <a href="/auth/google">{displayName} with Google</a>
     </div>
   )

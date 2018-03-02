@@ -19,8 +19,8 @@
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Fullstack Academy of Code",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
@@ -29,6 +29,8 @@
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
+    "material-design-icons": "^3.0.1",
+    "material-ui": "^0.20.0",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",

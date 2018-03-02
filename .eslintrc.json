@@ -6,7 +6,8 @@
 		"semi": 0,
 		"new-cap": [1, { "capIsNewExceptions": ["Router"] }],
 		"arrow-spacing": 0,
-		"comma-spacing": 0
+		"comma-spacing": 0,
+		"react/prefer-stateless-function": 0
 
 	}
 }
