@@ -76,7 +76,7 @@ export const ShoppingList = (props) => {
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
         backgroundColor = "#f7ffe6"
         hoverColor = "#ccffcc"
-        label="Checkout" style={style}
+        label="Checkout"
         onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}
         />
     </div>
@@ -93,11 +93,6 @@ const mapState = function(state){
    }
 }
 
-// const mapStateToProps = function (state) {
-//     return {
-//       name: state.name
-//     };
-//   };
 
 
 const mapDispatch = (dispatch) => ({
