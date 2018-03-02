@@ -1,6 +1,5 @@
 import axios from 'axios'
 import history from '../history'
-import { fetchLocalStorageAndSetToState } from '.';
 
 /**
  * ACTION TYPES
@@ -47,11 +46,9 @@ export const logout = () =>
         dispatch(removeUser())
         history.push('/login')
       })
-      .then(() => {
-        localStorage.setItem('orderArray','[]');
-        dispatch(fetchLocalStorageAndSetToState());
-      })
       .catch(err => console.log(err))
+
+
 
 /**
  * REDUCER
