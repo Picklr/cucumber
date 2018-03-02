@@ -13,9 +13,22 @@ class AllProducts extends Component {
   }
 
   render(){
-
-    const allProducts = (this.props.term && this.props.products.length>0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase())>(-1)) : this.props.products
-
+    function helper(list,anotherList){
+      if(list.length && anotherList.length){ allProducts = anotherList.concat(list)
+      return allProducts}
+       if(list.length){
+        allProducts = list
+        return allProducts
+      }
+      else if(anotherList.length) allProducts = anotherList
+        return allProducts
+    }
+    
+    const filteredByTags = (this.props.products.length>0 && (this.props.products.filter(eachProduct => eachProduct.tags.filter(tag=> tag.toLowerCase()===this.props.term.toLowerCase()).length>0)))
+    let filteredByName = (this.props.products.length>0 && (this.props.products.filter(eachProduct=>(eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase()))>-1)))
+    let allProducts = (this.props.term && this.props.products.length>0) 
+        ? (filteredByTags.length>0||filteredByName.length>0) ?  helper(filteredByTags,filteredByName) : this.props.products
+        : this.props.products
     return (
         <div>
         <input name='search' type='text' onChange={this.props.handleChange}/>
