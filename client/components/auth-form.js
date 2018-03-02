@@ -8,7 +8,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-  marginLeft: 20,
+  marginLeft: 20
 };
 
 /**
@@ -47,16 +47,18 @@ return (
             underlineShow={false} />
             <Divider />
 
-                  <TextField
+            <TextField
                 hintText="Email"
                 style={style}
                 name = "email"
-                underlineShow={false} />
+                underlineShow={false}
+                />
                 <Divider />
 
               <TextField
                 hintText="Password"
                 style={style}
+                type="password"
                 name = "password"
                 underlineShow={false} />
                 <Divider />
@@ -64,25 +66,26 @@ return (
         </Paper>
 
           :
-          <p />}
+          <Paper zDepth={2}>
+          <TextField
+            hintText="Email"
+            style={style}
+            name = "email"
+            underlineShow={false} />
+            <Divider />
 
+          <TextField
+            hintText="Password"
+            style={style}
+            type="password"
+            name = "password"
+            underlineShow={false} />
+            <Divider />
+        </Paper>
+    }
 
-            <Paper zDepth={2}>
-              <TextField
-                hintText="Email"
-                style={style}
-                name = "email"
-                underlineShow={false} />
-                <Divider />
+</div>
 
-              <TextField
-                hintText="Password"
-                style={style}
-                name = "password"
-                underlineShow={false} />
-                <Divider />
-            </Paper>
-        </div>
 
     <div>
 
