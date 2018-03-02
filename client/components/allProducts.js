@@ -79,7 +79,7 @@ class AllProducts extends Component {
                 {/* <StarBorder color="white" /> */}
                 </IconButton>}
             >
-              <img src={'./thecucu.jpg'} />
+              <img src={product.photo} />
               </GridTile>
               </NavLink>
             )
