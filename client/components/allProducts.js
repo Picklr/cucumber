@@ -10,13 +10,14 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-
+import {orange500, blue500} from 'material-ui/styles/colors';
 
 const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    borderColor: orange500,
   },
   gridList: {
     width: 500,
@@ -39,11 +40,12 @@ class AllProducts extends Component {
     return (
 
       <div style={styles.root}>
-<TextField
+    <TextField
        hintText="Product"
        floatingLabelText="Search Products"
        type='text'
        onChange={this.props.handleChange}
+
      />
 
       <GridList

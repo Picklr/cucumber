@@ -138,12 +138,8 @@ const mapDispatch = (dispatch) => ({
     localStorage.setItem('orderArray',string(itemToSet));
     dispatch(decrementQuantity(+event.target.id))
 },
-<<<<<<< HEAD
-
-=======
 loadCartFromLocalStore: () =>
 dispatch(fetchLocalStorageAndSetToState())
->>>>>>> master
 })
 
 //     OTHER FORMAT OF MAPDISPATCH
