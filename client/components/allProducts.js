@@ -29,6 +29,7 @@ class AllProducts extends Component {
     let allProducts = (this.props.term && this.props.products.length>0) 
         ? (filteredByTags.length>0||filteredByName.length>0) ?  helper(filteredByTags,filteredByName) : this.props.products
         : this.props.products
+        
     return (
         <div>
         <input name='search' type='text' onChange={this.props.handleChange}/>
