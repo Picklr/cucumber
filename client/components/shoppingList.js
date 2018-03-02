@@ -107,7 +107,6 @@ const mapDispatch = (dispatch, ownProps) => ({
     dispatch(deleteItem(+event.target.id))
     },
   handleQuantityClick: (event) => {
-        console.log('HERE!!!', event.target.objHolder)
         event.preventDefault();
         dispatch(fetchObjAndAdd(+event.target.id))
     },
@@ -117,7 +116,6 @@ const mapDispatch = (dispatch, ownProps) => ({
         dispatch(decrementQuantity(+event.target.id))
     },
    handleCheckout: (userId,shoppingList) => {
-       console.log('oP', ownProps)
        dispatch(checkoutOrder(userId, shoppingList, ownProps.history))
    
     event.preventDefault();
