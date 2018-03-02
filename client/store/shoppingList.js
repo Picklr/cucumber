@@ -8,7 +8,9 @@ const DELETE_ITEM = 'DELETE_ITEM';
 
 const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 
-const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY'
+const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
+
+const FETCH_LOCALSTORAGE_AND_SET_TO_STATE = 'FETCH_LOCALSTORAGE_AND_SET_TO_STATE'
 
 /**
  * INITIAL STATE
@@ -23,6 +25,8 @@ export const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
 export const addProductToList = productObj => ({type: ADD_PRODUCT_TO_LIST, productObj})
 
 export const decrementQuantity = productObjId => ({type: DECREMENT_QUANTITY, productObjId})
+
+export const fetchLocalStorageAndSetToState = () => ({type: FETCH_LOCALSTORAGE_AND_SET_TO_STATE})
 
 /**
  * THUNK CREATORS
@@ -59,9 +63,9 @@ export const fetchObjAndAdd = (itemId) =>
     .catch(err => console.log(err))
   }
 
-  export const addProductToListThunk = () => dispatch => {
-    dispatch(addProductToList())
-  }
+  // export const decrementThunk = () => dispatch => {
+  //   dispatch(addProductToList())
+  // }
 //in the future will use this with admin
 // export const destroyItem = (itemToDestroyId) =>
 //   dispatch => {
@@ -119,7 +123,8 @@ export default function (state = cartItems, action) {
       }
       )
     }
-
+    case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
+    return parse(localStorage.getItem('orderArray'))
 
 
     default:
