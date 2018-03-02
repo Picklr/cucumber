@@ -67,8 +67,27 @@ form div {
 }
 
 .logo-sibling {
+  display: flex;
   max-height: 100px;
   max-width: auto;
   align-self: center;
   flex: 1 1 5em
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  max-height: 100px;
+  max-width: auto;
+  justify-content: flex-start
+}
+
+.item {
+  display: flex;
+  align-self: flex-start
+}
+
+#nav-cuke-logo {
+  max-height: 100px;
+  max-width: auto
 }
