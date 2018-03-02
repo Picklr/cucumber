@@ -5,7 +5,6 @@ import axios from 'axios'
 import RaisedButton from 'material-ui/RaisedButton';
 
 
-
 const string = JSON.stringify;
 const parse = JSON.parse;
 
@@ -138,8 +137,7 @@ const mapDispatch = (dispatch, ownProps) => ({
         dispatch(decrementQuantity(+event.target.id))
     },
    handleCheckout: (userId,shoppingList) => {
-       dispatch(checkoutOrder(userId, shoppingList, ownProps.history))
-   
+       dispatch(checkoutOrder(userId, shoppingList, ownProps.history))    
 },
 
 loadCartFromLocalStore: () =>
