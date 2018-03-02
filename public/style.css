@@ -10,6 +10,15 @@ label {
   display: block;
 }
 
+.material-icons {
+  color: white
+}
+
+.singlePageImage {
+  max-height: 300px;
+  max-width: auto
+}
+
 nav a {
   display: inline-block;
   margin: 2em;
@@ -22,6 +31,10 @@ ul {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.cukebutton {
+  max-width: 20px;
 }
 
 #Grocery-Box {

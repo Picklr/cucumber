@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {addLatestOrder} from './order'
 
 /**
  * ACTION TYPES
@@ -12,7 +13,9 @@ const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
 
 const FETCH_LOCALSTORAGE_AND_SET_TO_STATE = 'FETCH_LOCALSTORAGE_AND_SET_TO_STATE'
 
+
 const CLEAR_CART = 'CLEAR_CART'
+
 
 /**
  * INITIAL STATE
@@ -85,12 +88,16 @@ localStorage.clear()
 dispatch(clearCart())
 }
 //experimental phase
-export const checkoutOrder = (userId, shoppingList) => {
+export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
+
+  dispatch(clearCart())
   console.log('User number ', userId, 'is trying to buy ')
   console.log(shoppingList)
-
-  axios.post('api/order', {userId: userId, shoppingList: shoppingList})
-
+  axios.post('api/order', {userId: userId, shoppingList: shoppingList}).then(res=>res.data).then(order=>{
+    console.log('RABBIT HOLE ', order)
+    dispatch(addLatestOrder(order))
+    history.push('/orderSuccess')
+    })
 
 }
 
@@ -129,7 +136,7 @@ export default function (state = cartItems, action) {
 
         if(match2.quantity === 1){
           return state.filter((currentItem) => currentItem.id !== action.productObjId)
-        }else {
+       }else {
          return state.map((product) => {
 
             if (product.id == action.productObjId){
@@ -138,11 +145,10 @@ export default function (state = cartItems, action) {
               }
              else {
               return product
-
+            }
+          })
         }
-      }
-      )
-    }
+     
     case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
       return parse(localStorage.getItem('orderArray'))
 
