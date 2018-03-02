@@ -30,18 +30,23 @@ return (
             style={style}
             name = "firstName"
             underlineShow={false} />
+            <Divider />
 
           <TextField
             hintText="Last Name"
             style={style}
             name = "lastName"
             underlineShow={false} />
+            <Divider />
+
 
           <TextField
             hintText="Billing Address"
             style={style}
             name = "billingAddress"
             underlineShow={false} />
+            <Divider />
+
         </Paper>
 
           :
@@ -54,12 +59,14 @@ return (
                 style={style}
                 name = "email"
                 underlineShow={false} />
+                <Divider />
 
               <TextField
                 hintText="Password"
                 style={style}
                 name = "password"
                 underlineShow={false} />
+                <Divider />
             </Paper>
         </div>
 
@@ -137,54 +144,3 @@ AuthForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }
-
-// <Paper zDepth={2}>
-// <form onSubmit={displayName === 'Sign Up' ? handleSignUpSubmit : handleLogInSubmit} name={name}>
-
-// <div>
-//   {displayName === "Sign Up" ?
-//   <div>
-//     <TextField
-//     hintText= "First Name"style={style} underlineShow={false}
-//     >
-//     <input name="firstName" type="text" />
-//     </TextField>
-
-
-//     <TextField
-//     hintText= "Last Name"style={style} underlineShow={false}
-//     >
-//     <input name="lastName" type="text" />
-//     </TextField>
-
-//     <TextField
-//     hintText= "Billing Address"style={style} underlineShow={false}
-//     >
-//     <input name="billingAddress" type="text" />
-//     </TextField>
-
-//     </div>
-//     : <p />}
-// </div>
-//   <div>
-//   <TextField
-//     hintText= "Email"style={style} underlineShow={false}
-//     >
-//     {/* <input name="email" type="text" /> */}
-//     </TextField>
-//   </div>
-//   <div>
-
-//   <TextField
-//     hintText= "Password" style={style} underlineShow={false}
-//     >
-//     <input name="password" type="text" />
-//     </TextField>
-
-//   </div>
-//   <div>
-//     <button type="submit">{displayName}</button>
-//   </div>
-//   {error && error.response && <div> {error.response.data} </div>}
-// </form>
-// </Paper>
