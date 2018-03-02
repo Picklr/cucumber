@@ -28,29 +28,28 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           {/* The navbar will show these links before you log in */}
 
           <FlatButton
-          label = "Login"
-          backgroundColor = "#f7ffe6"
-          hoverColor = "#ccffcc"
-          href = "/login"
-          icon = {<img className="cukebutton" src="./thecucu_final.png" />}
-           />
+            label = "Login"
+            backgroundColor = "#f7ffe6"
+            hoverColor = "#ccffcc"
+            href = "/login"
+            icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+            />
            <FlatButton
-          label = "Sign Up"
-          backgroundColor = "#f7ffe6"
-          hoverColor = "#ccffcc"
-          href = "/signup"
-          icon = {<img className="cukebutton" src="./thecucu_final.png" />}
-           />
+            label = "Sign Up"
+            backgroundColor = "#f7ffe6"
+            hoverColor = "#ccffcc"
+            href = "/signup"
+            icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+            />
            <FlatButton
-          label = "Products"
-          backgroundColor = "#f7ffe6"
-          hoverColor = "#ccffcc"
-          href = "/"
-          icon = {<img className="cukebutton" src="./thecucu_final.png" />}
-           />
+            label = "Products"
+            backgroundColor = "#f7ffe6"
+            hoverColor = "#ccffcc"
+            href = "/"
+            icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+            />
         </div>
       )}
-      {/* <RaisedButton label="Test" /> */}
     </nav>
     <hr />
   </div>

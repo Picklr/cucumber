@@ -66,9 +66,9 @@ return (
     <div>
 
         <RaisedButton
-        label = {displayName}
-        type="submit"
-        />
+          label = {displayName}
+          type="submit"
+          />
         </div>
         {error && error.response && <div> {error.response.data} </div>}
 

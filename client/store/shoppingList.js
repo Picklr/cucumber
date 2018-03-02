@@ -91,7 +91,7 @@ export default function (state = cartItems, action) {
 
         if(match2.quantity === 1){
           return state.filter((currentItem) => currentItem.id !== action.productObjId)
-        }else {
+       }else {
          return state.map((product) => {
 
             if (product.id == action.productObjId){
