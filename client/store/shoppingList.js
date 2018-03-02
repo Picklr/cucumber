@@ -13,7 +13,9 @@ const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
 
 const FETCH_LOCALSTORAGE_AND_SET_TO_STATE = 'FETCH_LOCALSTORAGE_AND_SET_TO_STATE'
 
-const WIPE_CART = 'WIPE_CART'
+
+const CLEAR_CART = 'CLEAR_CART'
+
 
 /**
  * INITIAL STATE
@@ -29,14 +31,17 @@ export const addProductToList = productObj => ({type: ADD_PRODUCT_TO_LIST, produ
 
 export const decrementQuantity = productObjId => ({type: DECREMENT_QUANTITY, productObjId})
 
-export const clearCart = () => ({type: WIPE_CART})
 export const fetchLocalStorageAndSetToState = () => ({type: FETCH_LOCALSTORAGE_AND_SET_TO_STATE})
+
+export const clearCart = () => ({type: CLEAR_CART})
 
 /**
  * THUNK CREATORS
  */
 const string = JSON.stringify;
 const parse = JSON.parse;
+
+
 
 export const fetchObjAndAdd = (itemId) =>
   dispatch => {
@@ -78,7 +83,10 @@ export const fetchObjAndAdd = (itemId) =>
 //       dispatch(deleteItem(res.data)))
 //     .catch(err => console.log(err))
 //   }
-
+export const clearCartThunk = () => dispatch => {
+localStorage.clear()
+dispatch(clearCart())
+}
 //experimental phase
 export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
 
@@ -140,13 +148,12 @@ export default function (state = cartItems, action) {
             }
           })
         }
-    
-    case WIPE_CART:
-        return []
      
     case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
-    return parse(localStorage.getItem('orderArray'))
+      return parse(localStorage.getItem('orderArray'))
 
+    case CLEAR_CART:
+      return [];
 
     default:
       return state
