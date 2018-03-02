@@ -5,7 +5,7 @@ import {setSearchTerm} from '../store/products'
 import { fetchObjAndAdd } from '../store/shoppingList';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import FlatButton from 'material-ui/FlatButton';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
@@ -47,24 +47,33 @@ class AllProducts extends Component {
      />
 
       <GridList
+
         cellHeight={180}
         style={styles.gridList}
-      ><Subheader>Products</Subheader>
+      >
+
+
+
+      <Subheader>Products</Subheader>
 
         {allProducts.map(product =>{
             return (
+
+<NavLink to ={`/products/${product.id}`} >
               <GridTile
 
               key={product.id}
-              href={`/products/${product.id}`}
+
               title={product.name}
 
 
               actionIcon={<IconButton
+
               onClick= {this.props.handleAddToListClick}
-              id={product.id}
+
               >
               <i
+              id={product.id}
               className="material-icons"
               >add_shopping_cart</i>
               {/* <StarBorder color="white" /> */}
@@ -72,6 +81,7 @@ class AllProducts extends Component {
             >
               <img src={'./thecucu.jpg'} />
               </GridTile>
+              </NavLink>
             )
           }
         )
@@ -82,8 +92,6 @@ class AllProducts extends Component {
 }
 }
 
-
-
   const mapState = state => ({
      products: state.products.allProducts,
      term: state.products.filterTerm
@@ -93,7 +101,6 @@ class AllProducts extends Component {
      handleChange: event => {dispatch(setSearchTerm(event.target.value))},
      handleAddToListClick: (event) => {
       event.preventDefault();
-
       dispatch(fetchObjAndAdd(+event.target.id))
 
    }
