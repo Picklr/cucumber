@@ -140,17 +140,12 @@ export default function (state = cartItems, action) {
             }
           })
         }
-<<<<<<< HEAD
     
     case WIPE_CART:
         return []
-=======
-      }
-      )
-    }
+     
     case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
     return parse(localStorage.getItem('orderArray'))
->>>>>>> master
 
 
     default:

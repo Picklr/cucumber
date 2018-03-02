@@ -77,7 +77,7 @@ export const ShoppingList = (props) => {
         backgroundColor = "#f7ffe6"
         hoverColor = "#ccffcc"
         label="Checkout"
-        onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}
+        onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
         />
     </div>
 )
