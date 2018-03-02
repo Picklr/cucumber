@@ -23,6 +23,7 @@ const styles = {
     width: 500,
     height: 450,
     overflowY: 'auto',
+
   },
 };
 
@@ -39,7 +40,7 @@ class AllProducts extends Component {
 
     return (
 
-      <div style={styles.root}>
+      <div >
     <TextField
        hintText="Product"
        floatingLabelText="Search Products"
@@ -47,12 +48,13 @@ class AllProducts extends Component {
        onChange={this.props.handleChange}
 
      />
-
-      <GridList
-
-        cellHeight={180}
-        style={styles.gridList}
-      >
+      <div style={styles.root}>
+          <GridList
+          // className = "testing-div"
+            cols={3}
+            cellHeight={180}
+            style={styles.gridList}
+          >
 
 
 
@@ -61,25 +63,21 @@ class AllProducts extends Component {
         {allProducts.map(product =>{
             return (
 
-<NavLink to ={`/products/${product.id}`} >
+        <NavLink
+          to ={`/products/${product.id}`}
+          key={product.id} >
               <GridTile
-
               key={product.id}
-
               title={product.name}
-
-
               actionIcon={<IconButton
-
               onClick= {this.props.handleAddToListClick}
-
               >
-              <i
-              id={product.id}
-              className="material-icons"
-              >add_shopping_cart</i>
-              {/* <StarBorder color="white" /> */}
-              </IconButton>}
+                <i
+                id={product.id}
+                className="material-icons"
+                >add_shopping_cart</i>
+                {/* <StarBorder color="white" /> */}
+                </IconButton>}
             >
               <img src={'./thecucu.jpg'} />
               </GridTile>
@@ -89,6 +87,7 @@ class AllProducts extends Component {
         )
       }
         </GridList>
+      </div>
       </div>
     )
 }

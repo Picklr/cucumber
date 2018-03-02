@@ -9,11 +9,16 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <div  className = "container" >
 
       <div className = "item">
+        <Link to="/">
           <img className ="item" id="nav-cuke-logo" src='/thecucu.jpg'/>
+          </Link>
+        <Link to="/">
           <h1 className ="item" >cucumber</h1>
+          </Link>
+
       </div>
 
-    <nav >
+    <nav className = "item">
       <div >
         {isLoggedIn ?
           <div>
