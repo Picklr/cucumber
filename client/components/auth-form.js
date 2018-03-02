@@ -47,6 +47,20 @@ return (
             underlineShow={false} />
             <Divider />
 
+                  <TextField
+                hintText="Email"
+                style={style}
+                name = "email"
+                underlineShow={false} />
+                <Divider />
+
+              <TextField
+                hintText="Password"
+                style={style}
+                name = "password"
+                underlineShow={false} />
+                <Divider />
+
         </Paper>
 
           :

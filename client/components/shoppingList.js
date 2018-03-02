@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder, fetchLocalStorageAndSetToState} from '../store';
 import axios from 'axios'
@@ -77,7 +77,7 @@ export const ShoppingList = (props) => {
         backgroundColor = "#f7ffe6"
         hoverColor = "#ccffcc"
         label="Checkout"
-        onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}
+        onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
         />
     </div>
 )
@@ -95,7 +95,7 @@ const mapState = function(state){
 
 
 
-const mapDispatch = (dispatch) => ({
+const mapDispatch = (dispatch, ownProps) => ({
   handleDeleteClick: (event) => {
       event.preventDefault();
       var orderArray = parse(localStorage.getItem('orderArray'));
@@ -107,11 +107,17 @@ const mapDispatch = (dispatch) => ({
     dispatch(deleteItem(+event.target.id))
     },
   handleQuantityClick: (event) => {
-      console.log('HERE!!!', event.target.objHolder)
         event.preventDefault();
-    dispatch(fetchObjAndAdd(+event.target.id))
+        dispatch(fetchObjAndAdd(+event.target.id))
     },
   handleDecrementClick: (event) => {
+
+        event.preventDefault();
+        dispatch(decrementQuantity(+event.target.id))
+    },
+   handleCheckout: (userId,shoppingList) => {
+       dispatch(checkoutOrder(userId, shoppingList, ownProps.history))
+   
     event.preventDefault();
     var orderArray = parse(localStorage.getItem("orderArray"));
     var itemToSet;
@@ -138,24 +144,11 @@ const mapDispatch = (dispatch) => ({
     localStorage.setItem('orderArray',string(itemToSet));
     dispatch(decrementQuantity(+event.target.id))
 },
-<<<<<<< HEAD
 
-=======
 loadCartFromLocalStore: () =>
 dispatch(fetchLocalStorageAndSetToState())
->>>>>>> master
+
 })
-
-//     OTHER FORMAT OF MAPDISPATCH
-// const mapDispatchToProps = function (dispatch) {
-//     return {
-//       handleChange (evt) {
-//         dispatch(updateName(evt.target.value));
-//       }
-//     };
-//   };
-
-//TODO Remove from cart and checkout
 
 export default connect(mapState, mapDispatch)(ShoppingList);
 
