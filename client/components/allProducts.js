@@ -11,6 +11,7 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
+
 const styles = {
   root: {
     display: 'flex',
@@ -36,7 +37,14 @@ class AllProducts extends Component {
     const allProducts = (this.props.term && this.props.products.length>0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase())>(-1)) : this.props.products
 
     return (
+
       <div style={styles.root}>
+<TextField
+       hintText="Product"
+       floatingLabelText="Search Products"
+       type='text'
+       onChange={this.props.handleChange}
+     />
 
       <GridList
         cellHeight={180}
@@ -46,9 +54,21 @@ class AllProducts extends Component {
         {allProducts.map(product =>{
             return (
               <GridTile
+
               key={product.id}
+              href={`/products/${product.id}`}
               title={product.name}
-              actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+
+
+              actionIcon={<IconButton
+              onClick= {this.props.handleAddToListClick}
+              id={product.id}
+              >
+              <i
+              className="material-icons"
+              >add_shopping_cart</i>
+              {/* <StarBorder color="white" /> */}
+              </IconButton>}
             >
               <img src={'./thecucu.jpg'} />
               </GridTile>
@@ -62,12 +82,7 @@ class AllProducts extends Component {
 }
 }
 
-{/* <TextField
-      hintText="Dan Smells"
-      floatingLabelText="Product Search"
-      type='text'
-      onChange={this.props.handleChange}
-    /><br /> */}
+
 
   const mapState = state => ({
      products: state.products.allProducts,
