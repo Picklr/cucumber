@@ -3,7 +3,8 @@ import {NavLink} from 'react-router-dom'
 import React, {Component} from 'react'
 import {setSearchTerm} from '../store/products'
 import { fetchObjAndAdd } from '../store/shoppingList';
-
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class AllProducts extends Component {
 
@@ -18,9 +19,15 @@ class AllProducts extends Component {
 
     return (
         <div>
-        <input name='search' type='text' onChange={this.props.handleChange}/>
-        <h2>These are our products</h2>
-        <h2>{this.props.term}</h2>
+          <h2>Products</h2>
+<TextField
+      hintText="Dan Smells"
+      floatingLabelText="Product Search"
+      type='text'
+      onChange={this.props.handleChange}
+    /><br />
+
+        {/* <h2>{this.props.term}</h2> */}
         <ul>
 
         {allProducts.map(product =>{
@@ -29,6 +36,15 @@ class AllProducts extends Component {
                 <NavLink to={`/products/${product.id}`}>
                   <h4>{product.name} </h4>
                 </NavLink>
+
+                {/* <RaisedButton
+                id={product.id}
+          onClick={this.props.handleAddToListClick}
+
+                backgroundColor = "#f7ffe6"
+        hoverColor = "#ccffcc"
+        label="Add to Shopping List"
+        /> */}
                 <button
                   onClick={this.props.handleAddToListClick}
                   id={product.id}

@@ -2,16 +2,24 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder} from '../store';
 import axios from 'axios'
+import RaisedButton from 'material-ui/RaisedButton';
+import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import Subheader from 'material-ui/Subheader';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+
 
 export const ShoppingList = (props) => {
     let sum = 0;
-    let displaySum 
+    let displaySum
     console.log('These are props! ', props)
-
+    const style = {
+        margin: 12,
+      };
     return (
 
     <div id='Shopping-List'>
-
+        <h4>My Shopping List </h4>
         <ul>
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
@@ -24,7 +32,7 @@ export const ShoppingList = (props) => {
                 <button
                 onClick = {props.handleDeleteClick}
                 id = {item.id}
-                
+
                 >x</button>
 
                 <button
@@ -37,14 +45,21 @@ export const ShoppingList = (props) => {
                 type = "increment"
                 onClick = {props.handleQuantityClick}
                 id = {item.id}
-                // value = {item.fullName}  
+                // value = {item.fullName}
                 >+</button>
                 </div>
             )
         })}
         </ul>
         {sum>0 && <li>{ '$'+(displaySum.slice(0,displaySum.length-2) + '.' +  displaySum.slice(displaySum.length-2)) }</li>  }
-        <button onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}>Checkout</button>
+
+        <RaisedButton
+        icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
+        backgroundColor = "#f7ffe6"
+        hoverColor = "#ccffcc"
+        label="Checkout" style={style}
+        onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}
+        />
     </div>
 )
 }
@@ -80,7 +95,7 @@ const mapDispatch = (dispatch) => ({
     event.preventDefault();
 dispatch(decrementQuantity(+event.target.id))
 },
-   
+
 })
 
 //     OTHER FORMAT OF MAPDISPATCH

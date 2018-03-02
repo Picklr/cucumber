@@ -24,6 +24,10 @@ form div {
   display: inline-block;
 }
 
+.cukebutton {
+  max-width: 20px;
+}
+
 #Grocery-Box {
   border: 1em solid rgb(145, 209, 116);
   border-radius: 46px;
