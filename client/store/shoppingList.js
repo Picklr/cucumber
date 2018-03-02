@@ -8,7 +8,9 @@ const DELETE_ITEM = 'DELETE_ITEM';
 
 const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 
-const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY'
+const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
+
+const FETCH_LOCALSTORAGE_AND_SET_TO_STATE = 'FETCH_LOCALSTORAGE_AND_SET_TO_STATE'
 
 /**
  * INITIAL STATE
@@ -24,19 +26,46 @@ export const addProductToList = productObj => ({type: ADD_PRODUCT_TO_LIST, produ
 
 export const decrementQuantity = productObjId => ({type: DECREMENT_QUANTITY, productObjId})
 
+export const fetchLocalStorageAndSetToState = () => ({type: FETCH_LOCALSTORAGE_AND_SET_TO_STATE})
+
 /**
  * THUNK CREATORS
  */
-
+const string = JSON.stringify;
+const parse = JSON.parse;
 
 export const fetchObjAndAdd = (itemId) =>
   dispatch => {
     axios.get(`/api/products/${itemId}`)
-    .then(res =>
-      dispatch(addProductToList(res.data)))
+    .then(res => {
+      var itemToSet;
+      var orderArray = parse(localStorage.getItem('orderArray'))
+      console.log('orderArray', orderArray)
+      // localStorage.setItem('orderArray',string(parse(localStorage.getItem('orderArray')).push({...action.productObj, quantity: 1})))
+      const match = orderArray.find((product) => {
+        return product.id === res.data.id
+      })
+        if (!match) {
+          itemToSet = [...orderArray,
+            {...res.data, quantity: 1}]
+        } else {
+          itemToSet = orderArray.map((product) => {
+            if (product.id === res.data.id){
+             return {...product, quantity: ++product.quantity}
+            } else {
+              return product
+            }
+          })
+        }
+      localStorage.setItem('orderArray',string(itemToSet));
+      dispatch(addProductToList(res.data))
+    })
     .catch(err => console.log(err))
   }
 
+  // export const decrementThunk = () => dispatch => {
+  //   dispatch(addProductToList())
+  // }
 //in the future will use this with admin
 // export const destroyItem = (itemToDestroyId) =>
 //   dispatch => {
@@ -105,7 +134,8 @@ export default function (state = cartItems, action) {
       }
       )
     }
-
+    case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
+    return parse(localStorage.getItem('orderArray'))
 
 
     default:
