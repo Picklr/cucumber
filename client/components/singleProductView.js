@@ -23,9 +23,11 @@ class SingleProduct extends Component{
             {
             this.props.selectedProduct.name ?
             <div>
-                <span>This is one cucu</span>
-                <img src='/cucumber.jpg' />
                 <h3> {this.props.selectedProduct.name} </h3>
+                <img
+                className = "singlePageImage"
+                src="/cucumber.jpg" />
+
                 <h4> {'Rating ' + this.props.selectedProduct.stars} </h4>
                 <button
                 onClick={this.props.handleAddToListClick}

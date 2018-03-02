@@ -2,6 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder, fetchLocalStorageAndSetToState} from '../store';
 import axios from 'axios'
+import RaisedButton from 'material-ui/RaisedButton';
+
+
 
 const string = JSON.stringify;
 const parse = JSON.parse;
@@ -12,6 +15,7 @@ var listener;
 
 export const ShoppingList = (props) => {
     let sum = 0;
+
     let displaySum;
     console.log('Hello',JSON.parse(localStorage.getItem('orderArray')))
     if (!localStorage.getItem('orderArray')){
@@ -30,12 +34,11 @@ export const ShoppingList = (props) => {
             props.loadCartFromLocalStore()
             // console.log('things happened!!!!!')
         })}
-    
 
     return (
 
     <div id='Shopping-List'>
-
+        <h4>My Shopping List </h4>
         <ul>
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
@@ -48,7 +51,7 @@ export const ShoppingList = (props) => {
                 <button
                 onClick = {props.handleDeleteClick}
                 id = {item.id}
-                
+
                 >x</button>
 
                 <button
@@ -61,14 +64,21 @@ export const ShoppingList = (props) => {
                 type = "increment"
                 onClick = {props.handleQuantityClick}
                 id = {item.id}
-                // value = {item.fullName}  
+                // value = {item.fullName}
                 >+</button>
                 </div>
             )
         })}
         </ul>
         {sum>0 && <li>{ '$'+(displaySum.slice(0,displaySum.length-2) + '.' +  displaySum.slice(displaySum.length-2)) }</li>  }
-        <button onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}>Checkout</button>
+
+        <RaisedButton
+        icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
+        backgroundColor = "#f7ffe6"
+        hoverColor = "#ccffcc"
+        label="Checkout"
+        onClick={()=>{checkoutOrder(props.user.id,props.shoppingList)}}
+        />
     </div>
 )
 }
@@ -83,11 +93,6 @@ const mapState = function(state){
    }
 }
 
-// const mapStateToProps = function (state) {
-//     return {
-//       name: state.name
-//     };
-//   };
 
 
 const mapDispatch = (dispatch) => ({
@@ -133,8 +138,12 @@ const mapDispatch = (dispatch) => ({
     localStorage.setItem('orderArray',string(itemToSet));
     dispatch(decrementQuantity(+event.target.id))
 },
+<<<<<<< HEAD
+
+=======
 loadCartFromLocalStore: () =>
 dispatch(fetchLocalStorageAndSetToState())
+>>>>>>> master
 })
 
 //     OTHER FORMAT OF MAPDISPATCH
