@@ -110,38 +110,34 @@ const mapDispatch = (dispatch, ownProps) => ({
         dispatch(fetchObjAndAdd(+event.target.id))
     },
   handleDecrementClick: (event) => {
-
         event.preventDefault();
+        var orderArray = parse(localStorage.getItem("orderArray"));
+        var itemToSet;
+        const match2 = orderArray.find((product) => {
+            return product.id === +event.target.id;
+          })
+    
+            if(match2.quantity === 1){
+              itemToSet = orderArray.filter((currentItem) => currentItem.id !== +event.target.id)
+            }else {
+             itemToSet = orderArray.map((product) => {
+    
+                if (product.id == +event.target.id){
+    
+                    return {...product, quantity: --product.quantity}
+                  }
+                 else {
+                  return product
+    
+            }
+          }
+          )
+        }
+        localStorage.setItem('orderArray',string(itemToSet));
         dispatch(decrementQuantity(+event.target.id))
     },
    handleCheckout: (userId,shoppingList) => {
-       dispatch(checkoutOrder(userId, shoppingList, ownProps.history))
-
-    event.preventDefault();
-    var orderArray = parse(localStorage.getItem("orderArray"));
-    var itemToSet;
-    const match2 = orderArray.find((product) => {
-        return product.id === +event.target.id;
-      })
-
-        if(match2.quantity === 1){
-          itemToSet = orderArray.filter((currentItem) => currentItem.id !== +event.target.id)
-        }else {
-         itemToSet = orderArray.map((product) => {
-
-            if (product.id == +event.target.id){
-
-                return {...product, quantity: --product.quantity}
-              }
-             else {
-              return product
-
-        }
-      }
-      )
-    }
-    localStorage.setItem('orderArray',string(itemToSet));
-    dispatch(decrementQuantity(+event.target.id))
+       dispatch(checkoutOrder(userId, shoppingList, ownProps.history))    
 },
 
 loadCartFromLocalStore: () =>

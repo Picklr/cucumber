@@ -89,7 +89,7 @@ dispatch(clearCart())
 }
 //experimental phase
 export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
-
+  localStorage.clear()
   dispatch(clearCart())
   console.log('User number ', userId, 'is trying to buy ')
   console.log(shoppingList)
