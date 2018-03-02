@@ -1,12 +1,36 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder} from '../store';
+import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder, fetchLocalStorageAndSetToState} from '../store';
 import axios from 'axios'
+
+const string = JSON.stringify;
+const parse = JSON.parse;
+
+var listener;
+
+
 
 export const ShoppingList = (props) => {
     let sum = 0;
-    let displaySum 
-    console.log('These are props! ', props)
+    let displaySum;
+    console.log('Hello',JSON.parse(localStorage.getItem('orderArray')))
+    if (!localStorage.getItem('orderArray')){
+        localStorage.setItem('orderArray', '[]')
+    }
+    if (!props.shoppingList.length){
+        var holder = parse(localStorage.getItem('orderArray'))
+        if (holder.length){
+        props.loadCartFromLocalStore()
+        }
+    }
+
+    if (!listener){
+        listener = true;
+        window.addEventListener('storage', function (event) {
+            props.loadCartFromLocalStore()
+            // console.log('things happened!!!!!')
+        })}
+    
 
     return (
 
@@ -69,6 +93,12 @@ const mapState = function(state){
 const mapDispatch = (dispatch) => ({
   handleDeleteClick: (event) => {
       event.preventDefault();
+      var orderArray = parse(localStorage.getItem('orderArray'));
+      var itemToSet;
+      itemToSet = orderArray.filter( product => {
+          return product.id !== +event.target.id;
+      })
+      localStorage.setItem('orderArray',string(itemToSet))
     dispatch(deleteItem(+event.target.id))
     },
   handleQuantityClick: (event) => {
@@ -78,9 +108,33 @@ const mapDispatch = (dispatch) => ({
     },
   handleDecrementClick: (event) => {
     event.preventDefault();
-dispatch(decrementQuantity(+event.target.id))
+    var orderArray = parse(localStorage.getItem("orderArray"));
+    var itemToSet;
+    const match2 = orderArray.find((product) => {
+        return product.id === +event.target.id;
+      })
+
+        if(match2.quantity === 1){
+          itemToSet = orderArray.filter((currentItem) => currentItem.id !== +event.target.id)
+        }else {
+         itemToSet = orderArray.map((product) => {
+
+            if (product.id == +event.target.id){
+
+                return {...product, quantity: --product.quantity}
+              }
+             else {
+              return product
+
+        }
+      }
+      )
+    }
+    localStorage.setItem('orderArray',string(itemToSet));
+    dispatch(decrementQuantity(+event.target.id))
 },
-   
+loadCartFromLocalStore: () =>
+dispatch(fetchLocalStorageAndSetToState())
 })
 
 //     OTHER FORMAT OF MAPDISPATCH

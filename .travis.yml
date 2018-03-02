@@ -17,9 +17,12 @@ install:
 before_script:
   - psql -c 'create database "cucumber-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# # see https://docs.travis-ci.com/user/deployment/heroku/
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   api_key:
-#     secure: "YOUR ***ENCRYPTED*** API KEY HERE"
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: picklr # see README
+  api_key:
+    secure: "U7yuKv7lVrOcqBzC1bqnQwVahjtwz+pqzIkyyY6I2nqiNvk32yFwb/5QcZ+knJm2vpn78UbVFC3ddUmQERTFeUgBDdZ8cLUGGin37Y9B83L9Ddrf4k2idXev0K7D453facJXO+ZzAtGkG1PP21Pql6ouXwQ4QQUXusdhEFQSDzgJa0gbby35vkjC5+P/3sYM8o5l/0S66alOPk0ahI0f8HS/ZucL6sP8xOsCD6BVnEv0yPHbW7d8KeBLvDmQFLFiYSkAha7zmYMCDSrw9H9floHKJHxbHgU2Nm7AmyqKTFbyGfnA+wEcWq3PEnhGfmCdJSPMouScsde+gkYAAAk/6zykOlgwn+8iqlNL3+/6XuXxi4bNO9ktec8hxtiS8+8BJBIxYAv6XOIuL0sVv4Vm7KUwclzIxpJ6WUPqu7wOC9L0pF2iZEEGQj+QBd9Drdd/ewGVTDSqm2LtJqywHt3KH9IdgYMzNolXsySdpeZVEeIJGubIE0Ww0QNCPDJ+7YQmp5AGsaXT3QEPCpOQjAYSSMnI3wx4EpdEmB596+wt800xeKx85vnqYqjl0XgKS5NaSBIqtCeLtV7RvtnxzCQ87epWmAUN4ixwc4NtKeYCtr7u0kZZ1FBZnPBvNxGJCePOgaOW8BqzGqyon+xG77IByVr607peN83IePSVnSh+lUc=" # see README
