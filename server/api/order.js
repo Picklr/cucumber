@@ -6,24 +6,16 @@ router.post('/',(req,res,next)=>{
 
     Order.create({userId: req.body.userId}).then(order=>{
         
-        const withId = req.body.shoppingList.map(eachProduct=>Object.assign({},eachProduct, {orderId: order.id}))
-        console.log('Does it have Id?', withId)
-        HistoricalItems.bulkCreate(withId).then(arrayOfProducts=>{
-        console.log('These were in the cart ', arrayOfProducts)
+        const cloneWithIdMod = req.body.shoppingList.map(eachProduct=>Object.assign({},eachProduct, {id: null, orderId: order.id}))
+    
+        HistoricalItems.bulkCreate(cloneWithIdMod).then(arrayOfProducts=>{
         arrayOfProducts.forEach(eachProduct=>{
                 eachProduct.setOrder(order)
-        })
-    })
+            })
+        }).then(arrayOfItems=>{res.json(order)})
    })
-
 })
 
-
-
-// Products.bulkCreate(ourSeed)
-// .catch(console.error.bind(console))
-// .finally(_ => {
-//   db.close()
-//   console.log('Closed connection.')
-//   return null
-// })
+router.get('/:userId',(req,res,next)=>{
+    Order.findAll({where: {userId: req.params.userId}}).then(oHistory=>{res.json(oHistory)})
+})

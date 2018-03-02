@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {addLatestOrder} from './order'
 
 /**
  * ACTION TYPES
@@ -9,6 +10,8 @@ const DELETE_ITEM = 'DELETE_ITEM';
 const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 
 const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY'
+
+const WIPE_CART = 'WIPE_CART'
 
 /**
  * INITIAL STATE
@@ -23,6 +26,8 @@ export const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
 export const addProductToList = productObj => ({type: ADD_PRODUCT_TO_LIST, productObj})
 
 export const decrementQuantity = productObjId => ({type: DECREMENT_QUANTITY, productObjId})
+
+export const clearCart = () => ({type: WIPE_CART})
 
 /**
  * THUNK CREATORS
@@ -47,12 +52,16 @@ export const fetchObjAndAdd = (itemId) =>
 //   }
 
 //experimental phase
-export const checkoutOrder = (userId, shoppingList) => {
+export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
+
+  dispatch(clearCart())
   console.log('User number ', userId, 'is trying to buy ')
   console.log(shoppingList)
-
-  axios.post('api/order', {userId: userId, shoppingList: shoppingList})
-
+  axios.post('api/order', {userId: userId, shoppingList: shoppingList}).then(res=>res.data).then(order=>{
+    console.log('RABBIT HOLE ', order)
+    dispatch(addLatestOrder(order))
+    history.push('/orderSuccess')
+    })
 
 }
 
@@ -100,12 +109,12 @@ export default function (state = cartItems, action) {
               }
              else {
               return product
-
+            }
+          })
         }
-      }
-      )
-    }
-
+    
+    case WIPE_CART:
+        return []
 
 
     default:
