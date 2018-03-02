@@ -3,7 +3,28 @@ import {NavLink} from 'react-router-dom'
 import React, {Component} from 'react'
 import {setSearchTerm} from '../store/products'
 import { fetchObjAndAdd } from '../store/shoppingList';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import Subheader from 'material-ui/Subheader';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import {orange500, blue500} from 'material-ui/styles/colors';
 
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    borderColor: orange500,
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+    overflowY: 'auto',
+  },
+};
 
 class AllProducts extends Component {
 
@@ -31,30 +52,57 @@ class AllProducts extends Component {
         : this.props.products
         
     return (
-        <div>
-        <input name='search' type='text' onChange={this.props.handleChange}/>
-        <h2>These are our products</h2>
-        <h2>{this.props.term}</h2>
-        <ul>
+
+      <div style={styles.root}>
+    <TextField
+       hintText="Product"
+       floatingLabelText="Search Products"
+       type='text'
+       onChange={this.props.handleChange}
+
+     />
+
+      <GridList
+
+        cellHeight={180}
+        style={styles.gridList}
+      >
+
+
+
+      <Subheader>Products</Subheader>
 
         {allProducts.map(product =>{
             return (
-              <li key={product.id} >
-                <NavLink to={`/products/${product.id}`}>
-                  <h4>{product.name} </h4>
-                </NavLink>
-                <button
-                  onClick={this.props.handleAddToListClick}
-                  id={product.id}
-                  >
-                  Add to Shopping List</button >
-              </li>
+
+<NavLink to ={`/products/${product.id}`} >
+              <GridTile
+
+              key={product.id}
+
+              title={product.name}
+
+
+              actionIcon={<IconButton
+
+              onClick= {this.props.handleAddToListClick}
+
+              >
+              <i
+              id={product.id}
+              className="material-icons"
+              >add_shopping_cart</i>
+              {/* <StarBorder color="white" /> */}
+              </IconButton>}
+            >
+              <img src={'./thecucu.jpg'} />
+              </GridTile>
+              </NavLink>
             )
           }
         )
       }
-
-        </ul>
+        </GridList>
       </div>
     )
 }
@@ -69,7 +117,6 @@ class AllProducts extends Component {
      handleChange: event => {dispatch(setSearchTerm(event.target.value))},
      handleAddToListClick: (event) => {
       event.preventDefault();
-
       dispatch(fetchObjAndAdd(+event.target.id))
 
    }

@@ -6,6 +6,7 @@ import Routes from './routes'
 import {fetchProducts} from './store'
 import {withRouter} from 'react-router-dom'
 
+
 class App extends Component {
 
   constructor(props){
