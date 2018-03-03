@@ -7,7 +7,8 @@ import {me} from './store'
 import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProductView'
 import ShoppingList from './components/shoppingList'
-import YourOrders from './components/yourOrders'
+import OrderSuccess from './components/orderSuccess'
+
 
 /**
  * COMPONENT
@@ -30,7 +31,7 @@ class Routes extends Component {
         <div id='Product-Aisle'>
         <Route exact path="/" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
-        <Route path='/orderSuccess' component={YourOrders} />
+        <Route path='/orderSuccess' component={OrderSuccess} />
         </div>
         </div>
         {

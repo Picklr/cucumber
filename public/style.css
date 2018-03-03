@@ -45,7 +45,7 @@ form div {
 }
 
 #Product-Aisle {
-  flex: 5 3 40%;
+  flex: 9 3 40%;
   border: 3px solid rgb(235, 146, 45);
   border-radius: 25px;
   padding: 50px

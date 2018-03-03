@@ -16,7 +16,7 @@ export const ShoppingList = (props) => {
     let sum = 0;
 
     let displaySum;
-    console.log('Hello',JSON.parse(localStorage.getItem('orderArray')))
+    console.log('LOCAL STORAGE SOMETHING ',JSON.parse(localStorage.getItem('orderArray')))
     if (!localStorage.getItem('orderArray')){
         localStorage.setItem('orderArray', '[]')
     }
