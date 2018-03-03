@@ -92,9 +92,7 @@ export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
   localStorage.clear()
   dispatch(clearCart())
   console.log('User number ', userId, 'is trying to buy ')
-  console.log(shoppingList)
   axios.post('api/order', {userId: userId, shoppingList: shoppingList}).then(res=>res.data).then(order=>{
-    console.log('RABBIT HOLE ', order)
     dispatch(addLatestOrder(order))
     history.push('/orderSuccess')
     })

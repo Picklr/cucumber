@@ -5,7 +5,7 @@ const db = require('./server/db')
 
 const ourSeed = [
   {
-    name: 'Gowanus Icecream',
+    name: 'Gowanus Ice Cream',
     brand: 'Ample Hills',
     price: 7.99,
     photo: '/photography/ampleHills.png',
@@ -124,7 +124,155 @@ const ourSeed = [
     category: 'Greens',
     stars: 5.0,
     tags: ['Green', 'Kale', 'Lettuce', 'Healthy', 'Organic']
-  }
+  },
+  {
+    name: 'Tempeh',
+    brand: 'Beyond Meat',
+    price: 4.99,
+    totalSales: 41,
+    category: 'Vegetarian',
+    stars: 5.0,
+    tags: ['Vegetarian', 'Soy', 'Healthy', 'Organic']
+  },
+  {
+    name: 'Firm Tofu',
+    brand: 'House Foods',
+    price: 3.99,
+    totalSales: 87,
+    category: 'Vegetarian',
+    stars: 5.0,
+    tags: ['Vegetarian', 'Soy', 'Healthy', 'Organic']
+  },
+  {
+    name: 'Duck Breast',
+    brand: 'Purbird',
+    price: 12.99,
+    totalSales: 14,
+    category: 'Poultry',
+    stars: 5.0,
+    tags: ['Poultry', 'Meat', 'Free Range', 'Organic']
+  },
+  {
+    name: 'Miso',
+    brand: 'House Foods',
+    price: 7.99,
+    totalSales: 14,
+    category: 'Condiments',
+    stars: 5.0,
+    tags: ['Soy', 'Exotic', 'Japanese', 'Organic']
+  },
+  {
+    name: 'Green Beans',
+    brand: 'New Jersey Farms',
+    price: 4.99,
+    totalSales: 24,
+    category: 'Vegetables',
+    stars: 5.0,
+    tags: ['Green', 'Vegetables', 'Produce', 'Organic']
+  },
+  {
+    name: 'Green Onion',
+    brand: 'NY Greens',
+    price: 3.99,
+    totalSales: 88,
+    category: 'Vegetables',
+    stars: 5.0,
+    tags: ['Green', 'Vegetables', 'Produce', 'Organic', 'Onion']
+  },
+  {
+    name: 'Green Bell Pepper',
+    brand: 'New Jersey Farms',
+    price: 2.99,
+    totalSales: 101,
+    category: 'Vegetables',
+    stars: 5.0,
+    tags: ['Green', 'Vegetables', 'Produce', 'Organic', 'Onion']
+  },
+  {
+    name: 'Pistachio Ice Cream',
+    brand: 'Van Leeuwen',
+    price: 7.99,
+    totalSales: 11,
+    category: 'Ice Cream',
+    stars: 5.0,
+    tags: ['Green', 'Dessert', 'Ice Cream', 'Local']
+  },
+  {
+    name: '100% Cocoa Bar',
+    brand: 'Antidote',
+    price: 9.99,
+    totalSales: 98,
+    category: 'Chocolate',
+    stars: 5.0,
+    tags: ['Organic', 'Dessert', 'Chocolate', 'Local', 'Vegan']
+  },
+  {
+    name: 'Chocolate Pudding',
+    brand: 'Jell-o',
+    price: 3.99,
+    totalSales: 80,
+    category: 'Dessert',
+    stars: 4.0,
+    tags: ['Dessert', 'Chocolate']
+  },
+  {
+    name: 'Chia Pudding',
+    brand: 'GT',
+    price: 5.99,
+    totalSales: 40,
+    category: 'Dessert',
+    stars: 4.0,
+    tags: ['Dessert', 'Organic', 'Healthy', 'SuperFood', 'Vegan']
+  },
+  {
+    name: 'Fruit Cup',
+    brand: 'New Jersey Farms',
+    price: 5.99,
+    totalSales: 48,
+    category: 'Fruit',
+    stars: 4.0,
+    tags: ['Dessert', 'Fruit', 'Healthy', 'Kiwi', 'Melon', 'Vegan']
+  },
+  {
+    name: 'Green Papaya',
+    brand: 'Thailand',
+    price: 5.99,
+    totalSales: 4,
+    category: 'Fruit',
+    stars: 4.0,
+    tags: ['Exotic', 'Fruit', 'Melon']
+  },
+  {
+    name: 'Papaya',
+    brand: 'New Jersey Farms',
+    price: 5.99,
+    totalSales: 4,
+    category: 'Fruit',
+    stars: 4.0,
+    tags: ['Exotic', 'Fruit', 'Melon', 'Orange']
+  },
+  {
+    name: 'Cantaloupe',
+    brand: 'New Jersey Farms',
+    price: 4.99,
+    totalSales: 46,
+    category: 'Fruit',
+    stars: 4.0,
+    tags: ['Fruit', 'Melon', 'Orange']
+  },
+  {
+    name: 'HoneyDew',
+    brand: 'New Jersey Farms',
+    price: 5.99,
+    totalSales: 46,
+    category: 'Fruit',
+    stars: 4.0,
+    tags: ['Fruit', 'Melon', 'Green', 'Healthy']
+  },
+  
+  
+
+
 ];
 
 Products.bulkCreate(ourSeed)
