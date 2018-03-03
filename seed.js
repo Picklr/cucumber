@@ -126,6 +126,36 @@ const ourSeed = [
     tags: ['Green', 'Kale', 'Lettuce', 'Healthy', 'Organic']
   },
   {
+    name: 'Tangelo',
+    brand: 'Tangelo Co',
+    price: 2.99,
+    photo: '/photography/peeled-and-whole-tangelo.jpg',
+    totalSales: 4,
+    category: 'Fruit',
+    stars: 5.0,
+    tags: ['Fruit', 'Healthy', 'Sustainable']
+  },
+  {
+    name: 'Lime Tortilla Chips',
+    brand: 'Lime Tortilla Chips Co',
+    price: 3.99,
+    photo: '/photography/tortilla-chips',
+    totalSales: 4,
+    category: 'Misc',
+    stars: 5.0,
+    tags: ['Snacks']
+  },
+  {
+    name: 'Organic Avocado',
+    brand: 'Avocado Co',
+    price: 2.99,
+    photo: '/photography/avocado',
+    totalSales: 4,
+    category: 'Vegetables',
+    stars: 5.0,
+    tags: ['Vegetables', 'Healthy', 'Organic', 'Green']
+  },
+  {
     name: 'Tempeh',
     brand: 'Beyond Meat',
     price: 4.99,
@@ -268,10 +298,7 @@ const ourSeed = [
     category: 'Fruit',
     stars: 4.0,
     tags: ['Fruit', 'Melon', 'Green', 'Healthy']
-  },
-  
-  
-
+  }
 
 ];
 

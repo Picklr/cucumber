@@ -33,7 +33,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               label = "My Account"
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
-              // href = "/"
+              href = "/myAccount"
               icon = {<img className="cukebutton" src="./thecucu_final.png" />}
               />
             <FlatButton
