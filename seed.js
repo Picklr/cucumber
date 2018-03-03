@@ -5,7 +5,7 @@ const db = require('./server/db')
 
 const ourSeed = [
   {
-    name: 'Gowanus Icecream',
+    name: 'Gowanus Ice Cream',
     brand: 'Ample Hills',
     price: 7.99,
     photo: '/photography/ampleHills.png',
@@ -124,6 +124,36 @@ const ourSeed = [
     category: 'Greens',
     stars: 5.0,
     tags: ['Green', 'Kale', 'Lettuce', 'Healthy', 'Organic']
+  },
+  {
+    name: 'Tangelo',
+    brand: 'Tangelo Co',
+    price: 2.99,
+    photo: '/photography/peeled-and-whole-tangelo.jpg',
+    totalSales: 4,
+    category: 'Fruit',
+    stars: 5.0,
+    tags: ['Fruit', 'Healthy', 'Sustainable']
+  },
+  {
+    name: 'Lime Tortilla Chips',
+    brand: 'Lime Tortilla Chips Co',
+    price: 3.99,
+    photo: '/photography/tortilla-chips',
+    totalSales: 4,
+    category: 'Misc',
+    stars: 5.0,
+    tags: ['Snacks']
+  },
+  {
+    name: 'Organic Avocado',
+    brand: 'Avocado Co',
+    price: 2.99,
+    photo: '/photography/avocado',
+    totalSales: 4,
+    category: 'Vegetables',
+    stars: 5.0,
+    tags: ['Vegetables', 'Healthy', 'Organic', 'Green']
   }
 ];
 

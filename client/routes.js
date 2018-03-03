@@ -8,7 +8,8 @@ import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProductView'
 import ShoppingList from './components/shoppingList'
 import YourOrders from './components/yourOrders'
-
+import myAccount from './components/myAccount'
+import updateAccountInfo from './components/updateAccountInfo'
 /**
  * COMPONENT
  */
@@ -31,6 +32,8 @@ class Routes extends Component {
         <Route exact path="/" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route path='/orderSuccess' component={YourOrders} />
+        <Route path = '/myAccount' component={myAccount} />
+        <Route path = '/updateAccountInfo' component={updateAccountInfo} />
         </div>
         </div>
         {

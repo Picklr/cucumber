@@ -6,6 +6,7 @@ import {getUserOrderHistory} from './order'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
@@ -17,10 +18,24 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const updateUser = (user) =>({type: UPDATE_USER, user: user})
 
 /**
  * THUNK CREATORS
  */
+
+export const editUser = (email, billingAddress, userId) =>
+  dispatch =>
+
+    axios.put(`/api/users/${userId}`, {
+        email: email,
+        billingAddress: billingAddress})
+        .then((res)=> {
+        console.log('RES.DATA', res.data)
+          dispatch(updateUser(res.data[1]))
+        })
+        .catch(err => console.log(err))
+
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
@@ -33,7 +48,7 @@ export const auth = (method, email, password, firstName, lastName, billingAddres
     axios.post(`/auth/${method}`, { email, password, firstName, lastName, billingAddress })
       .then(res => {
         dispatch(getUser(res.data))
-        if(method==='login') dispatch(getUserOrderHistory({id:2})) //Philip added this in
+        if (method === 'login') dispatch(getUserOrderHistory({id:2})) //Philip added this in
         history.push('/')
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
@@ -60,6 +75,9 @@ export default function (state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case UPDATE_USER:
+      return action.user
+
     default:
       return state
   }
