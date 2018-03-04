@@ -30,6 +30,9 @@ export const ShoppingList = (props) => {
     if (!listener){
         listener = true;
         window.addEventListener('storage', function (event) {
+            if(!localStorage.getItem('orderArray')){
+                localStorage.setItem('orderArray','[]')
+            }
             props.loadCartFromLocalStore()
             // console.log('things happened!!!!!')
         })}
