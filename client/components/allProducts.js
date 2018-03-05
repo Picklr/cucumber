@@ -23,8 +23,7 @@ const styles = {
     width: 500,
     height: 450,
     overflowY: 'auto',
-
-  },
+  }
 };
 
 class AllProducts extends Component {

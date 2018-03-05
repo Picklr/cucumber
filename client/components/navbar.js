@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout, clearCartThunk} from '../store'
 import FlatButton from 'material-ui/FlatButton';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div  className = "container" >
 
       <div className = "item">
@@ -20,8 +20,17 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
     <nav className = "item">
       <div >
+
         {isLoggedIn ?
           <div>
+          {isAdmin &&  <FlatButton
+              label = "Admin Home"
+              backgroundColor = "#f7ffe6"
+              hoverColor = "#ccffcc"
+              href = "/adminHome"
+              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              />
+          }
             <FlatButton
               label = "Products"
               backgroundColor = "#f7ffe6"
@@ -80,7 +89,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin
   }
 }
 

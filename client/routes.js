@@ -11,8 +11,8 @@ import YourOrders from './components/yourOrders'
 import myAccount from './components/myAccount'
 import updateAccountInfo from './components/updateAccountInfo'
 import OrderSuccess from './components/orderSuccess'
-
-
+import AdminHome from './components/Admin/admin-home'
+import EditUsers from './components/Admin/admin-edit-users'
 /**
  * COMPONENT
  */
@@ -38,7 +38,8 @@ class Routes extends Component {
         <Route path = '/updateAccountInfo' component={updateAccountInfo} />
         <Route path='/orderSuccess' component={OrderSuccess} />
         <Route path='/yourOrders' component={YourOrders} />
-        
+        <Route path='/adminHome' component={AdminHome} />
+        <Route path='/editUsers' component={EditUsers} />
         </div>
         </div>
         {

@@ -12,6 +12,7 @@ Products.belongsToMany(User, { through: Favorites })
 Order.belongsTo(User);
 HistoricalItems.belongsTo(Order)
 Order.hasMany(HistoricalItems);
+
 module.exports = {
   User,
   Order,
