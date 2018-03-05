@@ -67,9 +67,11 @@ class AllProducts extends Component {
           to ={`/products/${product.id}`}
           key={product.id} >
               <GridTile
+              id={product.id}
               key={product.id}
               title={product.name}
               actionIcon={<IconButton
+                id={product.id}
               onClick= {this.props.handleAddToListClick}
               >
                 <i
