@@ -37,6 +37,8 @@ class Routes extends Component {
         <Route path = '/myAccount' component={myAccount} />
         <Route path = '/updateAccountInfo' component={updateAccountInfo} />
         <Route path='/orderSuccess' component={OrderSuccess} />
+        <Route path='/yourOrders' component={YourOrders} />
+        
         </div>
         </div>
         {

@@ -19,6 +19,7 @@ class myAccount extends Component {
       <h3>Billing Address: {this.props.currentUser.billingAddress}</h3>
       <RaisedButton
         label = "View Order History"
+        href = "./yourOrders"
         />
       <RaisedButton
         label = "Update Billing Information"
