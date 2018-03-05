@@ -3,11 +3,14 @@ import {Link, withRouter} from 'react-router-dom'
 import React, {Component} from 'react'
 import { setSelectedProductView } from '../store/products';
 import { fetchObjAndAdd } from '../store/shoppingList';
-import ReviewForm from './reviewForm'
+import ReviewForm, { reviewForm } from './reviewForm'
 
 class SingleProduct extends Component{
     constructor(props){
         super(props)
+        this.state = {
+            reviewButtonClicked: false
+        }
 
     }
 
@@ -17,8 +20,10 @@ class SingleProduct extends Component{
 
 
     render(){
+        console.log(this.state.reviewButtonClicked,'!!!!!!!')
         return (
         <div>
+            <h1> Beth is neat </h1>
 
             {
             this.props.selectedProduct.name ?
@@ -33,6 +38,11 @@ class SingleProduct extends Component{
                 onClick={this.props.handleAddToListClick}
                 id={this.props.selectedProduct.id}
                 >Add to Cart</button>
+                {this.state.reviewButtonClicked === true
+                    ? <reviewForm/>
+                    : <button>Click me please</button>
+                    }
+
                 <div>
                 Reviews
                 <ul>
@@ -41,10 +51,10 @@ class SingleProduct extends Component{
                     })}
                 </ul>
                 </div>
-                <ReviewForm />
             </div> :
             <span>Loading</span>
             }
+
         </div>
     )}
 }
