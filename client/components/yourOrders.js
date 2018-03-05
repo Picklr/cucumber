@@ -3,31 +3,34 @@ import {connect} from 'react-redux'
 import {getUserOrderHistory} from '../store/order'
 
 
-class YourHistory extends Component {
-    constructor(props){
-        super(props)
+export const YourHistory = (props) => {
+    console.log(props.orderHistory)
+    if (props.orderHistory.length === 0 && Object.keys(props.user).length !== 0){
+        props.getUserOrderHistory(props.user)
     }
-    componentDidMount(){
-        this.props.getUserOrderHistory(this.props.user)
-    }
-
-    render(){
-
-        return (
+    
+    return (
             <div>
-                { this.props.orderHistory.length > 0 ?
+                { props.orderHistory.length > 0 ?
                 <div>
                 <h2>Your previous orders:</h2>
-                {this.props.orderHistory.map(eachOrder =>
+                {props.orderHistory.map(eachOrder => (
+                    <div key = {eachOrder.id}>
                     <h2>{'Order # ' + eachOrder.id + ' status: ' + eachOrder.status}</h2>
+                        <ul>
+                        {eachOrder.historicalItems.map( item =>(
+                            <li key = {item.id}>{item.name}</li>
+                        ))}
+                        </ul>
+                    </div>
+                )
                 )}
                 </div>
                 :
                 <div>PLEASE BE PATIENT, WE ARE FETCHING</div>
                 }
             </div>
-        )
-    }
+    )
 }
 
 const mapProps = state=>({orderHistory: state.orderHistory, user: state.user})

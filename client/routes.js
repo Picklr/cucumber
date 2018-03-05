@@ -34,9 +34,11 @@ class Routes extends Component {
         <div id="Product-Aisle">
         <Route exact path="/" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
-        <Route path = "/myAccount" component={myAccount} />
-        <Route path = "/updateAccountInfo" component={updateAccountInfo} />
-        <Route path="/orderSuccess" component={OrderSuccess} />
+        <Route path = '/myAccount' component={myAccount} />
+        <Route path = '/updateAccountInfo' component={updateAccountInfo} />
+        <Route path='/orderSuccess' component={OrderSuccess} />
+        <Route path='/yourOrders' component={YourOrders} />
+        
         </div>
         </div>
         {
