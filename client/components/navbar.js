@@ -34,71 +34,30 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       <div >
         {isLoggedIn ?
           <div>
-<<<<<<< HEAD
             <Button to="/" label="Products" />
             <Button
               label = "My Account"
               to="/myAccount"
-=======
-            <FlatButton
-              label = "Products"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/"
-              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
-              />
-            <FlatButton
-              label = "My Account"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/myAccount"
-              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
->>>>>>> master
               />
             <Button
               label = "Logout"
               to = "#"
               onClick={handleClick}
-<<<<<<< HEAD
-=======
-              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
->>>>>>> master
               />
             </div>
           :
           <div>
             <Button
               label = "Products"
-<<<<<<< HEAD
               to = "/"
             />
             <Button
               label = "Login"
               to = "/login"
-=======
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/"
-              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
-              />
-            <FlatButton
-              label = "Login"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/login"
-              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
->>>>>>> master
               />
             <Button
               label = "Sign Up"
-<<<<<<< HEAD
               to = "/signup"
-=======
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/signup"
-              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
->>>>>>> master
               />
             </div>
             }
