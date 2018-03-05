@@ -36,7 +36,7 @@ class AllProducts extends Component {
 
   render(){
 
-    const allProducts = (this.props.term && this.props.products.length>0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase())>(-1)) : this.props.products
+    const allProducts = (this.props.term && this.props.products.length > 0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase()) > (-1)) : this.props.products
 
     return (
 
@@ -44,7 +44,7 @@ class AllProducts extends Component {
     <TextField
        hintText="Product"
        floatingLabelText="Search Products"
-       type='text'
+       type="text"
        onChange={this.props.handleChange}
 
      />
@@ -57,7 +57,6 @@ class AllProducts extends Component {
           >
 
 
-
       <Subheader>Products</Subheader>
 
         {allProducts.map(product =>{
@@ -67,9 +66,11 @@ class AllProducts extends Component {
           to ={`/products/${product.id}`}
           key={product.id} >
               <GridTile
+              id={product.id}
               key={product.id}
               title={product.name}
               actionIcon={<IconButton
+                id={product.id}
               onClick= {this.props.handleAddToListClick}
               >
                 <i

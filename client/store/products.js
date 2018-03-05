@@ -25,8 +25,6 @@ let initialState = {
 }
 
 
-
-
 //thunk
 export const fetchProducts = () =>
 dispatch =>
@@ -49,8 +47,8 @@ export const products = function (state = initialState, action) {
         case GET_PRODUCTS:
             return {...state, allProducts: action.products}
         case SET_SELECTED_PRODUCT_VIEW:
-            const singleProduct = state.allProducts.find(eachProduct=>eachProduct.id==action.singleProductId)
-            if(singleProduct) return {...state, selectedProduct: singleProduct}
+            const singleProduct = state.allProducts.find(eachProduct=>eachProduct.id == action.singleProductId)
+            if (singleProduct) return {...state, selectedProduct: singleProduct}
             else return {...state, selectedProduct: {} }
         case SET_FILTER_TERM:
             return {...state, filterTerm: action.term}
