@@ -41,15 +41,34 @@ export const clearCart = () => ({type: CLEAR_CART})
 const string = JSON.stringify;
 const parse = JSON.parse;
 
+const load = () => {
+  const json = localStorage.getItem('cart')
+  if (!json) return []
+  return parse(json)
+}
+
+const save = cart => localStorage.setItem('cart', string(cart))
+
+export const addToCart = itemId => dispatch => {
+  const cart = load()
+  cart[itemId] = itemId in cart ? cart[itemId] + 1 : 1
+  save()
+  dispatch({type: 'GOT_CART', cart})
+}
+
+export const loadCart = () => dispatch =>
+  dispatch({type: 'GOT_CART', cart: load()})
+
 
 export const fetchObjAndAdd = (itemId) =>
-  dispatch => {
+  (dispatch, getState) => {
     axios.get(`/api/products/${itemId}`)
     .then(res => {
       var itemToSet;
       var orderArray = parse(localStorage.getItem('orderArray'))
       console.log('orderArray', orderArray)
       // localStorage.setItem('orderArray',string(parse(localStorage.getItem('orderArray')).push({...action.productObj, quantity: 1})))
+      
       const match = orderArray.find((product) => {
         return product.id === res.data.id
       })
@@ -83,10 +102,10 @@ export const fetchObjAndAdd = (itemId) =>
 //     .catch(err => console.log(err))
 //   }
 export const clearCartThunk = () => dispatch => {
-localStorage.clear()
-dispatch(clearCart())
+  localStorage.clear()
+  dispatch(clearCart())
 }
-//experimental phase
+
 export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
   localStorage.clear()
   dispatch(clearCart())
@@ -146,6 +165,9 @@ export default function (state = cartItems, action) {
           })
         }
 
+    case 'GOT_CART':
+      return action.cart
+    
     case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
       return parse(localStorage.getItem('orderArray'))
 
