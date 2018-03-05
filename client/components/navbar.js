@@ -22,7 +22,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
       <div className = "item">
         <Link to="/">
-          <img className ="item" id="nav-cuke-logo" src="/thecucu.jpg" />
+          <img className ="item" id="nav-cuke-logo" src="/thecucu_final.png" />
           </Link>
         <Link to="/">
           <h1 className ="item" id="nav-cuke-name">cucumber</h1>
@@ -39,10 +39,16 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               label = "My Account"
               to="/myAccount"
               />
-            <Button
-              label = "Logout"
-              to = "#"
-              onClick={handleClick}
+           <FlatButton
+              label = 'Logout'
+              backgroundColor = "#f7ffe6"
+              hoverColor = "#ccffcc"
+              // href = "/"
+              containerElement={
+                <Link to='/login'/>
+              }
+              onClick = {handleClick}
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
             </div>
           :

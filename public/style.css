@@ -83,11 +83,11 @@ form div {
 #navB {
   display: flex;
   flex-direction: row;
-  height: 230px;
+  height: 260px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-image: url('/photography/foodbacking.jpg')
+  background-image: url('/photography/foodbacking4.jpg')
 
   /* align-content: flex-stretch */
 }
@@ -127,6 +127,7 @@ form div {
  .singlePageImage {
   max-height: 300px;
   max-width: auto;
+  font-size: 11pt;
   
 }
 
@@ -140,6 +141,7 @@ form div {
   padding: 5px;
   display: flex;
   justify-content: space-between;
+  font-size: 10pt;
 }
 
 .reviewer-name{
