@@ -34,7 +34,7 @@ form div {
 }
 
 .cukebutton {
-  max-width: 20px;
+  max-width: 30px;
 }
 
 #Grocery-Box {
@@ -45,10 +45,15 @@ form div {
 }
 
 #Product-Aisle {
-  flex: 5 3 40%;
+  flex: 9 3 40%;
   border: 3px solid rgb(235, 146, 45);
   border-radius: 25px;
   padding: 50px
+}
+
+.testing-div {
+  border: solid;
+  width: 635px
 }
 
 #Shopping-List {
@@ -78,16 +83,20 @@ form div {
   display: flex;
   flex-direction: row;
   max-height: 100px;
-  max-width: auto;
-  justify-content: flex-start
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  /* align-content: flex-stretch */
 }
 
-.item {
+.item{
   display: flex;
-  align-self: flex-start
+  align-self: flex-end
 }
+
 
 #nav-cuke-logo {
-  max-height: 100px;
+  max-height: 80px;
   max-width: auto
 }

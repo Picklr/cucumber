@@ -9,11 +9,16 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <div  className = "container" >
 
       <div className = "item">
-          <img className ="item" id="nav-cuke-logo" src='/thecucu.jpg'/>
+        <Link to="/">
+          <img className ="item" id="nav-cuke-logo" src="/thecucu.jpg" />
+          </Link>
+        <Link to="/">
           <h1 className ="item" >cucumber</h1>
+          </Link>
+
       </div>
 
-    <nav >
+    <nav className = "item">
       <div >
         {isLoggedIn ?
           <div>
@@ -28,7 +33,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               label = "My Account"
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
-              // href = "/"
+              href = "/myAccount"
               icon = {<img className="cukebutton" src="./thecucu_final.png" />}
               />
             <FlatButton

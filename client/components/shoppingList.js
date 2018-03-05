@@ -11,12 +11,11 @@ const parse = JSON.parse;
 var listener;
 
 
-
 export const ShoppingList = (props) => {
     let sum = 0;
 
     let displaySum;
-    console.log('Hello',JSON.parse(localStorage.getItem('orderArray')))
+    console.log('LOCAL STORAGE SOMETHING ',JSON.parse(localStorage.getItem('orderArray')))
     if (!localStorage.getItem('orderArray')){
         localStorage.setItem('orderArray', '[]')
     }
@@ -30,18 +29,21 @@ export const ShoppingList = (props) => {
     if (!listener){
         listener = true;
         window.addEventListener('storage', function (event) {
+            if (!localStorage.getItem('orderArray')){
+                localStorage.setItem('orderArray','[]')
+            }
             props.loadCartFromLocalStore()
             // console.log('things happened!!!!!')
         })}
 
     return (
 
-    <div id='Shopping-List'>
+    <div id="Shopping-List">
         <h4>My Shopping List </h4>
         <ul>
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
-            displaySum =('' + Math.floor(sum*100))
+            displaySum = ('' + Math.floor(sum * 100))
             return (<div key={item.id}>
                 <li>
                 {item.name}
@@ -69,7 +71,7 @@ export const ShoppingList = (props) => {
             )
         })}
         </ul>
-        {sum>0 && <li>{ '$'+(displaySum.slice(0,displaySum.length-2) + '.' +  displaySum.slice(displaySum.length-2)) }</li>  }
+        {sum > 0 && <li>{ '$' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</li>  }
 
         <RaisedButton
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
@@ -83,15 +85,12 @@ export const ShoppingList = (props) => {
 }
 
 
-
-
 const mapState = function(state){
    return {
        user: state.user,
        shoppingList: state.shoppingList
    }
 }
-
 
 
 const mapDispatch = (dispatch, ownProps) => ({
@@ -111,24 +110,24 @@ const mapDispatch = (dispatch, ownProps) => ({
     },
   handleDecrementClick: (event) => {
         event.preventDefault();
-        var orderArray = parse(localStorage.getItem("orderArray"));
+        var orderArray = parse(localStorage.getItem('orderArray'));
         var itemToSet;
         const match2 = orderArray.find((product) => {
             return product.id === +event.target.id;
           })
-    
-            if(match2.quantity === 1){
+
+            if (match2.quantity === 1){
               itemToSet = orderArray.filter((currentItem) => currentItem.id !== +event.target.id)
-            }else {
+            } else {
              itemToSet = orderArray.map((product) => {
-    
+
                 if (product.id == +event.target.id){
-    
+
                     return {...product, quantity: --product.quantity}
                   }
                  else {
                   return product
-    
+
             }
           }
           )
@@ -137,7 +136,7 @@ const mapDispatch = (dispatch, ownProps) => ({
         dispatch(decrementQuantity(+event.target.id))
     },
    handleCheckout: (userId,shoppingList) => {
-       dispatch(checkoutOrder(userId, shoppingList, ownProps.history))    
+       dispatch(checkoutOrder(userId, shoppingList, ownProps.history))
 },
 
 loadCartFromLocalStore: () =>

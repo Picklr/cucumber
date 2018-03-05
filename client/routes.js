@@ -8,6 +8,10 @@ import AllProducts from './components/allProducts'
 import SingleProduct from './components/singleProductView'
 import ShoppingList from './components/shoppingList'
 import YourOrders from './components/yourOrders'
+import myAccount from './components/myAccount'
+import updateAccountInfo from './components/updateAccountInfo'
+import OrderSuccess from './components/orderSuccess'
+
 
 /**
  * COMPONENT
@@ -26,11 +30,13 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <div id="Grocery-Box">
-        <Route path = '/' component={ShoppingList} />
-        <div id='Product-Aisle'>
+        <Route path = "/" component={ShoppingList} />
+        <div id="Product-Aisle">
         <Route exact path="/" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
-        <Route path='/orderSuccess' component={YourOrders} />
+        <Route path = "/myAccount" component={myAccount} />
+        <Route path = "/updateAccountInfo" component={updateAccountInfo} />
+        <Route path="/orderSuccess" component={OrderSuccess} />
         </div>
         </div>
         {

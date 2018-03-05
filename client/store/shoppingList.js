@@ -42,7 +42,6 @@ const string = JSON.stringify;
 const parse = JSON.parse;
 
 
-
 export const fetchObjAndAdd = (itemId) =>
   dispatch => {
     axios.get(`/api/products/${itemId}`)
@@ -92,9 +91,7 @@ export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
   localStorage.clear()
   dispatch(clearCart())
   console.log('User number ', userId, 'is trying to buy ')
-  console.log(shoppingList)
   axios.post('api/order', {userId: userId, shoppingList: shoppingList}).then(res=>res.data).then(order=>{
-    console.log('RABBIT HOLE ', order)
     dispatch(addLatestOrder(order))
     history.push('/orderSuccess')
     })
@@ -115,12 +112,12 @@ export default function (state = cartItems, action) {
     const match = state.find((product) => {
         return product.id === action.productObj.id
       })
-        if(!match) {
+        if (!match) {
           return [...state,
             {...action.productObj, quantity: 1}]
         } else {
           return state.map((product) => {
-            if(product.id === action.productObj.id){
+            if (product.id === action.productObj.id){
              return {...product, quantity: ++product.quantity}
             } else {
               return product
@@ -134,9 +131,9 @@ export default function (state = cartItems, action) {
         return product.id === action.productObjId
       })
 
-        if(match2.quantity === 1){
+        if (match2.quantity === 1){
           return state.filter((currentItem) => currentItem.id !== action.productObjId)
-       }else {
+       } else {
          return state.map((product) => {
 
             if (product.id == action.productObjId){
@@ -148,7 +145,7 @@ export default function (state = cartItems, action) {
             }
           })
         }
-     
+
     case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
       return parse(localStorage.getItem('orderArray'))
 
