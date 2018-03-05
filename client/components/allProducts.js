@@ -16,80 +16,87 @@ const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    //justifyContent: 'space-around',
     borderColor: orange500,
   },
   gridList: {
-    width: 500,
-    height: 450,
+    display: 'flex',
+    flex: '1 1',
+    flexWrap: 'wrap',
+    alignItems: 'stretch',
+    //width: 500,
+    height: 900,
     overflowY: 'auto',
 
   },
+  singleTile: {
+    flex: '1 1'
+  }
 };
 
 class AllProducts extends Component {
 
   constructor(props) {
     super(props)
-
+   
   }
 
   render(){
 
     const allProducts = (this.props.term && this.props.products.length > 0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase()) > (-1)) : this.props.products
+    console.log('term', this.props)
+    this.columnNumber = this.props.term.length>1 ? 2 : 4
 
     return (
 
-      <div >
-    <TextField
-       hintText="Product"
-       floatingLabelText="Search Products"
-       type="text"
-       onChange={this.props.handleChange}
+    <div id="groceries" >
+      <TextField
+        hintText="Product"
+        floatingLabelText="Search Products"
+        type="text"
+        onChange={this.props.handleChange}
+      />
 
-     />
+      <Subheader>Products</Subheader>      
+
       <div style={styles.root}>
           <GridList
-          // className = "testing-div"
-            cols={3}
+          
+            cols={this.columnNumber}
             cellHeight={180}
             style={styles.gridList}
           >
 
-
-      <Subheader>Products</Subheader>
-
+          
         {allProducts.map(product =>{
             return (
 
-        <NavLink
-          to ={`/products/${product.id}`}
-          key={product.id} >
-              <GridTile
-              id={product.id}
-              key={product.id}
-              title={product.name}
-              actionIcon={<IconButton
-                id={product.id}
-              onClick= {this.props.handleAddToListClick}
+          <NavLink
+            to ={`/products/${product.id}`}
+            key={product.id} >
+                <GridTile
+
+                  style = {styles.singleTile}
+                  id={product.id}
+                  key={product.id}
+                  title={product.name}
+                  actionIcon={<IconButton id={product.id} onClick= {this.props.handleAddToListClick}>
+                    <i
+                    id={product.id}
+                    className="material-icons"
+                    >add_shopping_cart</i>
+                    {/* <StarBorder color="white" /> */}
+                  </IconButton>}
               >
-                <i
-                id={product.id}
-                className="material-icons"
-                >add_shopping_cart</i>
-                {/* <StarBorder color="white" /> */}
-                </IconButton>}
-            >
-              <img src={product.photo} />
-              </GridTile>
-              </NavLink>
-            )
-          }
-        )
-      }
-        </GridList>
+                <img src={product.photo} />
+                </GridTile>
+                </NavLink>
+            )}
+        )}
+          
+          </GridList>
       </div>
-      </div>
+    </div>
     )
 }
 }

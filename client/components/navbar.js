@@ -5,15 +5,27 @@ import {Link} from 'react-router-dom'
 import {logout, clearCartThunk} from '../store'
 import FlatButton from 'material-ui/FlatButton';
 
+
+const Button = ({ label, to, onClick }) => <FlatButton
+              label = {label}
+              backgroundColor = "#f7ffe6"
+              hoverColor = "#ccffcc"
+              // href = "/"
+              containerElement={
+                <Link to={to} onClick={onClick} />
+              }
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
+              />
+
 const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div  className = "container" >
+  <div  id="navB" >
 
       <div className = "item">
         <Link to="/">
           <img className ="item" id="nav-cuke-logo" src="/thecucu.jpg" />
           </Link>
         <Link to="/">
-          <h1 className ="item" >cucumber</h1>
+          <h1 className ="item" id="nav-cuke-name">cucumber</h1>
           </Link>
 
       </div>
@@ -22,51 +34,30 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       <div >
         {isLoggedIn ?
           <div>
-            <FlatButton
-              label = "Products"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
-              />
-            <FlatButton
+            <Button to="/" label="Products" />
+            <Button
               label = "My Account"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/myAccount"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              to="/myAccount"
               />
-            <FlatButton
+            <Button
               label = "Logout"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "#"
+              to = "#"
               onClick={handleClick}
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
               />
             </div>
           :
           <div>
-            <FlatButton
+            <Button
               label = "Products"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
-              />
-            <FlatButton
+              to = "/"
+            />
+            <Button
               label = "Login"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/login"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              to = "/login"
               />
-            <FlatButton
+            <Button
               label = "Sign Up"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/signup"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              to = "/signup"
               />
             </div>
             }
@@ -86,7 +77,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
+    handleClick() {      
       dispatch(logout())
       dispatch(clearCartThunk())
     }
