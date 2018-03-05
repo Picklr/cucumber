@@ -7,7 +7,7 @@ const RETRIEVE_ORDER_HISTORY = 'RETRIVE_ORDER_HISTORY'
 
 //action creator
 
-export const addLatestOrder=hotOrder=>({type: CHECKOUT_ORDER, hotOrder})
+export const addLatestOrder = hotOrder=>({type: CHECKOUT_ORDER, hotOrder})
 const rememberOrders = orderHistory =>({type: RETRIEVE_ORDER_HISTORY, orderHistory})
 
 
@@ -22,9 +22,8 @@ export const getUserOrderHistory = user => dispatch => {
 }
 
 
-
 export default function reducer(state = [], action) {
-    switch(action.type){
+    switch (action.type){
         case CHECKOUT_ORDER:
             return [...state, action.hotOrder]
         case RETRIEVE_ORDER_HISTORY:

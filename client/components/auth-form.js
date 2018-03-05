@@ -22,7 +22,7 @@ return (
     <form onSubmit={displayName === 'Sign Up' ?           handleSignUpSubmit : handleLogInSubmit} name=       {name}>
       <div>
 
-          {displayName === "Sign Up" ?
+          {displayName === 'Sign Up' ?
 
           <Paper zDepth={2}>
           <TextField

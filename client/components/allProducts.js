@@ -36,7 +36,7 @@ class AllProducts extends Component {
 
   render(){
 
-    const allProducts = (this.props.term && this.props.products.length>0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase())>(-1)) : this.props.products
+    const allProducts = (this.props.term && this.props.products.length > 0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase()) > (-1)) : this.props.products
 
     return (
 
@@ -44,7 +44,7 @@ class AllProducts extends Component {
     <TextField
        hintText="Product"
        floatingLabelText="Search Products"
-       type='text'
+       type="text"
        onChange={this.props.handleChange}
 
      />
@@ -55,7 +55,6 @@ class AllProducts extends Component {
             cellHeight={180}
             style={styles.gridList}
           >
-
 
 
       <Subheader>Products</Subheader>
