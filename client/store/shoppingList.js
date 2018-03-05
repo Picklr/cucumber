@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {addLatestOrder} from './order'
+import {addLatestOrder, getUserOrder, getUserOrderHistory} from './order'
 
 /**
  * ACTION TYPES
@@ -91,10 +91,15 @@ export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
   localStorage.clear()
   dispatch(clearCart())
   console.log('User number ', userId, 'is trying to buy ')
-  axios.post('api/order', {userId: userId, shoppingList: shoppingList}).then(res=>res.data).then(order=>{
-    dispatch(addLatestOrder(order))
-    history.push('/orderSuccess')
-    })
+  axios.post('api/order', {userId: userId, shoppingList: shoppingList}).then(res=>res.data)
+  // .then(order=>{
+  //   dispatch(addLatestOrder(order))
+  // })
+    .then(() => {
+    dispatch(getUserOrderHistory({id: userId}))}).then(
+      () => history.push('/orderSuccess')
+    
+    ).catch(console.error.bind(console))
 
 }
 

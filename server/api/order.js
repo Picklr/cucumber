@@ -19,3 +19,11 @@ router.post('/',(req,res,next)=>{
 router.get('/:userId',(req,res,next)=>{
     Order.findAll({where: {userId: req.params.userId}}).then(oHistory=>{res.json(oHistory)})
 })
+
+router.get('/history/:userId',(req, res, next) => {
+    Order.findAll({where: {userId: req.params.userId}, include:[{model: HistoricalItems}]})
+    .then(
+        ordersArr => {
+            res.json(ordersArr)
+        })
+});

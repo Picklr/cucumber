@@ -15,6 +15,14 @@ const rememberOrders = orderHistory =>({type: RETRIEVE_ORDER_HISTORY, orderHisto
 
 export const getUserOrderHistory = user => dispatch => {
     console.log('BACKTRACING ORDERS' + `/api/order/${user.id}`)
+    axios.get(`/api/order/history/${user.id}`).then(res=>res.data).then(oHistory=>{
+        console.log('TOTAL ORDERS: ', oHistory)
+        dispatch(rememberOrders(oHistory))
+    })
+}
+
+export const getUserOrder = user => dispatch => {
+    console.log('BACKTRACING ORDERS' + `/api/order/${user.id}`)
     axios.get(`/api/order/${user.id}`).then(res=>res.data).then(oHistory=>{
         console.log('TOTAL ORDERS: ', oHistory)
         dispatch(rememberOrders(oHistory))
