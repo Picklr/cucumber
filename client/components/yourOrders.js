@@ -13,12 +13,12 @@ class YourHistory extends Component {
 
     render(){
 
-        return(
+        return (
             <div>
-                { this.props.orderHistory.length>0 ?
+                { this.props.orderHistory.length > 0 ?
                 <div>
                 <h2>Your previous orders:</h2>
-                {this.props.orderHistory.map(eachOrder => 
+                {this.props.orderHistory.map(eachOrder =>
                     <h2>{'Order # ' + eachOrder.id + ' status: ' + eachOrder.status}</h2>
                 )}
                 </div>
@@ -30,7 +30,7 @@ class YourHistory extends Component {
     }
 }
 
-const mapProps = state=>({orderHistory:state.orderHistory, user: state.user})
+const mapProps = state=>({orderHistory: state.orderHistory, user: state.user})
 const mapDispatch = dispatch=>({getUserOrderHistory: user=>{dispatch(getUserOrderHistory(user))}})
 
 export default connect(mapProps, mapDispatch)(YourHistory)
