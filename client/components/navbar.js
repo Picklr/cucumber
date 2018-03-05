@@ -27,14 +27,14 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
               href = "/"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
             <FlatButton
               label = "My Account"
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
               href = "/myAccount"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
             <FlatButton
               label = "Logout"
@@ -42,7 +42,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               hoverColor = "#ccffcc"
               href = "#"
               onClick={handleClick}
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
             </div>
           :
@@ -52,21 +52,21 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
               href = "/"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
             <FlatButton
               label = "Login"
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
               href = "/login"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
             <FlatButton
               label = "Sign Up"
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
               href = "/signup"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
             </div>
             }
