@@ -3,7 +3,7 @@ import {Link, withRouter} from 'react-router-dom'
 import React, {Component} from 'react'
 import { setSelectedProductView } from '../store/products';
 import { fetchObjAndAdd } from '../store/shoppingList';
-
+import ReviewForm from './reviewForm'
 
 class SingleProduct extends Component{
     constructor(props){
@@ -33,6 +33,15 @@ class SingleProduct extends Component{
                 onClick={this.props.handleAddToListClick}
                 id={this.props.selectedProduct.id}
                 >Add to Cart</button>
+                <div>
+                Reviews
+                <ul>
+                    {this.props.selectedProduct.reviews.map(review => {
+                        return (<li key={review.id}> {review.body} </li>)
+                    })}
+                </ul>
+                </div>
+                <ReviewForm />
             </div> :
             <span>Loading</span>
             }
@@ -40,7 +49,7 @@ class SingleProduct extends Component{
     )}
 }
 
-const mapStateProps = (state) => ({selectedProduct:     state.products.selectedProduct})
+const mapStateProps = (state) => ({ selectedProduct:     state.products.selectedProduct})
 
 const mapDispatch = (dispatch) => ({
     setSelectedProductView: (aProduct) => {
