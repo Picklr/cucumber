@@ -79,7 +79,7 @@ export const ShoppingList = (props) => {
         hoverColor = "#ccffcc"
         label="Checkout"
         onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
-        href = "/editProducts"
+        to = "/orderSuccess"
         />
     </div>
 )

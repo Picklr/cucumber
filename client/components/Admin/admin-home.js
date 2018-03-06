@@ -1,6 +1,19 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom'
+
+
+const Button = ({ label, to, onClick }) => (<RaisedButton
+  label = {label}
+  backgroundColor = "#f7ffe6"
+  hoverColor = "#ccffcc"
+  containerElement={
+    <Link to={to} onClick={onClick} />
+  }
+  icon = {<img className="cukebutton" src="/thecucu_final.png" />}
+  />)
+
 
 class AdminHome extends Component {
 
@@ -14,17 +27,13 @@ class AdminHome extends Component {
 
     return (
       <div>
-        <RaisedButton
-          backgroundColor = "#f7ffe6"
-          hoverColor = "#ccffcc"
+        <Button
           label="Edit Users"
-          href = '/editProducts'/>
+          to = '/editProducts'/>
 
-        <RaisedButton
-          backgroundColor = "#f7ffe6"
-          hoverColor = "#ccffcc"
+        <Button
           label="View/Edit Orders"
-          // href = '/editProducts'
+          to = '/editProducts'
           />
 
         </div>
