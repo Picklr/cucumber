@@ -37,16 +37,14 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
         {isLoggedIn ?
           <div>
 
-          {isAdmin &&  <FlatButton
-              label = "Admin Home"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/adminHome"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+          {isAdmin &&  <Button
+          to="/adminHome" label = "Admin Home"
               />
           }
-        
-            <Button to="/" label="Products" />
+
+            <Button
+            to="/"
+            label="Products" />
             <Button
               label = "My Account"
               to="/myAccount"
@@ -96,7 +94,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {      
+    handleClick() {
       dispatch(logout())
       dispatch(clearCartThunk())
     }

@@ -10,21 +10,38 @@ class myAccount extends Component {
 
     }
 
-
     render(){
 
+      const styles = {
+        checkout: {
+            margin: 10,
+
+        },
+        shoppingListItem: {
+            margin: 15
+        }
+    }
+
   return (
-    <div>
+    <div
+    >
       <h1>{this.props.currentUser.fullName}'s Account</h1>
       <h3>Email Address: {this.props.currentUser.email}</h3>
       <h3>Billing Address: {this.props.currentUser.billingAddress}</h3>
       <RaisedButton
+        style={styles.checkout}
         label = "View Order History"
         href = "./yourOrders"
+        backgroundColor= "#f7ffe6"
+        hoverColor= "#ccffcc"
         />
+        <br />
       <RaisedButton
+      style={styles.checkout}
         label = "Update Billing Information"
         href = "./updateAccountInfo"
+        backgroundColor= "#f7ffe6"
+        hoverColor= "#ccffcc"
         />
     </div>
 

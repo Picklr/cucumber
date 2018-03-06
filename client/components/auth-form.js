@@ -7,8 +7,13 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const style = {
-  marginLeft: 20
+const styles = {
+  textField: {
+    marginLeft: 20
+    },
+  button: {
+    alignItems: 'center'
+  }
 };
 
 /**
@@ -27,14 +32,14 @@ return (
           <Paper zDepth={2}>
           <TextField
             hintText="First Name"
-            style={style}
+            style={styles.textField}
             name = "firstName"
             underlineShow={false} />
             <Divider />
 
           <TextField
             hintText="Last Name"
-            style={style}
+            style={styles.textField}
             name = "lastName"
             underlineShow={false} />
             <Divider />
@@ -42,14 +47,14 @@ return (
 
           <TextField
             hintText="Billing Address"
-            style={style}
+            style={styles.textField}
             name = "billingAddress"
             underlineShow={false} />
             <Divider />
 
             <TextField
                 hintText="Email"
-                style={style}
+                style={styles.textField}
                 name = "email"
                 underlineShow={false}
                 />
@@ -57,7 +62,7 @@ return (
 
               <TextField
                 hintText="Password"
-                style={style}
+                style={styles.textField}
                 type="password"
                 name = "password"
                 underlineShow={false} />
@@ -69,14 +74,14 @@ return (
           <Paper zDepth={2}>
           <TextField
             hintText="Email"
-            style={style}
+            style={styles.textField}
             name = "email"
             underlineShow={false} />
             <Divider />
 
           <TextField
             hintText="Password"
-            style={style}
+            style={styles.textField}
             type="password"
             name = "password"
             underlineShow={false} />
@@ -90,16 +95,24 @@ return (
     <div>
 
         <RaisedButton
+        style = {styles.button}
           label = {displayName}
           type="submit"
           />
-        </div>
+        <br />
+
+        <RaisedButton
+          style = {styles.button}
+          label = {displayName + " with Google"}
+          type="submit"
+          />
+</div>
         {error && error.response && <div> {error.response.data} </div>}
 
       </form>
 
 
-      <a href="/auth/google">{displayName} with Google</a>
+      {/* <a href="/auth/google">{displayName} with Google</a> */}
     </div>
   )
 }
