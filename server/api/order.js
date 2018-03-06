@@ -17,11 +17,19 @@ router.post('/',(req,res,next)=>{
 })
 
 router.get('/adminHistory',(req,res,next)=>{
-    console.log('GOT HERE')
     if(req.user.isAdmin){
-        Order.findAll().then(allHistory=>{res.json(allHistory)})
+        Order.findAll({include: [{all: true}]}).then(allHistory=>{res.json(allHistory)})
     }
+    else res.sendStatus(401)
 })
+
+router.put('/adminHistory',(req,res,next)=>{
+    if(req.user.isAdmin){
+        Order.findById(req.body.id).then(order=>{
+            order.update({status:req.body.status}).then(update=>{res.json(update)})
+        })}
+})
+
 
 router.get('/:userId',(req,res,next)=>{
     Order.findAll({where: {userId: req.params.userId}}).then(oHistory=>{res.json(oHistory)})

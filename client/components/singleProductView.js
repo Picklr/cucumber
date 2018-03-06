@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {Link, withRouter, Route} from 'react-router-dom'
 import React, {Component} from 'react'
-import { setSelectedProductView, boolChange } from '../store';
+import { setSelectedProductView, fetchProducts, boolChange } from '../store';
 import { fetchObjAndAdd } from '../store/shoppingList';
 import ReviewForm, { reviewForm } from './reviewForm'
 import EditProduct from './Admin/admin-edit-product'
@@ -19,10 +19,6 @@ class SingleProduct extends Component{
 
     }
 
-    componentDidMount(){
-        this.props.setSelectedProductView(this.props.match.params.id)
-
-    }
     componentWillUnmount(){
         if(this.props.reviewForm){
         this.props.handleClick()}
@@ -52,10 +48,23 @@ class SingleProduct extends Component{
                 borderRadius: 10
 
 
-
             }
           };
+
+          if(this.props.products.length<1) {
+            this.props.fetchProducts()
+        }
+
+        //this case for switching views
+        if(this.props.selectedProduct.id && +this.props.match.params.id !== +this.props.selectedProduct.id){
+            this.props.setSelectedProductView(this.props.match.params.id)
+
+        }
+        if(Object.keys(this.props.selectedProduct).length<1 && this.props.products.length) {
+            this.props.setSelectedProductView(this.props.match.params.id)
+        }
         const reviews = this.props.selectedProduct.reviews
+
 
         return (
 
@@ -77,7 +86,7 @@ class SingleProduct extends Component{
                 </div>
                 {this.props.reviewForm === true
                     ? <ReviewForm />
-                    : <button onClick = {this.props.handleClick} >Click me daddy</button>
+                    : <button onClick = {this.props.handleClick} >Add Review</button>
                     }
 
                 {reviews.length > 0 ?
@@ -101,19 +110,28 @@ class SingleProduct extends Component{
                     </GridList>
                   </div>
 
-                      : <div />
+                      : <div><br/> <span>No Reviews</span></div>
                 }
               </div>
             : <span> Loading </span>
             }
 
+
              {this.props.isAdmin && <div><EditProduct /></div>}
 
-        </div>
-    )}
-}
 
-const mapStateProps = (state) => ({ selectedProduct:     state.products.selectedProduct, reviewForm: state.reviewForm, isAdmin: state.user.isAdmin})
+        </div>
+    )
+}}
+
+
+const mapStateProps = (state) => ({
+    selectedProduct: state.products.selectedProduct,
+    isAdmin: state.user.isAdmin,
+    products: state.products.allProducts,
+    reviewForm: state.reviewForm
+})
+
 
 const mapDispatch = (dispatch) => ({
     setSelectedProductView: (aProduct) => {
@@ -122,10 +140,13 @@ const mapDispatch = (dispatch) => ({
         event.preventDefault();
         dispatch(fetchObjAndAdd(+event.target.id))
     },
+    fetchProducts: () => { dispatch(fetchProducts()) },
+
     handleClick: () => {
 
        dispatch(boolChange())
     }
+
     })
 
 
