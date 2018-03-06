@@ -6,6 +6,7 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom'
 
 const styles = {
   textField: {
@@ -24,13 +25,14 @@ const AuthForm = (props) => {
 
 return (
   <div>
-    <form onSubmit={displayName === 'Sign Up' ?           handleSignUpSubmit : handleLogInSubmit} name=       {name}>
+    <form  onSubmit={displayName === 'Sign Up' ?           handleSignUpSubmit : handleLogInSubmit} name=       {name}>
       <div>
 
           {displayName === 'Sign Up' ?
 
           <Paper zDepth={2}>
           <TextField
+            required
             hintText="First Name"
             style={styles.textField}
             name = "firstName"
@@ -38,6 +40,7 @@ return (
             <Divider />
 
           <TextField
+            required
             hintText="Last Name"
             style={styles.textField}
             name = "lastName"
@@ -46,21 +49,26 @@ return (
 
 
           <TextField
+            required
             hintText="Billing Address"
             style={styles.textField}
+            type='address'
             name = "billingAddress"
             underlineShow={false} />
             <Divider />
 
             <TextField
+                required
                 hintText="Email"
                 style={styles.textField}
                 name = "email"
                 underlineShow={false}
+                type = 'email'
                 />
                 <Divider />
 
               <TextField
+                required
                 hintText="Password"
                 style={styles.textField}
                 type="password"
@@ -101,11 +109,11 @@ return (
           />
         <br />
 
-        <RaisedButton
+        <a href='/auth/google'><RaisedButton
           style = {styles.button}
           label = {displayName + " with Google"}
-          type="submit"
-          />
+          //type="submit"
+          /></a>
 </div>
         {error && error.response && <div> {error.response.data} </div>}
 
