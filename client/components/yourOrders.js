@@ -44,7 +44,7 @@ export const YourHistory = (props) => {
                             total += item.quantity * item.price
                             return (
                             <li key = {item.id}>
-                                <Link to ={`products/${item.id}`}>{item.name}</Link><br />
+                                <Link to ={`products/${item.foodProductId}`}>{item.name}</Link><br />
                                 <p>quantity: {item.quantity} x ${item.price} = {displayPrice(item.price * item.quantity)}</p>
                             </li>
                         )})}
