@@ -17,23 +17,8 @@ class SingleProduct extends Component{
     constructor(props){
         super(props)
 
-
-    componentDidMount(){
-              
-        if(this.props.products.length<1) {
-            this.props.fetchProducts()
-        }
-
-        //this case for switching views
-        if(this.props.selectedProduct.id && +this.props.match.params.id !== +this.props.selectedProduct.id){
-            this.props.setSelectedProductView(this.props.match.params.id)
-          
-        }
-        if(Object.keys(props.selectedProduct).length<1 && props.products.length) {
-            props.setSelectedProductView(props.match.params.id)
-        }
-
     }
+
     componentWillUnmount(){
         if(this.props.reviewForm){
         this.props.handleClick()}
@@ -65,9 +50,22 @@ class SingleProduct extends Component{
 
             }
           };
+
+          if(this.props.products.length<1) {
+            this.props.fetchProducts()
+        }
+
+        //this case for switching views
+        if(this.props.selectedProduct.id && +this.props.match.params.id !== +this.props.selectedProduct.id){
+            this.props.setSelectedProductView(this.props.match.params.id)
+
+        }
+        if(Object.keys(this.props.selectedProduct).length<1 && this.props.products.length) {
+            this.props.setSelectedProductView(this.props.match.params.id)
+        }
         const reviews = this.props.selectedProduct.reviews
 
-   
+
         return (
 
     <div>
@@ -88,7 +86,7 @@ class SingleProduct extends Component{
                 </div>
                 {this.props.reviewForm === true
                     ? <ReviewForm />
-                    : <button onClick = {this.props.handleClick} >Click me daddy</button>
+                    : <button onClick = {this.props.handleClick} >Add Review</button>
                     }
 
                 {reviews.length > 0 ?
@@ -112,7 +110,7 @@ class SingleProduct extends Component{
                     </GridList>
                   </div>
 
-                      : <div />
+                      : <div><br/> <span>No Reviews</span></div>
                 }
               </div>
             : <span> Loading </span>
@@ -124,7 +122,7 @@ class SingleProduct extends Component{
 
         </div>
     )
-}
+}}
 
 
 const mapStateProps = (state) => ({
@@ -142,7 +140,7 @@ const mapDispatch = (dispatch) => ({
         event.preventDefault();
         dispatch(fetchObjAndAdd(+event.target.id))
     },
-    fetchProducts: () => { dispatch(fetchProducts()) }
+    fetchProducts: () => { dispatch(fetchProducts()) },
 
     handleClick: () => {
 
