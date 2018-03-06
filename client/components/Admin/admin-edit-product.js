@@ -20,7 +20,7 @@ class EditProduct extends Component {
     return (
 
     <div>
-      <h3> Edit {this.props.selectedProduct.name} </h3>
+      <h2> Edit {this.props.selectedProduct.name} </h2>
       <form
         onSubmit={(event)=> {this.props.handleProductUpdateSubmit(event, this.props.selectedProduct.name, this.props.selectedProduct.price, this.props.selectedProduct.category, this.props.selectedProduct.brand, this.props.selectedProduct.productId)
           }}

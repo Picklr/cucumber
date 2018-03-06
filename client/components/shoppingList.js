@@ -10,6 +10,14 @@ const parse = JSON.parse;
 
 var listener;
 
+const styles = {
+    checkout: {
+        margin: 20
+    },
+    shoppingListItem: {
+        margin: 15
+    }
+}
 
 export const ShoppingList = (props) => {
     let sum = 0;
@@ -36,18 +44,26 @@ export const ShoppingList = (props) => {
             // console.log('things happened!!!!!')
         })}
 
+
     return (
 
     <div id="Shopping-List">
         <h4>My Shopping List </h4>
-        <ul>
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
             displaySum = ('' + Math.floor(sum * 100))
-            return (<div key={item.id}>
+            return (<div
+                        className='orange-slice'
+                        style={styles.shoppingListItem}
+                        key={item.id}>
                 <li>
-                {item.name}
-                <span> {item.quantity} </span>
+
+                <span>{item.name}</span>
+                <span> ({item.quantity}) x  </span>
+                <span> ${item.price}  = {('' + Math.floor(item.price * item.quantity * 100))
+
+
+            }</span>
                 </li>
                 <button
                 onClick = {props.handleDeleteClick}
@@ -70,16 +86,22 @@ export const ShoppingList = (props) => {
                 </div>
             )
         })}
+
         </ul>
-        {sum > 0 && <li>{ '$' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</li>  }
+        {sum > 0 && <span>{'Cart Total: $' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</span>  }
+        <br />
+
 
         <RaisedButton
+        style = {styles.checkout}
+        disabled ={!props.shoppingList.length}
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
         backgroundColor = "#f7ffe6"
         hoverColor = "#ccffcc"
         label="Checkout"
         onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
-        href = "/editProducts"
+        to = '/orderSuccess'
+
         />
     </div>
 )
