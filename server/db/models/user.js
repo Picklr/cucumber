@@ -40,10 +40,6 @@ const User = db.define('user', {
   lastName: {
     type: Sequelize.STRING
   },
-  currentCart: {
-    type: Sequelize.JSON,
-    defaultValue: '[]'
-  }
 
 }, {
   getterMethods: {
