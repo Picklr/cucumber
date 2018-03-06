@@ -33,7 +33,7 @@ class AdminHome extends Component {
         < br />
         <Button
           label="View/Edit Orders"
-          to = '/editProducts'
+          to = '/editOrders'
           />
 
         </div>

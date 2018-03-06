@@ -33,19 +33,27 @@ export const YourHistory = (props) => {
                 { props.orderHistory.length > 0 ?
                 <div>
                 <h2>Your previous orders:</h2>
-                {props.orderHistory.reverse().map(eachOrder => {
+
+
+                {props.orderHistory.sort((a,b)=>b.id-a.id).map(eachOrder => {
                     let total = 0;
                     return (
-                    <div key = {eachOrder.id}>
+                    <div className = 'green-slice' key = {eachOrder.id}>
                     <h2>{'Order # ' + eachOrder.id + ' status: ' + eachOrder.status}</h2>
                     <h3>Ordered {parseDate(eachOrder.createdAt)}</h3>
                         <ul>
+
+                        
+                        
+                            
+                               
                         {eachOrder.historicalItems.map( item =>{
                             total += item.quantity * item.price
                             return (
-                            <li key = {item.id}>
-                                <Link to ={`products/${item.foodProductId}`}>{item.name}</Link><br />
+                             <li className = 'orange-slice' key = {item.id}>
+                                <Link to ={`products/${item.foodProductId}`}><div>{item.name}</div>
                                 <p>quantity: {item.quantity} x ${item.price} = {displayPrice(item.price * item.quantity)}</p>
+                             </Link>
                             </li>
                         )})}
                         </ul>

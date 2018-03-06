@@ -55,37 +55,17 @@ export const ShoppingList = (props) => {
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
             displaySum = ('' + Math.floor(sum * 100))
-            return (<div key={item.id}>
-                <li>
-
-
-                <span>{item.name}</span>
-                <span> ({item.quantity}) x  </span>
-                <span> ${item.price}  = ${(('' + Math.floor(item.price * item.quantity * 100)).slice(0,('' + Math.floor(item.price * item.quantity * 100)).length - 2) + '.' + ('' + Math.floor(item.price * item.quantity * 100)).slice(('' + Math.floor(item.price * item.quantity * 100)).length - 2))
-
-
-            }</span>
-
-                </li>
-                <button
-                onClick = {props.handleDeleteClick}
-                id = {item.id}
-
-                >x</button>
-
-                <button
-                type = "decrement"
-                onClick = {props.handleDecrementClick}
-                id = {item.id}
-                >-</button>
-
-                <button
-                type = "increment"
-                onClick = {props.handleQuantityClick}
-                id = {item.id}
-                // value = {item.fullName}
-                >+</button>
+            return (
+            <Link to= {`/products/${item.id}`} className = "orange-slice" key={item.id}>
+                <span className = "slice-child-name">{item.name}</span>
+                {/* <span> ({item.quantity}) x  </span> */}
+                <span className = "slice-child-price"> {item.quantity} x ${item.price}  = ${(('' + Math.floor(item.price * item.quantity * 100)).slice(0,('' + Math.floor(item.price * item.quantity * 100)).length - 2) + '.' + ('' + Math.floor(item.price * item.quantity * 100)).slice(('' + Math.floor(item.price * item.quantity * 100)).length - 2))}</span>
+                <div className = "slice-child-price">
+                    <button onClick = {props.handleDeleteClick} id = {item.id}>x</button>
+                    <button type = "decrement" onClick = {props.handleDecrementClick} id = {item.id}>-</button>
+                    <button type = "increment" onClick = {props.handleQuantityClick} id = {item.id}>+</button>
                 </div>
+            </Link>
             )
         })}
 

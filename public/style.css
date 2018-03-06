@@ -4,7 +4,9 @@ body {
 
 a {
   text-decoration: none;
+  color: rgb(33, 36, 35);
 }
+
 
 label {
   display: block;
@@ -39,7 +41,8 @@ form div {
   display: flex;
   flex-direction: row;
   width: 98%;
-  height: 100%
+  height: 100%;
+  background-image: url('/photography/foodbacking4.jpg');
 }
 
 #Product-Aisle {
@@ -49,6 +52,7 @@ form div {
   border-radius: 25px;
   padding: 25px;
   justify-content: center;
+  background-color: rgba(255,255,255,0.95);
 }
 
 #Shopping-List {
@@ -57,6 +61,7 @@ form div {
   border: 2px solid rgb(235, 146, 45);
   border-radius: 25px;
   background: linear-gradient(to bottom, #e0c591 0%, #ff99cc 100%);
+  opacity: 0.90;
 }
 
 .testing-div {
@@ -83,7 +88,7 @@ form div {
 #navB {
   display: flex;
   flex-direction: row;
-  height: 260px;
+  height: 240px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -139,6 +144,24 @@ form div {
   border-radius: 10px;
   padding: 5px;
   display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10pt;
+  width: auto;
+  margin: 4px;
+  font-color: black;
+}
+
+.orange-slice:hover {
+  background-color: rgba(243, 229, 77, 0.55);
+}
+
+.green-slice {
+  border: 3px dashed rgb(145, 209, 116);
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
   justify-content: space-between;
   font-size: 10pt;
   width: auto;
@@ -164,4 +187,21 @@ form div {
 
 .singleTile {
   flex: 1 1 50%
+}
+
+.orderEdit {
+  display: flex;
+  align-items: center;
+}
+
+.slice-child-name {
+  padding: 5px;
+  font-weight: 550;
+}
+
+.slice-child-price {
+  display: inline;
+  padding: 5px;
+  white-space: nowrap;
+  font-weight: 350;
 }

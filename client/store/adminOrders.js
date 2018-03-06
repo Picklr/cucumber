@@ -10,6 +10,7 @@ export const getSomeoneHistory = (orders) => ({type: GET_SPECIFIC_HISTORY, order
 
 export const fetchSomeoneHistory = () => dispatch => { 
     axios.get('/api/order/adminHistory').then(res=>res.data).then(allHistory=>{
+        allHistory = allHistory.sort((a,b)=>a.id-b.id)
         dispatch(getSomeoneHistory(allHistory))
     })
 }
