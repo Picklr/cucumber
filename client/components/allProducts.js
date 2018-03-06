@@ -40,14 +40,24 @@ class AllProducts extends Component {
 
   constructor(props) {
     super(props)
-   
+
   }
 
   render(){
 
-    const allProducts = (this.props.term && this.props.products.length > 0) ? this.props.products.filter(eachProduct=>eachProduct.name.toLowerCase().indexOf(this.props.term.toLowerCase()) > (-1)) : this.props.products
-    console.log('term', this.props)
-    this.columnNumber = this.props.term.length>1 ? 2 : 4
+    const { products, term } = this.props
+
+    const tagMatchesTerm = (tag) => tag.toLowerCase() === term
+    const productHasMatchingTag = product => product.tags.filter(tagMatchesTerm).length > 0
+    const productWithinTerm = (product) => product.name.toLowerCase().indexOf(term.toLowerCase()) > -1
+
+
+    const filteredByTags = products.filter(productHasMatchingTag)
+    const filteredByName = products.filter(productWithinTerm)
+    const allFound = [ ...filteredByName]
+
+    const allProducts = allFound.length ? allFound : products
+    this.columnNumber = this.props.term.length > 1 ? 2 : 4
 
     return (
 
@@ -59,17 +69,17 @@ class AllProducts extends Component {
         onChange={this.props.handleChange}
       />
 
-      <Subheader>Products</Subheader>      
+      <Subheader>Products</Subheader>
 
       <div style={styles.root}>
           <GridList
-          
+
             cols={this.columnNumber}
             cellHeight={180}
             style={styles.gridList}
           >
 
-          
+
         {allProducts.map(product =>{
             return (
 
@@ -95,7 +105,7 @@ class AllProducts extends Component {
                 </NavLink>
             )}
         )}
-          
+
           </GridList>
       </div>
     </div>

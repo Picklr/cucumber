@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
-// import { editUser } from '../store';
+import {editProduct} from '../../store'
 
 const style = {
   marginLeft: 20
@@ -20,7 +20,7 @@ class EditProduct extends Component {
     return (
 
     <div>
-      <h3> Edit {this.props.selectedProduct.name} </h3>
+      <h2> Edit {this.props.selectedProduct.name} </h2>
       <form
         onSubmit={(event)=> {this.props.handleProductUpdateSubmit(event, this.props.selectedProduct.name, this.props.selectedProduct.price, this.props.selectedProduct.category, this.props.selectedProduct.brand, this.props.selectedProduct.productId)
           }}
@@ -90,7 +90,13 @@ const mapDispatch = dispatch => {
       const brand = event.target.newBrand.value || currBrand;
       const productId = +event.target.id;
       console.log('Changes to pass', name, price, category, brand, productId)
-      // dispatch(updateProduct(event, name, price, category, brand, productId))
+      event.target.newName.value = ''
+      event.target.newPrice.value = ''
+      event.target.newCategory.value = ''
+      event.target.newBrand.value = ''
+      dispatch(editProduct(name, price, category, brand, productId))
+
+
     }
  }
 }

@@ -39,7 +39,7 @@ const User = db.define('user', {
   },
   lastName: {
     type: Sequelize.STRING
-  }
+  },
 
 }, {
   getterMethods: {
