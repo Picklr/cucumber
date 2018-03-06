@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import {addReview} from '../store'
+import {addReview, boolChange} from '../store'
 
 
 
 
 export const reviewForm = (props) => {
 
+    console.log(props)
 
     return (
-
         <div>
             <form
                 onSubmit={props.handleReviewSubmit}
+
                 id = {props.selectedProduct.id}
             >
                 <TextField
@@ -29,7 +30,7 @@ export const reviewForm = (props) => {
                 hintText="Enter a Rating Between 1-5"
               /><br />
               <div>
-                <FlatButton label="Submit Review" type ="submit"  />
+                <FlatButton label="Submit Review" type ="submit"   />
               </div>
             </form>
         </div>
@@ -48,7 +49,9 @@ const mapDispatch = (dispatch) => {
         evt.target.rating.value = ''
         evt.target.body.value = ''
         dispatch(addReview(body))
-      },
+        dispatch(boolChange())
+      }
+
     }
   }
   const mapState = (state) => ({products: state.products.allProducts ,selectedProduct: state.products.selectedProduct})

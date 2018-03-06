@@ -1,29 +1,35 @@
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import React, {Component} from 'react'
-import { setSelectedProductView } from '../store/products';
+import { setSelectedProductView, boolChange } from '../store';
 import { fetchObjAndAdd } from '../store/shoppingList';
 import ReviewForm, { reviewForm } from './reviewForm'
 
 class SingleProduct extends Component{
     constructor(props){
         super(props)
-        this.state = {
-            reviewButtonClicked: false
-        }
+        // this.state = {
+        //     reviewButtonClicked: false
+        // }
+        // this.onReviewClick = this.onReviewClick.bind(this)
 
     }
 
     componentDidMount(){
         this.props.setSelectedProductView(this.props.match.params.id)
+
     }
 
 
+    // onReviewClick(){
+    //     this.setState({reviewButtonClicked:true})
+
+    // }
+
     render(){
-        console.log(this.state.reviewButtonClicked,'!!!!!!!')
+        console.log(this.props)
         return (
         <div>
-            <h1> Beth is neat </h1>
 
             {
             this.props.selectedProduct.name ?
@@ -38,9 +44,9 @@ class SingleProduct extends Component{
                 onClick={this.props.handleAddToListClick}
                 id={this.props.selectedProduct.id}
                 >Add to Cart</button>
-                {this.state.reviewButtonClicked === true
-                    ? <reviewForm/>
-                    : <button>Click me please</button>
+                {this.props.reviewForm === true
+                    ? <ReviewForm/>
+                    : <button onClick = {this.props.handleClick} >Click me daddy</button>
                     }
 
                 <div>
@@ -59,7 +65,7 @@ class SingleProduct extends Component{
     )}
 }
 
-const mapStateProps = (state) => ({ selectedProduct:     state.products.selectedProduct})
+const mapStateProps = (state) => ({ selectedProduct:     state.products.selectedProduct, reviewForm: state.reviewForm})
 
 const mapDispatch = (dispatch) => ({
     setSelectedProductView: (aProduct) => {
@@ -67,6 +73,10 @@ const mapDispatch = (dispatch) => ({
     handleAddToListClick: (event) => {
         event.preventDefault();
         dispatch(fetchObjAndAdd(+event.target.id))
+    },
+    handleClick: () => {
+
+       dispatch(boolChange())
     }
     })
 
