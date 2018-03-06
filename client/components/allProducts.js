@@ -54,6 +54,11 @@ class AllProducts extends Component {
 
     const filteredByTags = products.filter(productHasMatchingTag)
     const filteredByName = products.filter(productWithinTerm)
+    const superSearch = filteredByTags.forEach(tagged=>{
+      if(!filteredByName.includes(tagged)) filteredByName.push(tagged)
+    })
+    
+
     const allFound = [ ...filteredByName]
 
     const allProducts = allFound.length ? allFound : products
