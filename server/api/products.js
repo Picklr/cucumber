@@ -12,3 +12,15 @@ router.get('/:id', (req,res,next)=>{
   Products.findById(req.params.id)
   .then(aProduct => res.json(aProduct))
 })
+
+
+router.put(`/:id`, (req, res, next) => {
+  Products.update(
+    req.body,
+    {where: {id: req.params.id},
+    returning: true,
+    plain: true}
+  )
+    .then(users => res.json(users))
+    .catch(next)
+})
