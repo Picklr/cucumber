@@ -18,13 +18,13 @@ class AdminHome extends Component {
           backgroundColor = "#f7ffe6"
           hoverColor = "#ccffcc"
           label="Edit Users"
-          href = '/editProducts'/>
+          to = '/editProducts'/>
 
         <RaisedButton
           backgroundColor = "#f7ffe6"
           hoverColor = "#ccffcc"
           label="View/Edit Orders"
-          href = '/editOrders'
+          to = '/editOrders'
           />
 
         </div>
