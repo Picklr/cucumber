@@ -23,7 +23,8 @@ const styles = {
     display: 'flex',
     flex: '1 1',
     flexWrap: 'wrap',
-    alignItems: 'stretch',
+    //alignItems: 'flex-start',
+    alignContent: 'flex-start',
     //width: 500,
     height: 900,
     overflowY: 'auto',
@@ -31,8 +32,7 @@ const styles = {
 
   },
   singleTile: {
-    flex: '1 1'
-
+    //flex: '1 1'
   }
 };
 
