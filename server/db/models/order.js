@@ -17,6 +17,7 @@ const HistoricalItems = db.define('historicalItems', {
   category: { type: Sequelize.STRING },
   stars: { type: Sequelize.FLOAT, validate: { min: 0, max: 5 }},
   tags: { type: Sequelize.ARRAY(Sequelize.STRING) },
+  quantity: {type: Sequelize.INTEGER}
 },{
   scopes: { loadHistory: ()=> ({ include:[{all: true}]
   })

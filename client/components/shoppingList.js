@@ -58,8 +58,15 @@ export const ShoppingList = (props) => {
             displaySum = ('' + Math.floor(sum * 100))
             return (<div key={item.id}>
                 <li>
-                {item.name}
-                <span> {item.quantity} </span>
+
+
+                <span>{item.name}</span>
+                <span> ({item.quantity}) x  </span>
+                <span> ${item.price}  = ${(('' + Math.floor(item.price * item.quantity * 100)).slice(0,('' + Math.floor(item.price * item.quantity * 100)).length - 2) + '.' + ('' + Math.floor(item.price * item.quantity * 100)).slice(('' + Math.floor(item.price * item.quantity * 100)).length - 2))
+
+
+            }</span>
+
                 </li>
                 <button
                 onClick = {props.handleDeleteClick}
@@ -82,8 +89,10 @@ export const ShoppingList = (props) => {
                 </div>
             )
         })}
-        </ul>
-        {sum > 0 && <li>{ '$' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</li>  }
+
+        {sum > 0 && <span>{'Cart Total: $' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</span>  }
+        <br />
+
 
         <RaisedButton
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
