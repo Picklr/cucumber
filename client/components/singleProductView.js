@@ -1,9 +1,11 @@
 import {connect} from 'react-redux'
-import {Link, withRouter} from 'react-router-dom'
+import {Link, withRouter, Route} from 'react-router-dom'
 import React, {Component} from 'react'
 import { setSelectedProductView } from '../store/products';
 import { fetchObjAndAdd } from '../store/shoppingList';
-
+import EditProduct from './Admin/admin-edit-product'
+import EditUsers from './Admin/admin-edit-users'
+// import {} from 'react-router-dom'
 
 class SingleProduct extends Component{
     constructor(props){
@@ -19,10 +21,10 @@ class SingleProduct extends Component{
     render(){
         return (
         <div>
-
             {
             this.props.selectedProduct.name ?
             <div>
+
                 <div className = 'marquee' >
                     <h3 className='marquee-child'> {this.props.selectedProduct.name} </h3>
                     <h4 className='marquee-child'> {'Rating ' + this.props.selectedProduct.stars} </h4>
@@ -42,13 +44,30 @@ class SingleProduct extends Component{
                 <div className = "orange-slice">Another review</div>
                 <div className = "orange-slice">A third review</div>
             </div> :
+
             <span>Loading</span>
             }
+
+
+             {/* <Route path='/editUsers' component={EditUsers} />
+             <Link to='/editUsers'>
+            <button>
+                EDIT HERE
+                 </button>
+                 </Link> */}
+
+             {this.props.isAdmin && <div><EditProduct /></div>}
+
         </div>
     )}
 }
 
-const mapStateProps = (state) => ({selectedProduct: state.products.selectedProduct})
+
+const mapStateProps = (state) => ({
+    selectedProduct: state.products.selectedProduct,
+    isAdmin: state.user.isAdmin
+})
+
 
 const mapDispatch = (dispatch) => ({
     setSelectedProductView: (aProduct) => {

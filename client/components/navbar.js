@@ -20,6 +20,7 @@ const Button = ({ label, to, onClick }) => <FlatButton
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div  id="navB" >
 
+
       <div className = "item">
         <Link to="/">
           <img className ="item" id="nav-cuke-logo" src="/thecucu_final.png" />
@@ -32,8 +33,19 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
     <nav className = "item">
       <div >
+
         {isLoggedIn ?
           <div>
+
+          {isAdmin &&  <FlatButton
+              label = "Admin Home"
+              backgroundColor = "#f7ffe6"
+              hoverColor = "#ccffcc"
+              href = "/adminHome"
+              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+              />
+          }
+        
             <Button to="/" label="Products" />
             <Button
               label = "My Account"
@@ -77,7 +89,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin
   }
 }
 

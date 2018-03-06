@@ -28,9 +28,11 @@ const styles = {
     height: 900,
     overflowY: 'auto',
 
+
   },
   singleTile: {
     flex: '1 1'
+
   }
 };
 
