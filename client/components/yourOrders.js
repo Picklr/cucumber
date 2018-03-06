@@ -1,7 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {getUserOrderHistory} from '../store/order'
 var gotOrders = false;
+function displayPrice(price){
+    var priceString = '' + Math.floor(price*100)
+    return '$' + priceString.slice(0,priceString.length - 2) + '.' + priceString.slice(priceString.length - 2)
+}
 
 export const YourHistory = (props) => {
     console.log(props.orderHistory)
@@ -9,7 +14,7 @@ export const YourHistory = (props) => {
         gotOrders = true;
         props.getUserOrderHistory(props.user)
     }
-    
+
     return (
             <div>
                 { props.orderHistory.length > 0 ?
@@ -20,7 +25,10 @@ export const YourHistory = (props) => {
                     <h2>{'Order # ' + eachOrder.id + ' status: ' + eachOrder.status}</h2>
                         <ul>
                         {eachOrder.historicalItems.map( item =>(
-                            <li key = {item.id}>{item.name}</li>
+                            <li key = {item.id}>
+                                <Link to ={`products/${item.id}`}>{item.name}</Link><br />
+                                <p>{item.quantity} x {item.price} = {displayPrice(item.price * item.quantity)}</p>
+                            </li>
                         ))}
                         </ul>
                     </div>

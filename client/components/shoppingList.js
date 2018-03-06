@@ -60,7 +60,7 @@ export const ShoppingList = (props) => {
 
                 <span>{item.name}</span>
                 <span> ({item.quantity}) x  </span>
-                <span> ${item.price}  = {('' + Math.floor(item.price * item.quantity * 100))
+                <span> ${item.price}  = ${(('' + Math.floor(item.price * item.quantity * 100)).slice(0,('' + Math.floor(item.price * item.quantity * 100)).length - 2) + '.' + ('' + Math.floor(item.price * item.quantity * 100)).slice(('' + Math.floor(item.price * item.quantity * 100)).length - 2))
 
 
             }</span>
@@ -87,7 +87,6 @@ export const ShoppingList = (props) => {
             )
         })}
 
-        </ul>
         {sum > 0 && <span>{'Cart Total: $' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</span>  }
         <br />
 
