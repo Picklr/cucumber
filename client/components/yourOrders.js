@@ -5,7 +5,7 @@ import {getUserOrderHistory} from '../store/order'
 
 export const YourHistory = (props) => {
     console.log(props.orderHistory)
-    if (props.orderHistory.length === 0 && Object.keys(props.user).length !== 0){
+    if (props.orderHistory.length < 2 && Object.keys(props.user).length !== 0){
         props.getUserOrderHistory(props.user)
     }
     

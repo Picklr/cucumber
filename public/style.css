@@ -14,14 +14,10 @@ label {
   color: white
 }
 
-.singlePageImage {
-  max-height: 300px;
-  max-width: auto
-}
-
 nav a {
   display: inline-block;
   margin: 2em;
+  height: 120vh;
 }
 
 ul {
@@ -42,26 +38,30 @@ form div {
   border-radius: 46px;
   display: flex;
   flex-direction: row;
+  width: 98%;
+  height: 100%
 }
 
 #Product-Aisle {
-  flex: 9 3 40%;
+  flex: 9 2;
+  display: flex;
   border: 3px solid rgb(235, 146, 45);
   border-radius: 25px;
-  padding: 50px
+  padding: 25px;
+  justify-content: center;
+}
+
+#Shopping-List {
+  flex: 3 1;
+  padding: 25px;
+  border: 2px solid rgb(235, 146, 45);
+  border-radius: 25px;
+  background: linear-gradient(to bottom, #e0c591 0%, #ff99cc 100%);
 }
 
 .testing-div {
   border: solid;
   width: 635px
-}
-
-#Shopping-List {
-  flex: 2 3 20%;
-  padding: 25px;
-  border: 2px solid rgb(235, 146, 45);
-  border-radius: 25px;
-  background: linear-gradient(to bottom, #e0c591 0%, #ff99cc 100%);
 }
 
 #logo-pair {
@@ -76,16 +76,18 @@ form div {
   max-height: 100px;
   max-width: auto;
   align-self: center;
-  flex: 1 1 5em
+  flex: 1 1 5em;
+  
 }
 
-.container {
+#navB {
   display: flex;
   flex-direction: row;
-  max-height: 100px;
+  height: 260px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  background-image: url('/photography/foodbacking4.jpg')
 
   /* align-content: flex-stretch */
 }
@@ -99,4 +101,66 @@ form div {
 #nav-cuke-logo {
   max-height: 80px;
   max-width: auto
+}
+
+#nav-cuke-name {
+  color: darkseagreen
+}
+
+/* Single-Page Vue */
+
+#groceries {
+  flex: 1 1
+}
+
+.marquee {
+  display: flex;
+  justify-content: space-between
+ }
+
+ .text-and-image {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+ }
+
+ .singlePageImage {
+  max-height: 300px;
+  max-width: auto;
+  font-size: 11pt;
+  
+}
+
+.piece {
+  flex: 1 1
+}
+
+.orange-slice {
+  border: 2px solid rgb(245, 132, 97);
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10pt;
+}
+
+.reviewer-name{
+  flex: 1 1;
+  margin: 3px 2px;
+}
+.review-text{
+  flex: 3 3;
+  margin: 3px 5px;
+}
+.review-score{
+  flex: 1 1;
+  margin: 3px;
+}
+
+/* #foodTiles {
+  width: 100%
+} */
+
+.singleTile {
+  flex: 1 1 50%
 }
