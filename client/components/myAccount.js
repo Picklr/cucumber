@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import React, {Component} from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
+
 class myAccount extends Component {
 
     constructor(props) {

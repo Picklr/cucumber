@@ -22,7 +22,7 @@ console.log('STATE', this.props.currentUser)
   return (
     <div>
 
-      <h1>Update{this.props.currentUser.fullName}'s Account</h1>
+      <h1>Update {this.props.currentUser.fullName}'s Account</h1>
 
       <form
         onSubmit={(event)=> {this.props.handleUpdateSubmit(event, this.props.currentUser.email, this.props.currentUser.billingAddress)

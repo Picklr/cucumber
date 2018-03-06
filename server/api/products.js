@@ -16,7 +16,18 @@ router.get('/:id', (req,res,next)=>{
 })
 
 router.post('/:id/review', (req,res,next) => {
-  console.log('hello?')
   Reviews.create(req.body)
   .then(review => res.json(review))
+})
+
+
+router.put(`/:id`, (req, res, next) => {
+  Products.update(
+    req.body,
+    {where: {id: req.params.id},
+    returning: true,
+    plain: true}
+  )
+    .then(users => res.json(users))
+    .catch(next)
 })
