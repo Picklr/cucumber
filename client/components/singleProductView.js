@@ -23,13 +23,17 @@ class SingleProduct extends Component{
         this.props.setSelectedProductView(this.props.match.params.id)
 
     }
+    componentWillUnmount(){
+        if(this.props.reviewForm){
+        this.props.handleClick()}
+    }
 
 
 
 
 
     render(){
-
+        let sum = 0;
         const styles = {
             root: {
               display: 'flex',
@@ -90,7 +94,7 @@ class SingleProduct extends Component{
                           style={styles.gridTile}
                           key={review.id}
                           title='review'
-                          subtitle={review.rating ? <span>Rating: {review.rating} </span> : <span> No Rating </span> }
+                          subtitle={reviews.length ? <span>Rating: {review.rating} </span> : <span> No Rating </span> }
                         > {review.body}
                         </GridTile>
                       ))}

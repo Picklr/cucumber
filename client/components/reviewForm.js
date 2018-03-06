@@ -7,19 +7,37 @@ import {addReview, boolChange} from '../store'
 
 
 
-export const reviewForm = (props) => {
+export class reviewForm extends Component {
+    constructor(props){
+        super(props)
+        this.state = {body:'',rating:''}
+        this.onBodyType = this.onBodyType.bind(this)
+        this.onRatingType = this.onRatingType.bind(this)
 
-    console.log(props)
+    }
 
+    onBodyType(event){
+        console.log(event.target.value)
+        this.setState({body: event.target.value})
+    }
+    onRatingType(event){
+        this.setState({rating:  +event.target.value})
+
+    }
+
+
+    render(){
+        console.log(this.state)
     return (
         <div>
             <form
-                onSubmit={props.handleReviewSubmit}
+                onSubmit={this.props.handleReviewSubmit}
 
-                id = {props.selectedProduct.id}
+                id = {this.props.selectedProduct.id}
             >
                 <TextField
                     name = "body"
+                    onChange = { this.onBodyType}
                     hintText="Enter Review Here"
                     multiLine={true}
                     rows={2}
@@ -27,15 +45,17 @@ export const reviewForm = (props) => {
                 /><br />
                 <TextField
                 name = "rating"
+                onChange = {this.onRatingType}
                 hintText="Enter a Rating Between 1-5"
               /><br />
+
               <div>
-                <FlatButton label="Submit Review" type ="submit"   />
+                <FlatButton label="Submit Review"  disabled = {!this.state.body.length || !(this.state.rating >= 1 && this.state.rating <= 5) } type ="submit"   />
               </div>
             </form>
         </div>
     )
-}
+}}
 
 const mapDispatch = (dispatch) => {
     return {
