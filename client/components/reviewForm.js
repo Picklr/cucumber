@@ -36,6 +36,7 @@ export class reviewForm extends Component {
                 id = {this.props.selectedProduct.id}
             >
                 <TextField
+                    required
                     name = "body"
                     onChange = { this.onBodyType}
                     hintText="Enter Review Here"
@@ -44,6 +45,7 @@ export class reviewForm extends Component {
                     rowsMax={4}
                 /><br />
                 <TextField
+                required
                 name = "rating"
                 onChange = {this.onRatingType}
                 hintText="Enter a Rating Between 1-5"
