@@ -3,12 +3,24 @@ import {connect} from 'react-redux'
 import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder, fetchLocalStorageAndSetToState} from '../store';
 import axios from 'axios'
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom'
+
 
 
 const string = JSON.stringify;
 const parse = JSON.parse;
 
 var listener;
+
+const Button = ({ label, to, onClick }) => (<RaisedButton
+    label = {label}
+    backgroundColor = "#f7ffe6"
+    hoverColor = "#ccffcc"
+    containerElement={
+      <Link to={to} onClick={onClick} />
+    }
+    icon = {<img className="cukebutton" src="/thecucu_final.png" />}
+    />)
 
 
 export const ShoppingList = (props) => {
@@ -43,11 +55,18 @@ export const ShoppingList = (props) => {
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
             displaySum = ('' + Math.floor(sum * 100))
-            return (
-                <div  key={item.id} className='orange-slice'>
-                {item.name}
-                <span> {item.quantity} </span>
-                
+            return (<div key={item.id}>
+                <li>
+
+
+                <span>{item.name}</span>
+                <span> ({item.quantity}) x  </span>
+                <span> ${item.price}  = ${(('' + Math.floor(item.price * item.quantity * 100)).slice(0,('' + Math.floor(item.price * item.quantity * 100)).length - 2) + '.' + ('' + Math.floor(item.price * item.quantity * 100)).slice(('' + Math.floor(item.price * item.quantity * 100)).length - 2))
+
+
+            }</span>
+
+                </li>
                 <button
                 onClick = {props.handleDeleteClick}
                 id = {item.id}
@@ -69,7 +88,10 @@ export const ShoppingList = (props) => {
                 </div>
             )
         })}
-        {sum > 0 && <li>{ '$' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</li>  }
+
+        {sum > 0 && <span>{'Cart Total: $' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</span>  }
+        <br />
+
 
         <RaisedButton
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
@@ -77,7 +99,7 @@ export const ShoppingList = (props) => {
         hoverColor = "#ccffcc"
         label="Checkout"
         onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
-        href = "/orderSuccess"
+        // to = "/orderSuccess"
         />
     </div>
 )

@@ -6,16 +6,15 @@ import {logout, clearCartThunk} from '../store'
 import FlatButton from 'material-ui/FlatButton';
 
 
-const Button = ({ label, to, onClick }) => <FlatButton
+const Button = ({ label, to, onClick }) => (<FlatButton
               label = {label}
               backgroundColor = "#f7ffe6"
               hoverColor = "#ccffcc"
-              // href = "/"
               containerElement={
                 <Link to={to} onClick={onClick} />
               }
               icon = {<img className="cukebutton" src="/thecucu_final.png" />}
-              />
+              />)
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div  id="navB" >
@@ -37,16 +36,14 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
         {isLoggedIn ?
           <div>
 
-          {isAdmin &&  <FlatButton
-              label = "Admin Home"
-              backgroundColor = "#f7ffe6"
-              hoverColor = "#ccffcc"
-              href = "/adminHome"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+          {isAdmin &&  <Button
+          to="/adminHome" label = "Admin Home"
               />
           }
-        
-            <Button to="/" label="Products" />
+
+            <Button
+            to="/"
+            label="Products" />
             <Button
               label = "My Account"
               to="/myAccount"
@@ -96,7 +93,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {      
+    handleClick() {
       dispatch(logout())
       dispatch(clearCartThunk())
     }
