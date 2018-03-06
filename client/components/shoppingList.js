@@ -49,11 +49,11 @@ export const ShoppingList = (props) => {
 
     <div id="Shopping-List">
         <h4>My Shopping List </h4>
-        <ul>
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
             displaySum = ('' + Math.floor(sum * 100))
             return (<div
+                        className='orange-slice'
                         style={styles.shoppingListItem}
                         key={item.id}>
                 <li>
@@ -86,9 +86,11 @@ export const ShoppingList = (props) => {
                 </div>
             )
         })}
+
         </ul>
         {sum > 0 && <span>{'Cart Total: $' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</span>  }
         <br />
+
 
         <RaisedButton
         style = {styles.checkout}
@@ -99,6 +101,7 @@ export const ShoppingList = (props) => {
         label="Checkout"
         onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
         to = '/orderSuccess'
+
         />
     </div>
 )

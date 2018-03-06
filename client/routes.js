@@ -13,6 +13,9 @@ import updateAccountInfo from './components/updateAccountInfo'
 import OrderSuccess from './components/orderSuccess'
 import AdminHome from './components/Admin/admin-home'
 import EditUsers from './components/Admin/admin-edit-users'
+import EditOrders from './components/Admin/editOrders.js'
+import EditSingleOrder from './components/Admin/singleOrder.js'
+
 /**
  * COMPONENT
  */
@@ -40,6 +43,8 @@ class Routes extends Component {
         <Route path='/yourOrders' component={YourOrders} />
         <Route path='/adminHome' component={AdminHome} />
         <Route path='/editUsers' component={EditUsers} />
+        <Route exact path = '/editOrders' component = {EditOrders} />
+        <Route path = '/editOrders/:id' component = {EditSingleOrder} />
         </div>
         </div>
         {
