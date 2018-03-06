@@ -24,7 +24,7 @@ class AdminHome extends Component {
           backgroundColor = "#f7ffe6"
           hoverColor = "#ccffcc"
           label="View/Edit Orders"
-          // href = '/editProducts'
+          href = '/editOrders'
           />
 
         </div>

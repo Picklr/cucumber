@@ -40,15 +40,14 @@ export const ShoppingList = (props) => {
 
     <div id="Shopping-List">
         <h4>My Shopping List </h4>
-        <ul>
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
             displaySum = ('' + Math.floor(sum * 100))
-            return (<div key={item.id}>
-                <li>
+            return (
+                <div  key={item.id} className='orange-slice'>
                 {item.name}
                 <span> {item.quantity} </span>
-                </li>
+                
                 <button
                 onClick = {props.handleDeleteClick}
                 id = {item.id}
@@ -70,7 +69,6 @@ export const ShoppingList = (props) => {
                 </div>
             )
         })}
-        </ul>
         {sum > 0 && <li>{ '$' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</li>  }
 
         <RaisedButton
@@ -79,7 +77,7 @@ export const ShoppingList = (props) => {
         hoverColor = "#ccffcc"
         label="Checkout"
         onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
-        href = "/editProducts"
+        href = "/orderSuccess"
         />
     </div>
 )

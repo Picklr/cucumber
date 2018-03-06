@@ -6,8 +6,9 @@ import user from './user'
 import {products, selectedProduct} from './products'
 import shoppingList, {checkoutOrder, fetchObjAndAdd} from './shoppingList';
 import orderHistory, {addLatestOrder} from './order'
+import adminOrders from './adminOrders'
 
-const reducer = combineReducers({user, shoppingList, products, orderHistory})
+const reducer = combineReducers({user, shoppingList, products, orderHistory, adminOrders})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
