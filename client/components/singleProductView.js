@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {Link, withRouter, Route} from 'react-router-dom'
 import React, {Component} from 'react'
-import { setSelectedProductView, boolChange } from '../store';
+import { setSelectedProductView, fetchProducts, boolChange } from '../store';
 import { fetchObjAndAdd } from '../store/shoppingList';
 import ReviewForm, { reviewForm } from './reviewForm'
 import EditProduct from './Admin/admin-edit-product'
@@ -17,10 +17,21 @@ class SingleProduct extends Component{
     constructor(props){
         super(props)
 
-    }
 
     componentDidMount(){
-        this.props.setSelectedProductView(this.props.match.params.id)
+              
+        if(this.props.products.length<1) {
+            this.props.fetchProducts()
+        }
+
+        //this case for switching views
+        if(this.props.selectedProduct.id && +this.props.match.params.id !== +this.props.selectedProduct.id){
+            this.props.setSelectedProductView(this.props.match.params.id)
+          
+        }
+        if(Object.keys(props.selectedProduct).length<1 && props.products.length) {
+            props.setSelectedProductView(props.match.params.id)
+        }
 
     }
     componentWillUnmount(){
@@ -52,11 +63,11 @@ class SingleProduct extends Component{
                 borderRadius: 10
 
 
-
             }
           };
         const reviews = this.props.selectedProduct.reviews
 
+   
         return (
 
     <div>
@@ -107,13 +118,22 @@ class SingleProduct extends Component{
             : <span> Loading </span>
             }
 
+
              {this.props.isAdmin && <div><EditProduct /></div>}
 
+
         </div>
-    )}
+    )
 }
 
-const mapStateProps = (state) => ({ selectedProduct:     state.products.selectedProduct, reviewForm: state.reviewForm, isAdmin: state.user.isAdmin})
+
+const mapStateProps = (state) => ({
+    selectedProduct: state.products.selectedProduct,
+    isAdmin: state.user.isAdmin,
+    products: state.products.allProducts,
+    reviewForm: state.reviewForm
+})
+
 
 const mapDispatch = (dispatch) => ({
     setSelectedProductView: (aProduct) => {
@@ -122,10 +142,13 @@ const mapDispatch = (dispatch) => ({
         event.preventDefault();
         dispatch(fetchObjAndAdd(+event.target.id))
     },
+    fetchProducts: () => { dispatch(fetchProducts()) }
+
     handleClick: () => {
 
        dispatch(boolChange())
     }
+
     })
 
 
