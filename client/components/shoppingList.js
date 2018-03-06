@@ -52,7 +52,6 @@ export const ShoppingList = (props) => {
 
     <div id="Shopping-List">
         <h4>My Shopping List </h4>
-        <ul>
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
             displaySum = ('' + Math.floor(sum * 100))
