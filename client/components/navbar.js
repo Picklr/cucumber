@@ -17,7 +17,7 @@ const Button = ({ label, to, onClick }) => <FlatButton
               icon = {<img className="cukebutton" src="/thecucu_final.png" />}
               />
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div  id="navB" >
 
 
