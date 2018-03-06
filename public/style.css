@@ -53,7 +53,7 @@ form div {
 
 #Shopping-List {
   flex: 3 1;
-  padding: 25px;
+  padding: 10px;
   border: 2px solid rgb(235, 146, 45);
   border-radius: 25px;
   background: linear-gradient(to bottom, #e0c591 0%, #ff99cc 100%);
@@ -77,7 +77,7 @@ form div {
   max-width: auto;
   align-self: center;
   flex: 1 1 5em;
-  
+
 }
 
 #navB {
@@ -127,7 +127,7 @@ form div {
   max-height: 300px;
   max-width: auto;
   font-size: 11pt;
-  
+
 }
 
 .piece {
@@ -141,6 +141,8 @@ form div {
   display: flex;
   justify-content: space-between;
   font-size: 10pt;
+  width: auto;
+  margin: 4px;
 }
 
 .reviewer-name{

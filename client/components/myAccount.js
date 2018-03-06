@@ -22,11 +22,21 @@ class myAccount extends Component {
 
     }
 
-
     render(){
 
+      const styles = {
+        checkout: {
+            margin: 10,
+
+        },
+        shoppingListItem: {
+            margin: 15
+        }
+    }
+
   return (
-    <div>
+    <div
+    >
       <h1>{this.props.currentUser.fullName}'s Account</h1>
       <h3>Email Address: {this.props.currentUser.email}</h3>
       <h3>Billing Address: {this.props.currentUser.billingAddress}</h3>

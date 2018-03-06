@@ -37,13 +37,13 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
           <div>
 
           {isAdmin &&  <Button
-              label = "Admin Home"
-              to = "/adminHome"
-              icon = {<img className="cukebutton" src="./thecucu_final.png" />}
+          to="/adminHome" label = "Admin Home"
               />
           }
 
-            <Button to="/" label="Products" />
+            <Button
+            to="/"
+            label="Products" />
             <Button
               label = "My Account"
               to="/myAccount"

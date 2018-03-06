@@ -3,12 +3,24 @@ import {connect} from 'react-redux'
 import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder, fetchLocalStorageAndSetToState} from '../store';
 import axios from 'axios'
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom'
+
 
 
 const string = JSON.stringify;
 const parse = JSON.parse;
 
 var listener;
+
+const Button = ({ label, to, onClick }) => (<RaisedButton
+    label = {label}
+    backgroundColor = "#f7ffe6"
+    hoverColor = "#ccffcc"
+    containerElement={
+      <Link to={to} onClick={onClick} />
+    }
+    icon = {<img className="cukebutton" src="/thecucu_final.png" />}
+    />)
 
 
 export const ShoppingList = (props) => {
@@ -73,7 +85,7 @@ export const ShoppingList = (props) => {
         </ul>
         {sum > 0 && <li>{ '$' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</li>  }
 
-        <RaisedButton
+        <Button
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
         backgroundColor = "#f7ffe6"
         hoverColor = "#ccffcc"
