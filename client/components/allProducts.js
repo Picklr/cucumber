@@ -54,7 +54,7 @@ class AllProducts extends Component {
 
     const filteredByTags = products.filter(productHasMatchingTag)
     const filteredByName = products.filter(productWithinTerm)
-    const allFound = [...filteredByTags, ...filteredByName]
+    const allFound = [ ...filteredByName]
 
     const allProducts = allFound.length ? allFound : products
     this.columnNumber = this.props.term.length > 1 ? 2 : 4
