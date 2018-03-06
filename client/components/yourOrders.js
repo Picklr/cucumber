@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUserOrderHistory} from '../store/order'
-
+var gotOrders = false;
 
 export const YourHistory = (props) => {
     console.log(props.orderHistory)
-    if (props.orderHistory.length < 1 && Object.keys(props.user).length !== 0){
+    if (!gotOrders && Object.keys(props.user).length !== 0){
+        gotOrders = true;
         props.getUserOrderHistory(props.user)
     }
     
@@ -14,7 +15,7 @@ export const YourHistory = (props) => {
                 { props.orderHistory.length > 0 ?
                 <div>
                 <h2>Your previous orders:</h2>
-                {props.orderHistory.map(eachOrder => (
+                {props.orderHistory.reverse().map(eachOrder => (
                     <div key = {eachOrder.id}>
                     <h2>{'Order # ' + eachOrder.id + ' status: ' + eachOrder.status}</h2>
                         <ul>
@@ -27,7 +28,7 @@ export const YourHistory = (props) => {
                 )}
                 </div>
                 :
-                <div>PLEASE BE PATIENT, WE ARE FETCHING</div>
+                <div>No orders yet or sign in to view your orders</div>
                 }
             </div>
     )

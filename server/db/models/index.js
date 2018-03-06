@@ -10,7 +10,7 @@ const Favorites = db.define('favorites')
 Products.belongsToMany(User, { through: Favorites })
 
 Order.belongsTo(User);
-HistoricalItems.belongsTo(Order)
+HistoricalItems.belongsTo(Order, {foreignKey: 'productId'})
 Order.hasMany(HistoricalItems);
 
 module.exports = {
