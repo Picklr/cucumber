@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import { deleteItem, fetchObjAndAdd, decrementQuantity, checkoutOrder, fetchLocalStorageAndSetToState} from '../store';
 import axios from 'axios'
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom'
+
 
 
 const string = JSON.stringify;
@@ -10,14 +12,16 @@ const parse = JSON.parse;
 
 var listener;
 
-const styles = {
-    checkout: {
-        margin: 20
-    },
-    shoppingListItem: {
-        margin: 15
+const Button = ({ label, to, onClick }) => (<RaisedButton
+    label = {label}
+    backgroundColor = "#f7ffe6"
+    hoverColor = "#ccffcc"
+    containerElement={
+      <Link to={to} onClick={onClick} />
     }
-}
+    icon = {<img className="cukebutton" src="/thecucu_final.png" />}
+    />)
+
 
 export const ShoppingList = (props) => {
     let sum = 0;
@@ -44,7 +48,6 @@ export const ShoppingList = (props) => {
             // console.log('things happened!!!!!')
         })}
 
-
     return (
 
     <div id="Shopping-List">
@@ -52,11 +55,9 @@ export const ShoppingList = (props) => {
         {props.shoppingList.map( item => {
             sum += item.price * item.quantity
             displaySum = ('' + Math.floor(sum * 100))
-            return (<div
-                        className='orange-slice'
-                        style={styles.shoppingListItem}
-                        key={item.id}>
+            return (<div key={item.id}>
                 <li>
+
 
                 <span>{item.name}</span>
                 <span> ({item.quantity}) x  </span>
@@ -64,6 +65,7 @@ export const ShoppingList = (props) => {
 
 
             }</span>
+
                 </li>
                 <button
                 onClick = {props.handleDeleteClick}
@@ -92,15 +94,12 @@ export const ShoppingList = (props) => {
 
 
         <RaisedButton
-        style = {styles.checkout}
-        disabled ={!props.shoppingList.length}
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
         backgroundColor = "#f7ffe6"
         hoverColor = "#ccffcc"
         label="Checkout"
         onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
-        to = '/orderSuccess'
-
+        // to = "/orderSuccess"
         />
     </div>
 )

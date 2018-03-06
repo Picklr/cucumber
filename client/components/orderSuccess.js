@@ -17,7 +17,7 @@ const OrderSuccess = props => {
         )
 }
 
-const mapProps = state=>({orderHistory:state.orderHistory, user: state.user})
+const mapProps = state=>({orderHistory: state.orderHistory, user: state.user})
 const mapDispatch = dispatch => ({
     getUserOrderHistory: user => dispatch(getUserOrderHistory(user))
 })

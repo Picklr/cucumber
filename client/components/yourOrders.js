@@ -10,8 +10,12 @@ function displayPrice(price){
 
 export const YourHistory = (props) => {
     console.log(props.orderHistory)
+
+    //if (props.orderHistory.length < 1 && Object.keys(props.user).length !== 0){
+
     if (!gotOrders && Object.keys(props.user).length !== 0){
         gotOrders = true;
+
         props.getUserOrderHistory(props.user)
     }
 

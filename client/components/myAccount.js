@@ -1,7 +1,19 @@
 import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 import React, {Component} from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
+
+
+const Button = ({ label, to, onClick }) => (<RaisedButton
+  label = {label}
+  backgroundColor = "#f7ffe6"
+  hoverColor = "#ccffcc"
+  containerElement={
+    <Link to={to} onClick={onClick} />
+  }
+  icon = {<img className="cukebutton" src="/thecucu_final.png" />}
+  />)
+
 
 class myAccount extends Component {
 
@@ -28,20 +40,13 @@ class myAccount extends Component {
       <h1>{this.props.currentUser.fullName}'s Account</h1>
       <h3>Email Address: {this.props.currentUser.email}</h3>
       <h3>Billing Address: {this.props.currentUser.billingAddress}</h3>
-      <RaisedButton
-        style={styles.checkout}
+      <Button
         label = "View Order History"
-        href = "./yourOrders"
-        backgroundColor= "#f7ffe6"
-        hoverColor= "#ccffcc"
+        to = "/yourOrders"
         />
-        <br />
-      <RaisedButton
-      style={styles.checkout}
+      <Button
         label = "Update Billing Information"
-        href = "./updateAccountInfo"
-        backgroundColor= "#f7ffe6"
-        hoverColor= "#ccffcc"
+        to = "/updateAccountInfo"
         />
     </div>
 
