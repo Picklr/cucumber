@@ -14,6 +14,15 @@ export const fetchSomeoneHistory = () => dispatch => {
     })
 }
 
+export const updateStatus = (userId,status,history) => dispatch => {
+
+    const packet = {id: userId, status: status}
+    axios.put('/api/order/adminHistory', packet).then(()=>{
+        console.log('WE HAVE RESOLVED UPDATE')
+        dispatch(fetchSomeoneHistory()) //that's right, thunk in a thunk
+    })
+}
+
 export default function(state = [], action) {
     switch(action.type){
         case GET_SPECIFIC_HISTORY: {

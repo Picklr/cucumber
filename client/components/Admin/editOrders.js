@@ -8,12 +8,11 @@ const OrderAdmin = props => {
 
     return (
         <div>
-            <input></input>
-            <button onClick = {props.fetchAll}>SEARCH CLIENT ORDERS</button>
+            <button onClick = {props.fetchAll}>LOAD CLIENT ORDERS</button>
             {props.adminOrders.length>0 && <div>{
                 props.adminOrders.map(eachOrder=>
                     <Link to={`/editOrders/${eachOrder.id}`}>
-                    <div className='orange-slice'>{'Order number: ' + eachOrder.id + ' Status : ' + eachOrder.status}
+                    <div className='orange-slice'>{'Customer : ' + eachOrder.user.fullName +' | Order number: ' + eachOrder.id + ' | Status : ' + eachOrder.status}
                     </div>
                     </Link>
                     )}
