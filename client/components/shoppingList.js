@@ -85,13 +85,13 @@ export const ShoppingList = (props) => {
         </ul>
         {sum > 0 && <li>{ '$' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</li>  }
 
-        <Button
+        <RaisedButton
         icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
         backgroundColor = "#f7ffe6"
         hoverColor = "#ccffcc"
         label="Checkout"
         onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
-        to = "/orderSuccess"
+        // to = "/orderSuccess"
         />
     </div>
 )
