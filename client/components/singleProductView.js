@@ -74,9 +74,9 @@ class SingleProduct extends Component{
         {this.props.selectedProduct.name ?
             <div>
                 <div className = 'marquee' >
-                    <h3 className='marquee-child'> {props.selectedProduct.name} </h3>
-                    <h4 className='marquee-child'> {'Rating ' + props.selectedProduct.stars} </h4>
-                    <button className ='marquee-child' onClick={props.handleAddToListClick} id={props.selectedProduct.id} >Add to Cart</button>
+                    <h3 className='marquee-child'> {this.props.selectedProduct.name} </h3>
+                    <h4 className='marquee-child'> {'Rating ' + this.props.selectedProduct.stars} </h4>
+                    <button className ='marquee-child' onClick={this.props.handleAddToListClick} id={this.props.selectedProduct.id} >Add to Cart</button>
                 </div>
                 <div className = 'text-and-image'>
                     <img className = "singlePageImage" src={this.props.selectedProduct.photo} />
