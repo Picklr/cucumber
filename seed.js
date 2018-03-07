@@ -1,4 +1,5 @@
 const Products = require('./server/db/models/foodProducts');
+const User = require('./server/db/models/user');
 const db = require('./server/db')
 
 // name brand price photo totalSales category stars tags
@@ -302,7 +303,7 @@ const ourSeed = [
 
 ];
 
-Products.bulkCreate(ourSeed)
+Products.bulkCreate(ourSeed).then(() => User.create({email: 'admin@admin.com', password: 'admin', firstName:'ad', lastName:'min'}))
 .catch(console.error.bind(console))
 .finally(_ => {
   db.close()
