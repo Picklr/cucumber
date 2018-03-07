@@ -54,7 +54,9 @@ const createApp = () => {
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
-
+  app.get('/github', (req, res, next) => {
+    res.redirect('https://github.com/Picklr/cucumber')
+  })
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
