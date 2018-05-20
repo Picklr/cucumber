@@ -17,6 +17,8 @@ We created this site as part of our "Grace Shopper" project for Fullstack Academ
 
 ## :hammer_and_pick: Built With
 
+Cucumber’s frontend was built using modular React components and styled with Material UI and CSS. We built the backend using Express.JS, Sequelize and PostgreSQL and deployed the app on heroku.
+
 * Javascript
 * React
 * React-Redux
