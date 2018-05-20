@@ -18,7 +18,6 @@ class updateAccountInfo extends Component {
     }
 
     render(){
-console.log('STATE', this.props.currentUser)
   return (
     <div>
 
@@ -74,7 +73,6 @@ console.log('STATE', this.props.currentUser)
      const email = event.target.email.value || currEmail;
      const billingAddress = event.target.billingAddress.value || currAddress;
      const userId = +event.target.id;
-     console.log('Changes to pass', email, billingAddress)
      dispatch(editUser(email, billingAddress, userId))
    }
   }

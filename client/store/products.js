@@ -41,7 +41,6 @@ dispatch =>
       category: category,
       brand: brand})
       .then((res)=> {
-      console.log('RES.DATA', res.data)
         dispatch(updateProduct(res.data[1]))
       })
       .catch(err => console.log(err))
@@ -88,7 +87,6 @@ export const products = function (state = initialState, action) {
             })
             return {...state, allProducts: newState, selectedProduct: singleProducts}
         case UPDATE_PRODUCT:
-        console.log(action.product,'ACTION PRODUCT')
             const newAllProducts = state.allProducts.map((currProduct)=>{
                 if ( currProduct.id === action.product.id){
                     return action.product
@@ -96,8 +94,6 @@ export const products = function (state = initialState, action) {
                     return currProduct
                 }
             })
-
-            console.log('THIS IS THE NEW ALL P', newAllProducts)
             return {...state, selectedProduct: action.product, allProducts: newAllProducts}
         default:
             return state

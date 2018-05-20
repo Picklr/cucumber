@@ -16,7 +16,6 @@ class EditProduct extends Component {
       }
 
       render(){
-        console.log('PROPS BITHC', this.props)
     return (
 
     <div>
@@ -89,7 +88,6 @@ const mapDispatch = dispatch => {
       const category = event.target.newCategory.value || currCategory;
       const brand = event.target.newBrand.value || currBrand;
       const productId = +event.target.id;
-      console.log('Changes to pass', name, price, category, brand, productId)
       event.target.newName.value = ''
       event.target.newPrice.value = ''
       event.target.newCategory.value = ''

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import history from '../history'
-import {getUserOrderHistory} from './order'
 /**
  * ACTION TYPES
  */
@@ -31,7 +30,6 @@ export const editUser = (email, billingAddress, userId) =>
         email: email,
         billingAddress: billingAddress})
         .then((res)=> {
-        console.log('RES.DATA', res.data)
           dispatch(updateUser(res.data[1]))
         })
         .catch(err => console.log(err))
@@ -49,7 +47,7 @@ export const auth = (method, email, password, firstName, lastName, billingAddres
       .then(res => {
         dispatch(getUser(res.data))
         history.push('/')
-      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+      }, authError => {
         dispatch(getUser({error: authError}))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
@@ -69,6 +67,7 @@ export const logout = () =>
  */
 export default function (state = defaultUser, action) {
   switch (action.type) {
+
     case GET_USER:
       return action.user
     case REMOVE_USER:

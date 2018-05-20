@@ -17,7 +17,6 @@ export class reviewForm extends Component {
     }
 
     onBodyType(event){
-        console.log(event.target.value)
         this.setState({body: event.target.value})
     }
     onRatingType(event){
@@ -27,7 +26,6 @@ export class reviewForm extends Component {
 
 
     render(){
-        console.log(this.state)
     return (
         <div>
             <form

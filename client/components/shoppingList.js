@@ -27,7 +27,6 @@ export const ShoppingList = (props) => {
     let sum = 0;
 
     let displaySum;
-    console.log('LOCAL STORAGE SOMETHING ',JSON.parse(localStorage.getItem('orderArray')))
     if (!localStorage.getItem('orderArray')){
         localStorage.setItem('orderArray', '[]')
     }
@@ -45,7 +44,6 @@ export const ShoppingList = (props) => {
                 localStorage.setItem('orderArray','[]')
             }
             props.loadCartFromLocalStore()
-            // console.log('things happened!!!!!')
         })}
 
     return (

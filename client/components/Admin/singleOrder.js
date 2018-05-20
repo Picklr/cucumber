@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import {updateStatus} from '../../store/adminOrders'
 
 const EditOneOrder = props => {
-    console.log('THESE ARE PROPS ', props)
     const narrow = props.adminOrders.find(eachOrder=>eachOrder.id==props.match.params.id)
 
     return(

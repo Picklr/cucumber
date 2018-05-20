@@ -8,7 +8,6 @@ const OrderConfirmation = props => {
   if (props.orderHistory.length === 0 && Object.keys(props.user).length !== 0){
     props.getUserOrderHistory(props.user)
 }
-  console.log('PROPS', props.orderHistory)
         return (
             <div>
 

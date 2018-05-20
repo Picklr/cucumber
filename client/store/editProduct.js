@@ -26,7 +26,6 @@ dispatch =>
 
   axios.put(`/api/products/${productId}`, {name, price, category, brand, productId})
       .then((res)=> {
-      console.log('RES.DATA', res.data)
         dispatch(updateProduct(res.data[1]))
       })
       .catch(err => console.log(err))
