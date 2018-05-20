@@ -26,6 +26,13 @@ Cucumber’s frontend was built using modular React components and styled with M
 * Express.js
 * Sequelize
 
+## :writing_hand: Authors
+
+* Jeff Goldbeck - [Jeffg5001](https://github.com/Jeffg5001)
+* Beth Barnes - [bethbarnes](https://github.com/bethbarnes)
+* Dan Ryan - [djxr35](https://github.com/djxr35)
+* Philip Gingerich - [horseeyephil](https://github.com/horseeyephil)
+
 ## :rocket: Deployment
 
 This website was deployed using Heroku.
