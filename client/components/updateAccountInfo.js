@@ -1,6 +1,5 @@
-import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
-import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
@@ -12,71 +11,68 @@ const style = {
 
 class updateAccountInfo extends Component {
 
-    constructor(props) {
-      super(props)
+  constructor(props) {
+    super(props)
 
-    }
+  }
 
-    render(){
-  return (
-    <div>
+  render() {
+    return (
+      <div>
 
-      <h1>Update {this.props.currentUser.fullName}'s Account</h1>
+        <h1>Update {this.props.currentUser.fullName}'s Account</h1>
 
-      <form
-        onSubmit={(event)=> {this.props.handleUpdateSubmit(event, this.props.currentUser.email, this.props.currentUser.billingAddress)
+        <form
+          onSubmit={(event) => {
+            this.props.handleUpdateSubmit(event, this.props.currentUser.email, this.props.currentUser.billingAddress)
           }}
-        id = {this.props.currentUser.id}
-      >
-      <h3>Current Email Address: {this.props.currentUser.email}</h3>
-      <TextField
+          id={this.props.currentUser.id}
+        >
+          <h3>Current Email Address: {this.props.currentUser.email}</h3>
+          <TextField
             hintText="New Email Address"
             style={style}
-            name = "email"
+            name="email"
             underlineShow={false} />
-            <Divider />
-      <h3>Current Billing Address: {this.props.currentUser.billingAddress}</h3>
-      <TextField
+          <Divider />
+          <h3>Current Billing Address: {this.props.currentUser.billingAddress}</h3>
+          <TextField
             hintText="New Billing Address"
             style={style}
-            name = "billingAddress"
+            name="billingAddress"
             underlineShow={false} />
-            <Divider />
-      <RaisedButton
-        label= "Update Account"
-        type = "submit"
-        />
-      <RaisedButton
-        label = "Back to My Account"
-        href = "./myAccount"
+          <Divider />
+          <RaisedButton
+            label="Update Account"
+            type="submit"
+          />
+          <RaisedButton
+            label="Back to My Account"
+            href="./myAccount"
+          />
+        </form>
+      </div>
+    )
+  }
+}
 
-        />
-      </form>
-    </div>
 
-      )
+const mapState = state => {
+  return {
+    currentUser: state.user
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleUpdateSubmit: (event, currEmail, currAddress) => {
+      event.preventDefault();
+      const email = event.target.email.value || currEmail;
+      const billingAddress = event.target.billingAddress.value || currAddress;
+      const userId = +event.target.id;
+      dispatch(editUser(email, billingAddress, userId))
     }
   }
+}
 
-
-  const mapState = state => {
-    return {
-      currentUser: state.user
-    }
-  }
-
- const mapDispatch = (dispatch) => {
-   return {
-   handleUpdateSubmit: (event, currEmail, currAddress) => {
-     event.preventDefault();
-
-     const email = event.target.email.value || currEmail;
-     const billingAddress = event.target.billingAddress.value || currAddress;
-     const userId = +event.target.id;
-     dispatch(editUser(email, billingAddress, userId))
-   }
-  }
- }
-
-
- export default connect(mapState, mapDispatch)(updateAccountInfo)
+export default connect(mapState, mapDispatch)(updateAccountInfo)

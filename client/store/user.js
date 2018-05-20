@@ -15,9 +15,9 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
-const updateUser = (user) =>({type: UPDATE_USER, user: user})
+const getUser = user => ({ type: GET_USER, user })
+const removeUser = () => ({ type: REMOVE_USER })
+const updateUser = (user) => ({ type: UPDATE_USER, user: user })
 
 /**
  * THUNK CREATORS
@@ -27,12 +27,13 @@ export const editUser = (email, billingAddress, userId) =>
   dispatch =>
 
     axios.put(`/api/users/${userId}`, {
-        email: email,
-        billingAddress: billingAddress})
-        .then((res)=> {
-          dispatch(updateUser(res.data[1]))
-        })
-        .catch(err => console.log(err))
+      email: email,
+      billingAddress: billingAddress
+    })
+      .then((res) => {
+        dispatch(updateUser(res.data[1]))
+      })
+      .catch(err => console.log(err))
 
 export const me = () =>
   dispatch =>
@@ -48,7 +49,7 @@ export const auth = (method, email, password, firstName, lastName, billingAddres
         dispatch(getUser(res.data))
         history.push('/')
       }, authError => {
-        dispatch(getUser({error: authError}))
+        dispatch(getUser({ error: authError }))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 

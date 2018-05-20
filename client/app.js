@@ -27,7 +27,6 @@ class App extends Component {
   }
 }
 
-
 const mapDispatch = (dispatch) => {
   return {
     loadInventory () {

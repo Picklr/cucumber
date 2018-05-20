@@ -20,7 +20,7 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
-    get () {
+    get() {
       return () => this.getDataValue('salt')
     }
   },
@@ -42,12 +42,12 @@ const User = db.define('user', {
   },
 
 }, {
-  getterMethods: {
-    fullName(){
-      return this.firstName + ' ' + this.lastName;
-    }
-  },
-})
+    getterMethods: {
+      fullName() {
+        return this.firstName + ' ' + this.lastName;
+      }
+    },
+  })
 
 module.exports = User
 
