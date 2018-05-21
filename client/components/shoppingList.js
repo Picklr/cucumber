@@ -47,49 +47,40 @@ export const ShoppingList = (props) => {
 
     return (
 
-        <div id="Shopping-List">
-            <h4>My Shopping List </h4>
-            {props.shoppingList.map(item => {
-                sum += item.price * item.quantity
-                displaySum = ('' + Math.floor(sum * 100))
-                return (<div key={item.id}>
-                    <li>
-                        <span>{item.name}</span>
-                        <span> ({item.quantity}) x  </span>
-                        <span> ${item.price}  = ${(('' + Math.floor(item.price * item.quantity * 100)).slice(0, ('' + Math.floor(item.price * item.quantity * 100)).length - 2) + '.' + ('' + Math.floor(item.price * item.quantity * 100)).slice(('' + Math.floor(item.price * item.quantity * 100)).length - 2))
-                        }</span>
-                    </li>
-                    <button
-                        onClick={props.handleDeleteClick}
-                        id={item.id}
-                    >x</button>
-                    <button
-                        type="decrement"
-                        onClick={props.handleDecrementClick}
-                        id={item.id}
-                    >-</button>
-                    <button
-                        type="increment"
-                        onClick={props.handleQuantityClick}
-                        id={item.id}
-                    >+</button>
+    <div id="Shopping-List">
+        <h4>My Shopping List </h4>
+        {props.shoppingList.map( item => {
+            sum += item.price * item.quantity
+            displaySum = ('' + Math.floor(sum * 100))
+            return (
+            <Link to= {`/products/${item.id}`} className = "orange-slice" key={item.id}>
+                <span className = "slice-child-name">{item.name}
+                </span>
+                <span className = "slice-child-price"> {item.quantity} x ${item.price}  = ${(('' + Math.floor(item.price * item.quantity * 100)).slice(0,('' + Math.floor(item.price * item.quantity * 100)).length - 2) + '.' + ('' + Math.floor(item.price * item.quantity * 100)).slice(('' + Math.floor(item.price * item.quantity * 100)).length - 2))}
+                </span>
+
+                <div className = "slice-child-price">
+                    <button onClick = {props.handleDeleteClick} id = {item.id}>x</button>
+                    <button type = "decrement" onClick = {props.handleDecrementClick} id = {item.id}>-</button>
+                    <button type = "increment" onClick = {props.handleQuantityClick} id = {item.id}>+</button>
                 </div>
-                )
-            })}
+            </Link>
+            )
+        })}
 
-            {sum > 0 && <span>{'Cart Total: $' + (displaySum.slice(0, displaySum.length - 2) + '.' + displaySum.slice(displaySum.length - 2))}</span>}
-            <br />
+        {sum > 0 && <span>{'Cart Total: $' + (displaySum.slice(0,displaySum.length - 2) + '.' +  displaySum.slice(displaySum.length - 2)) }</span>  }
+        <br />
 
 
-            <RaisedButton
-                icon={<img className="cukebutton" src="./shopping_cart.svg" />}
-                backgroundColor="#f7ffe6"
-                hoverColor="#ccffcc"
-                label="Checkout"
-                onClick={() => { props.handleCheckout(props.user.id, props.shoppingList) }}
-            />
-        </div>
-    )
+        <RaisedButton
+        icon = {<img className="cukebutton" src="./shopping_cart.svg" />}
+        backgroundColor = "#f7ffe6"
+        hoverColor = "#ccffcc"
+        label="Checkout"
+        onClick={()=>{props.handleCheckout(props.user.id,props.shoppingList)}}
+        />
+    </div>
+)
 }
 
 

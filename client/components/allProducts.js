@@ -19,12 +19,9 @@ const styles = {
     display: 'flex',
     flex: '1 1',
     flexWrap: 'wrap',
-    alignItems: 'stretch',
+    alignContent: 'flex-start',
     height: 900,
     overflowY: 'auto',
-  },
-  singleTile: {
-    flex: '1 1'
   }
 };
 
@@ -40,7 +37,13 @@ class AllProducts extends Component {
 
     const filteredByTags = products.filter(productHasMatchingTag)
     const filteredByName = products.filter(productWithinTerm)
-    const allFound = [...filteredByName]
+
+    const superSearch = filteredByTags.forEach(tagged=>{
+      if (!filteredByName.includes(tagged)) filteredByName.push(tagged)
+    })
+
+
+    const allFound = [ ...filteredByName]
 
     const allProducts = allFound.length ? allFound : products
     this.columnNumber = this.props.term.length > 1 ? 2 : 4

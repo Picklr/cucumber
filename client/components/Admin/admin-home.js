@@ -4,20 +4,22 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom'
 
 
-const Button = ({ label, to, onClick }) => (<RaisedButton
-  label={label}
-  backgroundColor="#f7ffe6"
-  hoverColor="#ccffcc"
-  containerElement={
-    <Link to={to} onClick={onClick} />
-  }
-  icon={<img className="cukebutton" src="/thecucu_final.png" />}
-/>)
+const Button = ({ label, to, onClick }) => (
+  <RaisedButton
+    label={label}
+    backgroundColor="#f7ffe6"
+    hoverColor="#ccffcc"
+    containerElement={
+      <Link to={to} onClick={onClick} />
+      }
+    icon={<img className="cukebutton" src="/thecucu_final.png" />}
+  />
+)
 
 
 class AdminHome extends Component {
 
-  render(){
+  render() {
     return (
       <div>
         <Button
@@ -26,9 +28,11 @@ class AdminHome extends Component {
         < br />
         <Button
           label="View/Edit Orders"
-          to='/editProducts'
+          to="/editOrders"
         />
+
       </div>
+
     )
   }
 }
