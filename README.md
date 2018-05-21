@@ -36,3 +36,4 @@ Cucumber’s frontend was built using modular React components and styled with M
 ## :rocket: Deployment
 
 This website was deployed using Heroku.
+http://picklr.herokuapp.com
