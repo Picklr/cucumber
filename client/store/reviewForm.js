@@ -13,7 +13,6 @@ export default function (state = initialState, action) {
     case CHANGE_BOOL:
       return !state
 
-
     default:
       return state
   }

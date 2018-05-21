@@ -1,49 +1,33 @@
-import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
-import React, {Component} from 'react'
-import {setSearchTerm} from '../store/products'
+import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import React, { Component } from 'react'
+import { setSearchTerm } from '../store/products'
 import { fetchObjAndAdd } from '../store/shoppingList';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import {GridList, GridTile} from 'material-ui/GridList';
+import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import {orange500, blue500} from 'material-ui/styles/colors';
+import { orange500 } from 'material-ui/styles/colors';
 
 const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    //justifyContent: 'space-around',
     borderColor: orange500,
   },
   gridList: {
     display: 'flex',
     flex: '1 1',
     flexWrap: 'wrap',
-    //alignItems: 'flex-start',
     alignContent: 'flex-start',
-    //width: 500,
     height: 900,
     overflowY: 'auto',
-
-
-  },
-  singleTile: {
-    //flex: '1 1'
   }
 };
 
 class AllProducts extends Component {
 
-  constructor(props) {
-    super(props)
-
-  }
-
-  render(){
+  render() {
 
     const { products, term } = this.props
 
@@ -51,13 +35,13 @@ class AllProducts extends Component {
     const productHasMatchingTag = product => product.tags.filter(tagMatchesTerm).length > 0
     const productWithinTerm = (product) => product.name.toLowerCase().indexOf(term.toLowerCase()) > -1
 
-
     const filteredByTags = products.filter(productHasMatchingTag)
     const filteredByName = products.filter(productWithinTerm)
+
     const superSearch = filteredByTags.forEach(tagged=>{
-      if(!filteredByName.includes(tagged)) filteredByName.push(tagged)
+      if (!filteredByName.includes(tagged)) filteredByName.push(tagged)
     })
-    
+
 
     const allFound = [ ...filteredByName]
 
@@ -66,72 +50,63 @@ class AllProducts extends Component {
 
     return (
 
-    <div id="groceries" >
-      <TextField
-        hintText="Product"
-        floatingLabelText="Search Products"
-        type="text"
-        onChange={this.props.handleChange}
-      />
-
-      <Subheader>Products</Subheader>
-
-      <div style={styles.root}>
+      <div id="groceries" >
+        <TextField
+          hintText="Product"
+          floatingLabelText="Search Products"
+          type="text"
+          onChange={this.props.handleChange}
+        />
+        <Subheader>Products</Subheader>
+        <div style={styles.root}>
           <GridList
-
             cols={this.columnNumber}
             cellHeight={180}
             style={styles.gridList}
           >
-
-
-        {allProducts.map(product =>{
-            return (
-
-          <NavLink
-            to ={`/products/${product.id}`}
-            key={product.id} >
-                <GridTile
-
-                  style = {styles.singleTile}
-                  id={product.id}
-                  key={product.id}
-                  title={product.name}
-                  actionIcon={<IconButton id={product.id} onClick= {this.props.handleAddToListClick}>
-                    <i
+            {allProducts.map(product => {
+              return (
+                <NavLink
+                  to={`/products/${product.id}`}
+                  key={product.id} >
+                  <GridTile
+                    style={styles.singleTile}
                     id={product.id}
-                    className="material-icons"
-                    >add_shopping_cart</i>
-                    {/* <StarBorder color="white" /> */}
-                  </IconButton>}
-              >
-                <img src={product.photo} />
-                </GridTile>
+                    key={product.id}
+                    title={product.name}
+                    actionIcon={<IconButton id={product.id} onClick={this.props.handleAddToListClick}>
+                      <i
+                        id={product.id}
+                        className="material-icons"
+                      >add_shopping_cart</i>
+                      {/* <StarBorder color="white" /> */}
+                    </IconButton>}
+                  >
+                    <img src={product.photo} />
+                  </GridTile>
                 </NavLink>
+              )
+            }
             )}
-        )}
-
           </GridList>
+        </div>
       </div>
-    </div>
     )
-}
-}
-
-  const mapState = state => ({
-     products: state.products.allProducts,
-     term: state.products.filterTerm
-  })
-
-  const mapDispatch = dispatch => ({
-     handleChange: event => {dispatch(setSearchTerm(event.target.value))},
-     handleAddToListClick: (event) => {
-      event.preventDefault();
-      dispatch(fetchObjAndAdd(+event.target.id))
-
-   }
   }
-  )
+}
 
+const mapState = state => ({
+  products: state.products.allProducts,
+  term: state.products.filterTerm
+})
 
-  export default connect(mapState, mapDispatch)(AllProducts)
+const mapDispatch = dispatch => ({
+  handleChange: event => { dispatch(setSearchTerm(event.target.value)) },
+  handleAddToListClick: (event) => {
+    event.preventDefault();
+    dispatch(fetchObjAndAdd(+event.target.id))
+    }
+  }
+)
+
+export default connect(mapState, mapDispatch)(AllProducts)

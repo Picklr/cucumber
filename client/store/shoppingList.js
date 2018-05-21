@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {addLatestOrder, getUserOrder, getUserOrderHistory} from './order'
+import { addLatestOrder, getUserOrder, getUserOrderHistory } from './order'
 
 /**
  * ACTION TYPES
@@ -25,15 +25,15 @@ const cartItems = [];
 /**
  * ACTION CREATORS
  */
-export const deleteItem = itemId => ({type: DELETE_ITEM, itemId})
+export const deleteItem = itemId => ({ type: DELETE_ITEM, itemId })
 
-export const addProductToList = productObj => ({type: ADD_PRODUCT_TO_LIST, productObj})
+export const addProductToList = productObj => ({ type: ADD_PRODUCT_TO_LIST, productObj })
 
-export const decrementQuantity = productObjId => ({type: DECREMENT_QUANTITY, productObjId})
+export const decrementQuantity = productObjId => ({ type: DECREMENT_QUANTITY, productObjId })
 
-export const fetchLocalStorageAndSetToState = () => ({type: FETCH_LOCALSTORAGE_AND_SET_TO_STATE})
+export const fetchLocalStorageAndSetToState = () => ({ type: FETCH_LOCALSTORAGE_AND_SET_TO_STATE })
 
-export const clearCart = () => ({type: CLEAR_CART})
+export const clearCart = () => ({ type: CLEAR_CART })
 
 /**
  * THUNK CREATORS
@@ -45,61 +45,47 @@ const parse = JSON.parse;
 export const fetchObjAndAdd = (itemId) =>
   dispatch => {
     axios.get(`/api/products/${itemId}`)
-    .then(res => {
-      var itemToSet;
-      var orderArray = parse(localStorage.getItem('orderArray'))
-      console.log('orderArray', orderArray)
-      // localStorage.setItem('orderArray',string(parse(localStorage.getItem('orderArray')).push({...action.productObj, quantity: 1})))
-      const match = orderArray.find((product) => {
-        return product.id === res.data.id
-      })
+      .then(res => {
+        var itemToSet;
+        var orderArray = parse(localStorage.getItem('orderArray'))
+        const match = orderArray.find((product) => {
+          return product.id === res.data.id
+        })
         if (!match) {
           itemToSet = [...orderArray,
-            {...res.data, quantity: 1}]
+          { ...res.data, quantity: 1 }]
         } else {
           itemToSet = orderArray.map((product) => {
-            if (product.id === res.data.id){
-             return {...product, quantity: ++product.quantity}
+            if (product.id === res.data.id) {
+              return { ...product, quantity: ++product.quantity }
             } else {
               return product
             }
           })
         }
-      localStorage.setItem('orderArray',string(itemToSet));
-      dispatch(addProductToList(res.data))
-    })
-    .catch(err => console.log(err))
+        localStorage.setItem('orderArray', string(itemToSet));
+        dispatch(addProductToList(res.data))
+      })
+      .catch(err => console.log(err))
   }
 
-  // export const decrementThunk = () => dispatch => {
-  //   dispatch(addProductToList())
-  // }
-//in the future will use this with admin
-// export const destroyItem = (itemToDestroyId) =>
-//   dispatch => {
-//     axios.delete('/api/shoppingList', {id: itemToDestroyId} )
-//     .then(res =>
-//       dispatch(deleteItem(res.data)))
-//     .catch(err => console.log(err))
-//   }
 export const clearCartThunk = () => dispatch => {
-localStorage.clear()
-dispatch(clearCart())
-}
-//experimental phase
-export const checkoutOrder = (userId, shoppingList, history) =>  dispatch => {
   localStorage.clear()
   dispatch(clearCart())
-  console.log('User number ', userId, 'is trying to buy ')
-  axios.post('api/order', {userId: userId, shoppingList: shoppingList}).then(res=>res.data)
-  // .then(order=>{
-  //   dispatch(addLatestOrder(order))
-  // })
+}
+
+export const checkoutOrder = (userId, shoppingList, history) => dispatch => {
+  localStorage.clear()
+  dispatch(clearCart())
+  axios.post('api/order', { userId: userId, shoppingList: shoppingList }).then(res => res.data)
     .then(() => {
-    dispatch(getUserOrderHistory({id: userId}))}).then(
-      () => history.push('/orderSuccess')
-    
-    ).catch(console.error.bind(console))
+      dispatch(getUserOrderHistory({ id: userId }))
+    })
+    .then(
+    () => history.push('/orderSuccess')
+
+    )
+    .catch(console.error.bind(console))
 
 }
 
@@ -114,42 +100,38 @@ export default function (state = cartItems, action) {
       return state.filter((currentItem) => currentItem.id !== action.itemId)
 
     case ADD_PRODUCT_TO_LIST:
-    const match = state.find((product) => {
+      const match = state.find((product) => {
         return product.id === action.productObj.id
       })
-        if (!match) {
-          return [...state,
-            {...action.productObj, quantity: 1}]
-        } else {
-          return state.map((product) => {
-            if (product.id === action.productObj.id){
-             return {...product, quantity: ++product.quantity}
-            } else {
-              return product
-            }
-          })
-        }
+      if (!match) {
+        return [...state,
+        { ...action.productObj, quantity: 1 }]
+      } else {
+        return state.map((product) => {
+          if (product.id === action.productObj.id) {
+            return { ...product, quantity: ++product.quantity }
+          } else {
+            return product
+          }
+        })
+      }
 
-      case DECREMENT_QUANTITY:
-
+    case DECREMENT_QUANTITY:
       const match2 = state.find((product) => {
         return product.id === action.productObjId
       })
-
-        if (match2.quantity === 1){
-          return state.filter((currentItem) => currentItem.id !== action.productObjId)
-       } else {
-         return state.map((product) => {
-
-            if (product.id == action.productObjId){
-
-                return {...product, quantity: --product.quantity}
-              }
-             else {
-              return product
-            }
-          })
-        }
+      if (match2.quantity === 1) {
+        return state.filter((currentItem) => currentItem.id !== action.productObjId)
+      } else {
+        return state.map((product) => {
+          if (product.id == action.productObjId) {
+            return { ...product, quantity: --product.quantity }
+          }
+          else {
+            return product
+          }
+        })
+      }
 
     case FETCH_LOCALSTORAGE_AND_SET_TO_STATE:
       return parse(localStorage.getItem('orderArray'))
