@@ -1,8 +1,8 @@
-import {connect} from 'react-redux'
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import {fetchSomeoneHistory} from '../../store/adminOrders'
-import {updateStatus} from '../../store/adminOrders'
+import { connect } from 'react-redux'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { fetchSomeoneHistory } from '../../store/adminOrders'
+import { updateStatus } from '../../store/adminOrders'
 
 const OrderAdmin = props => {
 
@@ -12,8 +12,6 @@ const OrderAdmin = props => {
             {props.adminOrders.length>0 && <div>{
                 props.adminOrders.map(eachOrder=>{
                     if(eachOrder.user !== null) return(
-
-                        
                     <div className = "orderEdit">
                     <Link to={`/editOrders/${eachOrder.id}`}>
                     <div className='orange-slice'>{'Customer : ' + eachOrder.user.fullName +' | Order number: ' + eachOrder.id + ' | Status : ' + eachOrder.status}
@@ -37,10 +35,16 @@ const OrderAdmin = props => {
             </div>
             }
         </div>
-    )
+  )
 }
 
-const mapProps = state => ({adminOrders : state.adminOrders})
-const mapDispatch = (dispatch, ownProps) => ({fetchAll: () => {dispatch(fetchSomeoneHistory())}, updateStatus: (id, status)=>dispatch(updateStatus(id, status,ownProps.history))})
+const mapProps = state => ({
+    adminOrders: state.adminOrders
+})
+
+const mapDispatch = (dispatch, ownProps) => ({
+    fetchAll: () => {dispatch(fetchSomeoneHistory())},
+    updateStatus: (id, status) => dispatch(updateStatus(id, status,ownProps.history))})
+
 
 export default connect(mapProps, mapDispatch)(OrderAdmin)

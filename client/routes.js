@@ -15,7 +15,7 @@ import AdminHome from './components/Admin/admin-home'
 import EditUsers from './components/Admin/admin-edit-users'
 import EditOrders from './components/Admin/editOrders.js'
 import EditSingleOrder from './components/Admin/singleOrder.js'
-
+import OrderConfirmation from './components/orderConfirmation'
 /**
  * COMPONENT
  */
@@ -45,6 +45,7 @@ class Routes extends Component {
         <Route path='/editUsers' component={EditUsers} />
         <Route exact path = '/editOrders' component = {EditOrders} />
         <Route path = '/editOrders/:id' component = {EditSingleOrder} />
+        <Route path = '/orderConfirmation' component = {OrderConfirmation} />
         </div>
         </div>
         {

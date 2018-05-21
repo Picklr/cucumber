@@ -1,28 +1,19 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import RaisedButton from 'material-ui/RaisedButton';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class EditUsers extends Component {
 
-      constructor(props) {
-        super(props)
-
-      }
-
-
-      render(){
-
+  constructor(props) {
+    super(props)
+  }
+  render() {
     return (
-<div> Made it to edit Users </div>
+      <div> Made it to edit Users </div>
     )
+  }
+}
 
-
-      }
-    }
-
-
-
-const mapProps = state=>({})
+const mapProps = state => ({})
 const mapDispatch = dispatch => ({
 })
 

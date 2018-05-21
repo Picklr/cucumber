@@ -1,52 +1,43 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
-const Button = ({ label, to, onClick }) => (<RaisedButton
-  label = {label}
-  backgroundColor = "#f7ffe6"
-  hoverColor = "#ccffcc"
-  containerElement={
-    <Link to={to} onClick={onClick} />
-  }
-  icon = {<img className="cukebutton" src="/thecucu_final.png" />}
-  />)
+const Button = ({ label, to, onClick }) => (
+  <RaisedButton
+    label={label}
+    backgroundColor="#f7ffe6"
+    hoverColor="#ccffcc"
+    containerElement={
+      <Link to={to} onClick={onClick} />
+      }
+    icon={<img className="cukebutton" src="/thecucu_final.png" />}
+  />
+)
 
 
 class AdminHome extends Component {
 
-      constructor(props) {
-        super(props)
-
-      }
-
-
-      render(){
-
+  render() {
     return (
       <div>
         <Button
           label="Edit Users"
-          to = '/editProducts'/>
+          to='/editProducts' />
         < br />
         <Button
           label="View/Edit Orders"
-          to = '/editOrders'
-          />
+          to="/editOrders"
+        />
 
-        </div>
+      </div>
 
     )
+  }
+}
 
-
-      }
-    }
-
-
-
-const mapProps = state=>({})
+const mapProps = state => ({})
 const mapDispatch = dispatch => ({
 })
 

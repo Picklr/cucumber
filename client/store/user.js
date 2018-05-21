@@ -1,6 +1,5 @@
 import axios from 'axios'
 import history from '../history'
-import {getUserOrderHistory} from './order'
 /**
  * ACTION TYPES
  */
@@ -16,9 +15,9 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
-const updateUser = (user) =>({type: UPDATE_USER, user: user})
+const getUser = user => ({ type: GET_USER, user })
+const removeUser = () => ({ type: REMOVE_USER })
+const updateUser = (user) => ({ type: UPDATE_USER, user: user })
 
 /**
  * THUNK CREATORS
@@ -28,13 +27,13 @@ export const editUser = (email, billingAddress, userId) =>
   dispatch =>
 
     axios.put(`/api/users/${userId}`, {
-        email: email,
-        billingAddress: billingAddress})
-        .then((res)=> {
-        console.log('RES.DATA', res.data)
-          dispatch(updateUser(res.data[1]))
-        })
-        .catch(err => console.log(err))
+      email: email,
+      billingAddress: billingAddress
+    })
+      .then((res) => {
+        dispatch(updateUser(res.data[1]))
+      })
+      .catch(err => console.log(err))
 
 export const me = () =>
   dispatch =>
@@ -49,8 +48,8 @@ export const auth = (method, email, password, firstName, lastName, billingAddres
       .then(res => {
         dispatch(getUser(res.data))
         history.push('/')
-      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
+      }, authError => {
+        dispatch(getUser({ error: authError }))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
@@ -69,6 +68,7 @@ export const logout = () =>
  */
 export default function (state = defaultUser, action) {
   switch (action.type) {
+
     case GET_USER:
       return action.user
     case REMOVE_USER:
